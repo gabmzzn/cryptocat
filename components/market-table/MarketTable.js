@@ -1,55 +1,68 @@
 import { useState, useEffect } from 'react'
-import { DataGrid } from '@mui/x-data-grid'
-import { DataGridPro } from '@mui/x-data-grid-pro'
-import { useDemoData } from '@mui/x-data-grid-generator'
-import { RsvpTwoTone } from '@mui/icons-material'
+import { styled } from '@mui/material/styles'
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
+import TableCell, { tableCellClasses } from '@mui/material/TableCell'
+import TableContainer from '@mui/material/TableContainer'
+import TableHead from '@mui/material/TableHead'
+import TableRow from '@mui/material/TableRow'
+import Paper from '@mui/material/Paper'
 
-const columns = [
-  { field: 'rank' },
-  { field: 'logo' },
-  { field: 'name' },
-  { field: 'symbol' },
-  { field: 'price' },
-  { field: 'changepct' },
-  { field: 'marketcap' },
-  { field: 'open24' },
-  { field: 'totalvolume' },
-  { field: 'sparkchart' },
-  { field: 'updown' },
-]
+import { w3cwebsocket as W3CWebSocket } from "websocket"
+import { compose } from 'redux'
+
+const symbolList = ['BTC', 'ETH', 'BNB', 'ADA', 'SOL', 'XRP',
+  'DOGE', 'LUNA', 'UNI', 'AVAX', 'LINK', 'ALGO', 'LTC', 'BCH',
+  'WBTC', 'MATIC', 'AXS', 'ATOM', 'ICP', 'FIL', 'XTZ', 'XLM', 'VET',
+  'FTT', 'ETC', 'TRX', 'DAI', 'DASH', 'OXT', 'FTM', 'EGLD', 'XMR', 'CAKE',
+  'EOS', 'STX', 'AAVE', 'SUSHI', 'NEAR', 'SNX', 'QNT', 'GRT', 'NEO',
+  'WAVES', 'KSM', 'LEO', 'MKR', 'CHR', 'ONE', 'HNT', 'AMP']
+
+const currenciesnames = ['Bitcoin', 'Ethereum', 'Binance', 'Cardano',
+  'Solana', 'XRP', 'Dogecoin', 'Terra', 'Uniswap', 'Avalanche',
+  'Chainlink', 'Algorand', 'Litecoin', 'Bitcoin Cash', 'Wrapped Bitcoin',
+  'Polygon', 'Axie Infinity', 'Cosmos', 'Internet Computer', 'Filecoin',
+  'Tezos', 'Stellar', 'VeChain', 'FTX Token', 'Ethereum Classic', 'TRON',
+  'Dai', 'Dash', 'Orchid Protocol', 'Fantom', 'Elrond', 'Monero', 'PancakeSwap', 'EOS',
+  'Stacks', 'Aave', 'SushiSwap', 'NEAR Protocol', 'Synthetix', 'Quant',
+  'The Graph', 'Neo', 'Waves', 'Kusama', 'LEO Token', 'Maker',
+  'Chroma', 'Harmony', 'Helium', 'Amp']
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}))
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  '&:nth-of-type(odd)': {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  '&:last-child td, &:last-child th': {
+    border: 0,
+  },
+}))
 
 const MarketTable = () => {
-  const [GeneralData, setGeneralData] = useState({})
+
+  const [currencyList, setCurrencyList] = useState([])
+  const composedData = []
 
   useEffect(() => {
     async function getData() {
       let plussign, updown = ''
-      let composedData = [], clist = '', i = 0
-      const currencieslist = ['BTC', 'ETH', 'BNB', 'ADA', 'SOL', 'XRP',
-        'DOGE', 'LUNA', 'UNI', 'AVAX', 'LINK', 'ALGO', 'LTC', 'BCH',
-        'WBTC', 'MATIC', 'AXS', 'ATOM', 'ICP', 'FIL', 'XTZ', 'XLM', 'VET',
-        'FTT', 'ETC', 'TRX', 'DAI', 'DASH', 'OXT', 'FTM', 'EGLD', 'XMR', 'CAKE',
-        'EOS', 'STX', 'AAVE', 'SUSHI', 'NEAR', 'SNX', 'QNT', 'GRT', 'NEO',
-        'WAVES', 'KSM', 'LEO', 'MKR', 'CHR', 'ONE', 'HNT', 'AMP']
-      const currenciesnames = ['Bitcoin', 'Ethereum', 'Binance', 'Cardano',
-        'Solana', 'XRP', 'Dogecoin', 'Terra', 'Uniswap', 'Avalanche',
-        'Chainlink', 'Algorand', 'Litecoin', 'Bitcoin Cash', 'Wrapped Bitcoin',
-        'Polygon', 'Axie Infinity', 'Cosmos', 'Internet Computer', 'Filecoin',
-        'Tezos', 'Stellar', 'VeChain', 'FTX Token', 'Ethereum Classic', 'TRON',
-        'Dai', 'Dash', 'Orchid Protocol', 'Fantom', 'Elrond', 'Monero', 'PancakeSwap', 'EOS',
-        'Stacks', 'Aave', 'SushiSwap', 'NEAR Protocol', 'Synthetix', 'Quant',
-        'The Graph', 'Neo', 'Waves', 'Kusama', 'LEO Token', 'Maker',
-        'Chroma', 'Harmony', 'Helium', 'Amp']
-      currencieslist.forEach(element => {
-        clist += element + ','
-      })
-      let json = Object.values(await fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=' +
-        clist + '&tsyms=USD').then(res => res.json()))
 
+      console.log('[API Data fetching]')
+      let json = Object.values(await fetch(`https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${symbolList.join()}&tsyms=USD`).then(res => res.json()))
       // Last hour timestamp
       let d = (new Date()).toString(), timestampLastHour = Date.parse((d.substr(0, 18) + ':00:00' + d.substr(24))) / 1000
 
-      for (let currency of currencieslist) {
+      for (const [i, currency] of symbolList.entries()) {
         // 0 = RAW Value, 1 = DISPLAY Value  
         json[0][currency].USD.CHANGEPCT24HOUR >= 0.00 ? plussign = '+' : plussign = ''
         composedData.push(
@@ -73,23 +86,101 @@ const MarketTable = () => {
           })
         i++
       }
-      setGeneralData(composedData)
-      console.log(composedData)
+      setCurrencyList(composedData)
+      getCurrencyData(composedData)
     }
     getData()
   }, [])
 
-  return (
-    <div style={{ height: 2000, width: '100%' }}>
-      <DataGrid
-        rows={GeneralData}
-        getRowId={(row) => row.rank}
-        columns={columns}
-        pageSize={50}
-        rowsPerPageOptions={[50]}
-        checkboxSelection
-      />
-    </div>
+  async function getCurrencyData(currencyList) {
+    // let performers = [...this.appService.currencyList].sort((a, b) => b.changepct - a.changepct)
+    // performers.splice(3, 44)
+    // this.performersSource = performers
+
+    // WebSocket Connection 
+    const apiKey = '6e659e1244d9e7ccf3b6bdf6ada561766883d528a2025f01004787c096d1b005'
+    const client = new W3CWebSocket('wss://streamer.cryptocompare.com/v2?api_key=' + apiKey)
+    const subs = []
+    symbolList.forEach(symbol => {
+      subs.push(`5~CCCAGG~${symbol}~USD`)
+    })
+    client.onopen = () => {
+      client.send(JSON.stringify({
+        "action": "SubAdd",
+        "subs": subs
+      }))
+    }
+    let subibaja = []
+    for (let i = 0; i < 50; i++) {
+      subibaja.push({
+        price: currencyList[i].price
+      })
+    }
+
+    client.onmessage = (message) => pushWebSocketData(JSON.parse(message.data))
+
+    function pushWebSocketData(data) {
+      if (data.PRICE !== undefined) {
+        const sym = currencyList.findIndex(((obj) => obj.symbol == data.FROMSYMBOL))
+        currencyList[sym].price = '$ ' + (data.PRICE.toLocaleString(
+          'en-GB', {
+          style: 'decimal',
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 5,
+        }))
+        currencyList[sym].changepct = (currencyList[sym].changepct >= 0 ? '+' : '') +
+          (((data.PRICE - currencyList[sym].open24) / data.PRICE) * 100).toFixed(2)
+
+        if (currencyList[sym].price > subibaja[sym].price) {
+          subibaja[sym].price = currencyList[sym].price
+          currencyList[sym].updown = '▲'
+        } else if (currencyList[sym].price < subibaja) {
+          subibaja[sym].price = currencyList[sym].price
+          currencyList[sym].updown = '▼'
+        }
+        // let performers = [...currencyList].sort((a, b) => b.changepct - a.changepct)
+        // performers.splice(3, 44)
+        // performersSource = performers
+        setCurrencyList(currencyList)
+        console.log('[WebSocket]')
+      }
+    }
+  }
+
+  console.log('render')
+  return (<>
+    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 700 }} aria-label="customized table">
+        {/* <TableHead>
+          <TableRow>
+            <StyledTableCell>Name</StyledTableCell>
+            <StyledTableCell align="right">Calories</StyledTableCell>
+            <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
+            <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
+            <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>
+          </TableRow>
+        </TableHead> */}
+        <TableBody>
+          {currencyList.map((row) => {
+            return (
+              <StyledTableRow key={row.rank}>
+                <StyledTableCell align="right">{row.rank}</StyledTableCell>
+                <StyledTableCell align="right">{row.logo}</StyledTableCell>
+                <StyledTableCell align="right">{row.name}</StyledTableCell>
+                <StyledTableCell align="right">{row.symbol}</StyledTableCell>
+                <StyledTableCell align="right">{row.price}</StyledTableCell>
+                <StyledTableCell align="right">{row.changepct}</StyledTableCell>
+                <StyledTableCell align="right">{row.marketcap}</StyledTableCell>
+                <StyledTableCell align="right">{row.open24}</StyledTableCell>
+                <StyledTableCell align="right">{row.totalvolume}</StyledTableCell>
+                <StyledTableCell align="right">{row.sparkchart}</StyledTableCell>
+              </StyledTableRow>
+            )
+          })}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  </>
   )
 }
 

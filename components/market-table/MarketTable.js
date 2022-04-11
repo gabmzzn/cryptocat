@@ -7,9 +7,11 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
+import Image from 'next/image'
 
 import { w3cwebsocket as W3CWebSocket } from "websocket"
 import { compose } from 'redux'
+import style from './MarketTable.module.css'
 
 const symbolList = ['BTC', 'ETH', 'BNB', 'ADA', 'SOL', 'XRP',
   'DOGE', 'LUNA', 'UNI', 'AVAX', 'LINK', 'ALGO', 'LTC', 'BCH',
@@ -28,7 +30,7 @@ const currenciesnames = ['Bitcoin', 'Ethereum', 'Binance', 'Cardano',
   'The Graph', 'Neo', 'Waves', 'Kusama', 'LEO Token', 'Maker',
   'Chroma', 'Harmony', 'Helium', 'Amp']
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
+const Cell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
     color: theme.palette.common.white,
@@ -38,7 +40,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
 }))
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
+const Row = styled(TableRow)(({ theme }) => ({
   '&:nth-of-type(odd)': {
     backgroundColor: theme.palette.action.hover,
   },
@@ -152,28 +154,34 @@ const MarketTable = () => {
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         {/* <TableHead>
           <TableRow>
-            <StyledTableCell>Name</StyledTableCell>
-            <StyledTableCell align="right">Calories</StyledTableCell>
-            <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>
+            <Cell>Name</Cell>
+            <Cell align="right">Calories</Cell>
+            <Cell align="right">Fat&nbsp;(g)</Cell>
+            <Cell align="right">Carbs&nbsp;(g)</Cell>
+            <Cell align="right">Protein&nbsp;(g)</Cell>
           </TableRow>
         </TableHead> */}
         <TableBody>
           {currencyData.map((row) => {
             return (
-              <StyledTableRow key={row.rank}>
-                <StyledTableCell align="right">{row.rank}</StyledTableCell>
-                <StyledTableCell align="right">{row.logo}</StyledTableCell>
-                <StyledTableCell align="right">{row.name}</StyledTableCell>
-                <StyledTableCell align="right">{row.symbol}</StyledTableCell>
-                <StyledTableCell align="right">{row.price}</StyledTableCell>
-                <StyledTableCell align="right">{row.changepct}</StyledTableCell>
-                <StyledTableCell align="right">{row.marketcap}</StyledTableCell>
-                <StyledTableCell align="right">{row.open24}</StyledTableCell>
-                <StyledTableCell align="right">{row.totalvolume}</StyledTableCell>
-                <StyledTableCell align="right">{row.sparkchart}</StyledTableCell>
-              </StyledTableRow>
+              <Row key={row.rank}>
+                <Cell align="right">{row.rank}</Cell>
+                <Cell align="right">
+                  <img src={`https://www.cryptocompare.com${row.logo}`} width={30} height={30} layout="responsive" alt={row.name} />
+                </Cell>
+                <Cell align="right">{row.name}</Cell>
+                <Cell align="right">{row.symbol}</Cell>
+                <Cell align="right"
+                  style={{ fontWeight: 'bold' }}
+                  className={'▼' == row.updown ? style.higherprice : style.lowerprice}>
+                  {row.updown}{row.price}
+                </Cell>
+                <Cell align="right">{row.changepct}</Cell>
+                <Cell align="right">{row.marketcap}</Cell>
+                <Cell align="right">{row.open24}</Cell>
+                <Cell align="right">{row.totalvolume}</Cell>
+                <Cell align="right">{row.sparkchart}</Cell>
+              </Row>
             )
           })}
         </TableBody>

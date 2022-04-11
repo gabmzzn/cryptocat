@@ -1,0 +1,9 @@
+/* Lower price */
+.lowerprice {
+    color: darkred;
+}
+
+/* Higher price */
+.higherprice {
+    color: green;
+}

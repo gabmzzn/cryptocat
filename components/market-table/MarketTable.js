@@ -50,10 +50,10 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 const MarketTable = () => {
 
-  const [currencyList, setCurrencyList] = useState([])
-  const composedData = []
+  const [currencyData, setCurrencyData] = useState([])
 
   useEffect(() => {
+    const composedData = []
     async function getData() {
       let plussign, updown = ''
 
@@ -86,13 +86,14 @@ const MarketTable = () => {
           })
         i++
       }
-      setCurrencyList(composedData)
+      setCurrencyData(composedData)
       getCurrencyData(composedData)
     }
     getData()
   }, [])
 
   async function getCurrencyData(currencyList) {
+    console.log('websocket connection')
     // let performers = [...this.appService.currencyList].sort((a, b) => b.changepct - a.changepct)
     // performers.splice(3, 44)
     // this.performersSource = performers
@@ -141,13 +142,11 @@ const MarketTable = () => {
         // let performers = [...currencyList].sort((a, b) => b.changepct - a.changepct)
         // performers.splice(3, 44)
         // performersSource = performers
-        setCurrencyList(currencyList)
-        console.log('[WebSocket]')
+        setCurrencyData([...currencyList])
       }
     }
   }
 
-  console.log('render')
   return (<>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -161,7 +160,7 @@ const MarketTable = () => {
           </TableRow>
         </TableHead> */}
         <TableBody>
-          {currencyList.map((row) => {
+          {currencyData.map((row) => {
             return (
               <StyledTableRow key={row.rank}>
                 <StyledTableCell align="right">{row.rank}</StyledTableCell>

@@ -12,7 +12,7 @@ export default function Test() {
     })
 
     return <>
-        <button onClick={setero}>Click</button>
+        <button>Click</button>
         <h1>{count}</h1>
     </>
 }

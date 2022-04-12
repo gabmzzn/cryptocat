@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
-import TableCell, { tableCellClasses } from '@mui/material/TableCell'
+import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
@@ -12,6 +12,7 @@ import Image from 'next/image'
 import { w3cwebsocket as W3CWebSocket } from "websocket"
 import { compose } from 'redux'
 import style from './MarketTable.module.css'
+import { randomBrokerId } from '@mui/x-data-grid-generator'
 
 const symbolList = ['BTC', 'ETH', 'BNB', 'ADA', 'SOL', 'XRP',
   'DOGE', 'LUNA', 'UNI', 'AVAX', 'LINK', 'ALGO', 'LTC', 'BCH',
@@ -30,158 +31,119 @@ const currenciesnames = ['Bitcoin', 'Ethereum', 'Binance', 'Cardano',
   'The Graph', 'Neo', 'Waves', 'Kusama', 'LEO Token', 'Maker',
   'Chroma', 'Harmony', 'Helium', 'Amp']
 
-const Cell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}))
+export default function MarketTable(props) {
 
-const Row = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  '&:last-child td, &:last-child th': {
-    border: 0,
-  },
-}))
+  const [currencyData, setCurrencyData] = useState(props.data.composedData)
 
-const MarketTable = () => {
-
-  const [currencyData, setCurrencyData] = useState([])
+  const priceRef = useRef([])
 
   useEffect(() => {
-    const composedData = []
-    async function getData() {
-      let plussign, updown = ''
+    async function getCurrencyData(currencyList) {
+      console.log('[Websocket Connection]')
+      // let performers = [...this.appService.currencyList].sort((a, b) => b.changepct - a.changepct)
+      // performers.splice(3, 44)
+      // this.performersSource = performers
 
-      console.log('[API Data fetching]')
-      let json = Object.values(await fetch(`https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${symbolList.join()}&tsyms=USD`).then(res => res.json()))
-      // Last hour timestamp
-      let d = (new Date()).toString(), timestampLastHour = Date.parse((d.substr(0, 18) + ':00:00' + d.substr(24))) / 1000
-
-      for (const [i, currency] of symbolList.entries()) {
-        // 0 = RAW Value, 1 = DISPLAY Value  
-        json[0][currency].USD.CHANGEPCT24HOUR >= 0.00 ? plussign = '+' : plussign = ''
-        composedData.push(
-          {
-            rank: i + 1,
-            logo: json[1][currency].USD.IMAGEURL, //Ex: json.DISPLAY.BTC.USD.IMAGEURL
-            name: currenciesnames[i],
-            symbol: currency,
-            price: json[1][currency].USD.PRICE.toLocaleString(
-              'en-GB', {
-              style: 'decimal',
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 5,
-            }),
-            changepct: plussign + json[1][currency].USD.CHANGEPCT24HOUR,
-            updown: updown,
-            open24: json[0][currency].USD.OPEN24HOUR,
-            totalvolume: json[1][currency].USD.TOTALTOPTIERVOLUME24HTO,
-            marketcap: json[1][currency].USD.MKTCAP,
-            sparkchart: 'https://images.cryptocompare.com/sparkchart/' + currency + '/USD/latest.png?ts=' + timestampLastHour
-          })
-        i++
-      }
-      setCurrencyData(composedData)
-      getCurrencyData(composedData)
-    }
-    getData()
-  }, [])
-
-  async function getCurrencyData(currencyList) {
-    console.log('websocket connection')
-    // let performers = [...this.appService.currencyList].sort((a, b) => b.changepct - a.changepct)
-    // performers.splice(3, 44)
-    // this.performersSource = performers
-
-    // WebSocket Connection 
-    const apiKey = '6e659e1244d9e7ccf3b6bdf6ada561766883d528a2025f01004787c096d1b005'
-    const client = new W3CWebSocket('wss://streamer.cryptocompare.com/v2?api_key=' + apiKey)
-    const subs = []
-    symbolList.forEach(symbol => {
-      subs.push(`5~CCCAGG~${symbol}~USD`)
-    })
-    client.onopen = () => {
-      client.send(JSON.stringify({
-        "action": "SubAdd",
-        "subs": subs
-      }))
-    }
-    let subibaja = []
-    for (let i = 0; i < 50; i++) {
-      subibaja.push({
-        price: currencyList[i].price
+      // WebSocket Connection 
+      const apiKey = '6e659e1244d9e7ccf3b6bdf6ada561766883d528a2025f01004787c096d1b005'
+      const client = new W3CWebSocket('wss://streamer.cryptocompare.com/v2?api_key=' + apiKey)
+      const subs = []
+      symbolList.forEach(symbol => {
+        subs.push(`5~CCCAGG~${symbol}~USD`)
       })
-    }
-
-    client.onmessage = (message) => pushWebSocketData(JSON.parse(message.data))
-
-    function pushWebSocketData(data) {
-      if (data.PRICE !== undefined) {
-        const sym = currencyList.findIndex(((obj) => obj.symbol == data.FROMSYMBOL))
-        currencyList[sym].price = '$ ' + (data.PRICE.toLocaleString(
-          'en-GB', {
-          style: 'decimal',
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 5,
+      client.onopen = () => {
+        client.send(JSON.stringify({
+          "action": "SubAdd",
+          "subs": subs
         }))
-        currencyList[sym].changepct = (currencyList[sym].changepct >= 0 ? '+' : '') +
-          (((data.PRICE - currencyList[sym].open24) / data.PRICE) * 100).toFixed(2)
+      }
+      let subibaja = []
+      for (let i = 0; i < 50; i++) {
+        subibaja.push({
+          price: currencyList[i].price
+        })
+      }
 
-        if (currencyList[sym].price > subibaja[sym].price) {
-          subibaja[sym].price = currencyList[sym].price
-          currencyList[sym].updown = '▲'
-        } else if (currencyList[sym].price < subibaja) {
-          subibaja[sym].price = currencyList[sym].price
-          currencyList[sym].updown = '▼'
+      client.onmessage = (message) => pushWebSocketData(JSON.parse(message.data))
+
+      function pushWebSocketData(data) {
+        if (data.PRICE !== undefined) {
+          const sym = currencyList.findIndex(((obj) => obj.symbol == data.FROMSYMBOL))
+          currencyList[sym].price = '$ ' + (data.PRICE.toLocaleString(
+            'en-GB', {
+            style: 'decimal',
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 5,
+          }))
+          currencyList[sym].changepct = (currencyList[sym].changepct >= 0 ? '+' : '') +
+            (((data.PRICE - currencyList[sym].open24) / data.PRICE) * 100).toFixed(2)
+
+          if (currencyList[sym].price > subibaja[sym].price) {
+            subibaja[sym].price = currencyList[sym].price
+            currencyList[sym].updown = '▲'
+          } else if (currencyList[sym].price < subibaja) {
+            subibaja[sym].price = currencyList[sym].price
+            currencyList[sym].updown = '▼'
+          }
+          // let performers = [...currencyList].sort((a, b) => b.changepct - a.changepct)
+          // performers.splice(3, 44)
+          // performersSource = performers
+
+          // THIS POSSIBLY NEEDS OPTIMIZATION
+          setCurrencyData([...currencyList])
+          // priceRef.current[sym].className += '▼' == currencyList[sym].updown ? ' ' + style.higherprice : ' ' + style.lowerprice
+          // priceRef.current[sym].textContent = currencyList[sym].updown + currencyList[sym].price
+
         }
-        // let performers = [...currencyList].sort((a, b) => b.changepct - a.changepct)
-        // performers.splice(3, 44)
-        // performersSource = performers
-        setCurrencyData([...currencyList])
       }
     }
-  }
+    getCurrencyData(props.data.composedData)
+  }, [props.data.composedData])
 
   return (<>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
-        {/* <TableHead>
+        <TableHead>
           <TableRow>
-            <Cell>Name</Cell>
-            <Cell align="right">Calories</Cell>
-            <Cell align="right">Fat&nbsp;(g)</Cell>
-            <Cell align="right">Carbs&nbsp;(g)</Cell>
-            <Cell align="right">Protein&nbsp;(g)</Cell>
+            <TableCell align="right">Rank</TableCell>
+            <TableCell align="right"></TableCell>
+            <TableCell align="right">Name</TableCell>
+            <TableCell align="right">Symbol</TableCell>
+            <TableCell align="right">Price</TableCell>
+            <TableCell align="right">Change</TableCell>
+            <TableCell align="right">Market</TableCell>
+            <TableCell align="right">Volume</TableCell>
+            <TableCell align="right">Volume 2</TableCell>
+            <TableCell>Graph</TableCell>
           </TableRow>
-        </TableHead> */}
+        </TableHead>
         <TableBody>
-          {currencyData.map((row) => {
+          {currencyData.map((row, i) => {
+            console.log('first')
             return (
-              <Row key={row.rank}>
-                <Cell align="right">{row.rank}</Cell>
-                <Cell align="right">
-                  <img src={`https://www.cryptocompare.com${row.logo}`} width={30} height={30} layout="responsive" alt={row.name} />
-                </Cell>
-                <Cell align="right">{row.name}</Cell>
-                <Cell align="right">{row.symbol}</Cell>
-                <Cell align="right"
+              <TableRow key={row.rank}>
+                <TableCell align="right">{row.rank}</TableCell>
+                <TableCell align="right">
+                  <Image src={`https://www.cryptocompare.com${row.logo}`} width={30} height={30} alt={row.name} />
+                </TableCell>
+                <TableCell align="right">{row.name}</TableCell>
+                <TableCell align="right">{row.symbol}</TableCell>
+                <TableCell align="right"
+                  id={row.rank}
+                  // ref={e => priceRef.current[i] = e}
                   style={{ fontWeight: 'bold' }}
-                  className={'▼' == row.updown ? style.higherprice : style.lowerprice}>
+                  className={'▼' == row.updown ? ' ' + style.higherprice : ' ' + style.lowerprice}
+                >
                   {row.updown}{row.price}
-                </Cell>
-                <Cell align="right">{row.changepct}</Cell>
-                <Cell align="right">{row.marketcap}</Cell>
-                <Cell align="right">{row.open24}</Cell>
-                <Cell align="right">{row.totalvolume}</Cell>
-                <Cell align="right">{row.sparkchart}</Cell>
-              </Row>
+                </TableCell>
+                <TableCell align="right">{row.changepct}</TableCell>
+                <TableCell align="right">{row.marketcap}</TableCell>
+                <TableCell align="right">{row.open24}</TableCell>
+                <TableCell align="right">{row.totalvolume}</TableCell>
+                <TableCell align="right">
+                  <Image src={row.sparkchart} width={150} height={35} alt={row.name} />
+                </TableCell>
+              </TableRow>
             )
           })}
         </TableBody>
@@ -190,5 +152,3 @@ const MarketTable = () => {
   </>
   )
 }
-
-export default MarketTable

@@ -12,7 +12,7 @@ export default function NavBar() {
 					<Link href='/market' passHref>
 						<Button className={style.button} variant="outlined">MARKET LIVE DATA</Button>
 					</Link>
-					<Link href='/coins' passHref>
+					<Link href='/coins/btc' passHref>
 						<Button className={style.button} variant="outlined">COIN INFO</Button>
 					</Link>
 				</div>

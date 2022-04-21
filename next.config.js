@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: false,
   images: {
-    domains: ['www.cryptocompare.com', 'images.cryptocompare.com'],
+    domains: ['www.cryptocompare.com', 'images.cryptocompare.com', 'cdn-icons-png.flaticon.com'],
   },
 }
 

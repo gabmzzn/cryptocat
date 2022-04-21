@@ -1,0 +1,24 @@
+.currencyHeader {
+    display: flex;
+    align-items: center;
+    height: 100px;
+}
+
+.currencyHeader img {
+    border-radius: 50%;
+}
+
+.currency {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.symbol {
+    margin-left: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px 7px;
+    color: #323241;
+    background-color: #d3d3e6;
+    border-radius: 10%;
+}

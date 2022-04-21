@@ -1,21 +1,22 @@
-import style from './navbar.module.css'
 import Button from '@mui/material/Button'
 import Link from 'next/link'
+import style from './navbar.module.css'
 
 
-const NavBar = () => {
+export default function NavBar() {
 	return (
 		<div className={style.navbar}>
-			<span>CRYPTO-CAT</span>
-			<Link href='/market' passHref>
-				<Button variant="contained">MARKET LIVE DATA</Button>
-			</Link>
-			<Link href='/coins' passHref>
-				<Button variant="contained">COIN INFO</Button>
-			</Link>
-
+			<div className={style.content}>
+				<span>CRYPTO-CAT</span>
+				<div className={style.buttons}>
+					<Link href='/market' passHref>
+						<Button className={style.button} variant="outlined">MARKET LIVE DATA</Button>
+					</Link>
+					<Link href='/coins' passHref>
+						<Button className={style.button} variant="outlined">COIN INFO</Button>
+					</Link>
+				</div>
+			</div>
 		</div>
 	)
 }
-
-export default NavBar

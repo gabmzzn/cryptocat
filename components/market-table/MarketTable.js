@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react'
-import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
@@ -10,9 +9,7 @@ import Paper from '@mui/material/Paper'
 import Image from 'next/image'
 
 import { w3cwebsocket as W3CWebSocket } from "websocket"
-import { compose } from 'redux'
 import style from './MarketTable.module.css'
-import { randomBrokerId } from '@mui/x-data-grid-generator'
 
 const symbolList = ['BTC', 'ETH', 'BNB', 'ADA', 'SOL', 'XRP',
   'DOGE', 'LUNA', 'UNI', 'AVAX', 'LINK', 'ALGO', 'LTC', 'BCH',
@@ -34,8 +31,6 @@ const currenciesnames = ['Bitcoin', 'Ethereum', 'Binance', 'Cardano',
 export default function MarketTable(props) {
 
   const [currencyData, setCurrencyData] = useState(props.data.composedData)
-
-  const priceRef = useRef([])
 
   useEffect(() => {
     async function getCurrencyData(currencyList) {
@@ -101,47 +96,43 @@ export default function MarketTable(props) {
   }, [props.data.composedData])
 
   return (<>
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} className={style.table}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <TableCell align="right">Rank</TableCell>
-            <TableCell align="right"></TableCell>
-            <TableCell align="right">Name</TableCell>
-            <TableCell align="right">Symbol</TableCell>
-            <TableCell align="right">Price</TableCell>
-            <TableCell align="right">Change</TableCell>
-            <TableCell align="right">Market</TableCell>
-            <TableCell align="right">Volume</TableCell>
-            <TableCell align="right">Volume 2</TableCell>
-            <TableCell>Graph</TableCell>
+            <TableCell align="right">#</TableCell>
+            <TableCell align="left">CURRENCY</TableCell>
+            <TableCell align="right" width={150}>PRICE</TableCell>
+            <TableCell align="right">LAST 24h</TableCell>
+            <TableCell align="right">TOTAL VOL</TableCell>
+            <TableCell align="right">MARKET CAP</TableCell>
+            <TableCell>LAST 7 DAYS</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {currencyData.map((row, i) => {
-            console.log('first')
             return (
               <TableRow key={row.rank}>
                 <TableCell align="right">{row.rank}</TableCell>
-                <TableCell align="right">
-                  <Image src={`https://www.cryptocompare.com${row.logo}`} width={30} height={30} alt={row.name} />
+                <TableCell align="left">
+                  <Image src={`https://www.cryptocompare.com${row.logo}`} width={40} height={40} alt={row.name} loading={'eager'} />
+                  {row.name} {row.symbol}
                 </TableCell>
-                <TableCell align="right">{row.name}</TableCell>
-                <TableCell align="right">{row.symbol}</TableCell>
                 <TableCell align="right"
                   id={row.rank}
                   // ref={e => priceRef.current[i] = e}
-                  style={{ fontWeight: 'bold' }}
-                  className={'▼' == row.updown ? ' ' + style.higherprice : ' ' + style.lowerprice}
+                  style={{ fontWeight: 'bold', width: '200px' }}
+                  className={'▲' == row.updown ? style.higherprice : style.lowerprice}
                 >
-                  {row.updown}{row.price}
+                  <span>
+                    {row.updown}{row.price}
+                  </span>
                 </TableCell>
-                <TableCell align="right">{row.changepct}</TableCell>
-                <TableCell align="right">{row.marketcap}</TableCell>
-                <TableCell align="right">{row.open24}</TableCell>
+                <TableCell align="right" className={0 < row.changepct ? style.higherpct : style.lowerpct}><span>{row.changepct}</span></TableCell>
                 <TableCell align="right">{row.totalvolume}</TableCell>
+                <TableCell align="right">{row.marketcap}</TableCell>
                 <TableCell align="right">
-                  <Image src={row.sparkchart} width={150} height={35} alt={row.name} />
+                  <Image src={row.sparkchart} width={150} height={35} alt={row.name} loading={'eager'} />
                 </TableCell>
               </TableRow>
             )

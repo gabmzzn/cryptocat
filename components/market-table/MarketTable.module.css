@@ -1,9 +1,34 @@
-/* Lower price */
-.lowerprice {
-    color: darkred;
+.lowerprice span, .higherprice span {
+    padding: 7px;
+    border-radius: 10px;
 }
 
-/* Higher price */
-.higherprice {
-    color: green;
+.lowerprice span {
+    border: 1px solid rgb(225, 0, 0);
+    color: rgb(225, 0, 0);
+}
+
+.higherprice span {
+    border: 1px solid rgb(0, 135, 0);
+    color: rgb(0, 135, 0);
+}
+
+.lowerpct span, .higherpct span {
+    padding: 7px;
+    border-radius: 10px;
+}
+
+.lowerpct span {
+    border: 1px solid rgb(225, 0, 0);
+    color: rgb(225, 0, 0);
+}
+
+.higherpct span {
+    border: 1px solid rgb(0, 135, 0);
+    color: rgb(0, 135, 0);
+}
+
+.table td {
+    font-size: 1.05rem;
+    font-weight: 500;
 }

@@ -1,4 +1,4 @@
-import CoinInfo from "../../components/layout/coin-info/CoinInfo"
+import CoinInfo from "../../components/CoinInfo/CoinInfo"
 
 export default function Coins(props) {
     return (

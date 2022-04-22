@@ -1,7 +1,7 @@
 import Image from "next/image"
 import style from './CoinSidebar.module.css'
 
-export default function CoinSidebarInfo() {
+export default function CoinSidebar() {
     const selCurrency = 'BTC'
     const selCurrencyToCompare = 'USD'
     const Price = '42,610.28'

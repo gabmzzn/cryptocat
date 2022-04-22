@@ -1,4 +1,4 @@
-import MarketTable from "../../components/market-table/MarketTable"
+import MarketTable from "../../components/Market/MarketTable"
 
 const symbolList = ['BTC', 'ETH', 'BNB', 'ADA', 'SOL', 'XRP',
     'DOGE', 'LUNA', 'UNI', 'AVAX', 'LINK', 'ALGO', 'LTC', 'BCH',

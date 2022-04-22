@@ -1,29 +1,32 @@
 import Image from "next/image"
 import style from './CoinSidebar.module.css'
 
-export default function CoinSidebar() {
-    const selCurrency = 'BTC'
+export default function CoinSidebar(props) {
+    const { price, symbol, name,
+        high24, low24, priceChange,
+        sortOrder, rating,
+        technologyAdoptionRating,
+        marketPerformanceRating,
+        platformType, algorithm,
+        assetWebsiteUrl, imageURL } = props.data
     const selCurrencyToCompare = 'USD'
-    const Price = '42,610.28'
-    const ImageUrl = '/media/37746251/btc.png'
-    const ImageUrlTC = 'https://cdn-icons-png.flaticon.com/512/197/197484.png'
     return <>
         <div className={style.container}>
             <div>
-                <h2>{selCurrency} price to {selCurrencyToCompare}</h2>
+                <h2>{symbol} price to {selCurrencyToCompare}</h2>
             </div>
             <table>
                 <tbody>
                     <tr>
-                        <td><Image width={30} height={30} src={`https://www.cryptocompare.com${ImageUrl}`} />
-                            {selCurrency}
+                        <td><img width={30} height={30} src={`https://www.cryptocompare.com${imageURL}`} />
+                            {symbol}
                         </td>
                         <td>1</td>
                     </tr>
                     <tr>
-                        <td><Image width={30} height={30} src={ImageUrlTC} />
+                        <td><img width={30} height={30} src={''} />
                             {selCurrencyToCompare}</td>
-                        <td>${Price}</td>
+                        <td>${price}</td>
                     </tr>
                 </tbody>
             </table>
@@ -31,41 +34,41 @@ export default function CoinSidebar() {
 
         <div className={style.container}>
             <div>
-                <h2>{selCurrency} Statistics and info</h2>
+                <h2>{symbol} Statistics and info</h2>
             </div>
             <div>
                 <table>
                     <tbody>
                         <tr>
                             <th>Price Change <span>24h</span></th>
-                            <td>${' N '}</td>
+                            <td>${priceChange}</td>
                         </tr>
                         <tr>
                             <th>High - Low <span>24h</span></th>
                             <td>
                                 <div>
-                                    <span className="high">${'42,996.50'}</span>
+                                    <span className="high">${high24}</span>
                                 </div>
                                 <div>
-                                    <span className="low">${'41,336.97'}</span>
+                                    <span className="low">${low24}</span>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <th>Ranking</th>
-                            <td><span>#{'1'}</span></td>
+                            <td><span>#{sortOrder}</span></td>
                         </tr>
                         <tr>
                             <th>General Weiss Rating</th>
-                            <td><span>{'B+'}</span></td>
+                            <td><span>{rating}</span></td>
                         </tr>
                         <tr>
                             <th>Technology Adoption</th>
-                            <td><span>{'A-'}</span></td>
+                            <td><span>{technologyAdoptionRating}</span></td>
                         </tr>
                         <tr>
                             <th>Market Performance</th>
-                            <td><span>{'B-'}</span></td>
+                            <td><span>{marketPerformanceRating}</span></td>
                         </tr>
                         <tr>
                             <th>Total coins mined</th>
@@ -73,16 +76,16 @@ export default function CoinSidebar() {
                         </tr>
                         <tr>
                             <th>Platform Type</th>
-                            <td>{'blockchain'}</td>
+                            <td>{platformType}</td>
                         </tr>
                         <tr>
                             <th>Algorithm</th>
-                            <td>{'SHA-256'}</td>
+                            <td>{algorithm}</td>
                         </tr>
                         <tr>
                             <th>Website:</th>
                             <td>
-                                <a href={'https://bitcoin.org/en/'}>
+                                <a href={assetWebsiteUrl}>
                                     External Link
                                     <div>
                                         open_in_new

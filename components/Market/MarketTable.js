@@ -115,8 +115,11 @@ export default function MarketTable(props) {
               <TableRow key={row.rank}>
                 <TableCell align="right">{row.rank}</TableCell>
                 <TableCell align="left">
-                  <Image src={`https://www.cryptocompare.com${row.logo}`} width={40} height={40} alt={row.name} loading={'eager'} />
-                  {row.name} {row.symbol}
+                  <div className={style.name}>
+                    <Image src={`https://www.cryptocompare.com${row.logo}`} width={40} height={40} alt={row.name} loading={'eager'} />
+                    {row.name} {row.symbol}
+                  </div>
+
                 </TableCell>
                 <TableCell align="right"
                   id={row.rank}

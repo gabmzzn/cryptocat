@@ -5,13 +5,16 @@ import style from './CoinDetails.module.css'
 
 export default function CoinDetails(props) {
 
-    const historicalData = props.historicalData
-    const coinInfo = props.coinInfo
+    const { coinInfo, historicalData } = props
 
     return <div className={style.container}>
         <div className={style.leftContainer}>
             <CoinChart data={historicalData} />
-            <CoinDescription data={coinInfo} />
+            <CoinDescription
+                name={coinInfo.name}
+                symbol={coinInfo.symbol}
+                description={coinInfo.description}
+            />
         </div>
         <div className={style.rightContainer}>
             <CoinSidebar data={coinInfo} />

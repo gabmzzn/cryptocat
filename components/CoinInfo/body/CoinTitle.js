@@ -4,7 +4,7 @@ import style from './CoinTitle.module.css'
 export default function CoinTitle(props) {
 
     return <div className={style.currencyHeader}>
-        <img width={50} height={50} src={`https://www.cryptocompare.com${props.logo}`} />
+        <img width={50} height={50} src={`https://www.cryptocompare.com/${props.logo}`} />
         <span className={style.currency}>{props.name}</span>
         <span className={style.symbol}>{props.symbol}</span>
     </div>

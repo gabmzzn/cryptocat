@@ -4,8 +4,11 @@ import { useEffect, useState } from "react"
 
 export default function CoinInfo() {
 
-    const [historicalData, setHistoricalData] = useState([])
-    const [coinInfo, setCoinInfo] = useState({})
+    const selCoin = 'ETH'
+    const selCoinTC = 'USD'
+
+    const [historicalData, setHistoricalData] = useState(false)
+    const [coinInfo, setCoinInfo] = useState(false)
 
     useEffect(() => {
         let histoData = []
@@ -15,7 +18,7 @@ export default function CoinInfo() {
             histoData = json.Data.Data
                 .map(r => Object.values({ time: r.time * 1000, close: r.close }))
             setHistoricalData(histoData)
-            setCoinInfo(await getCoinInfo())
+            getCoinInfo()
         }
         getHistoricalData()
 
@@ -67,21 +70,21 @@ export default function CoinInfo() {
                 // if (rating == '') {
                 //     rating = technologyAdoptionRating = marketPerformanceRating = 'N/A'
             }
-            return data
+            setCoinInfo(data)
         }
     }, [])
 
-    const selCoin = 'ETH'
-    const selCoinTC = 'USD'
-    return <>
-        <CoinTitle
-            name={coinInfo.name}
-            symbol={coinInfo.symbol}
-            logo={coinInfo.imageURL}
-        />
-        <CoinDetails
-            historicalData={historicalData}
-            coinInfo={coinInfo}
-        />
-    </>
+    if (coinInfo && historicalData) {
+        return <>
+            <CoinTitle
+                name={coinInfo.name}
+                symbol={coinInfo.symbol}
+                logo={coinInfo.imageURL}
+            />
+            <CoinDetails
+                historicalData={historicalData}
+                coinInfo={coinInfo}
+            />
+        </>
+    }
 }

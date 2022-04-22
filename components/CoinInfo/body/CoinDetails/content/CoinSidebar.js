@@ -2,12 +2,9 @@ import Image from "next/image"
 import style from './CoinSidebar.module.css'
 
 export default function CoinSidebar(props) {
-    const { price, symbol, name,
-        high24, low24, priceChange,
-        sortOrder, rating,
-        technologyAdoptionRating,
-        marketPerformanceRating,
-        platformType, algorithm,
+    const { price, symbol, high24, low24, priceChange,
+        sortOrder, rating, technologyAdoptionRating,
+        marketPerformanceRating, platformType, algorithm,
         assetWebsiteUrl, imageURL } = props.data
     const selCurrencyToCompare = 'USD'
     return <>
@@ -18,13 +15,13 @@ export default function CoinSidebar(props) {
             <table>
                 <tbody>
                     <tr>
-                        <td><img width={30} height={30} src={`https://www.cryptocompare.com${imageURL}`} />
+                        <td><Image width={30} height={30} src={`https://www.cryptocompare.com/${imageURL}`} />
                             {symbol}
                         </td>
                         <td>1</td>
                     </tr>
                     <tr>
-                        <td><img width={30} height={30} src={''} />
+                        <td><Image width={30} height={30} src={'https://www.cryptocompare.com/'} />
                             {selCurrencyToCompare}</td>
                         <td>${price}</td>
                     </tr>

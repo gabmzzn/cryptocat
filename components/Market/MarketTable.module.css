@@ -32,3 +32,16 @@
     font-size: 1.05rem;
     font-weight: 500;
 }
+
+.table tr:hover {
+    background-color: rgb(247, 253, 255);
+}
+
+.name {
+    display: flex;
+    align-items: center;
+}
+
+.name img {
+    border-radius: 50%;
+}

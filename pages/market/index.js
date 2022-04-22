@@ -17,10 +17,12 @@ const currenciesnames = ['Bitcoin', 'Ethereum', 'Binance', 'Cardano',
     'The Graph', 'Neo', 'Waves', 'Kusama', 'LEO Token', 'Maker',
     'Chroma', 'Harmony', 'Helium', 'Amp']
 
-const Market = ({ composedData }) => {
-    return (
-        <MarketTable data={{ composedData }} />
-    )
+export default function Market({ composedData }) {
+    if (composedData) {
+        return (
+            <MarketTable data={{ composedData }} />
+        )
+    }
 }
 
 export async function getStaticProps() {
@@ -65,5 +67,3 @@ export async function getStaticProps() {
     }
 
 }
-
-export default Market

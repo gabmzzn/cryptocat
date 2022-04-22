@@ -87,4 +87,7 @@ export default function CoinInfo(props) {
             />
         </>
     }
+    return (
+        <h1>Loading data...</h1>
+    )
 }

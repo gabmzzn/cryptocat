@@ -23,12 +23,15 @@ export default function Market({ composedData }) {
             <MarketTable data={{ composedData }} />
         )
     }
+    return (
+        <h1>Loading data...</h1>
+    )
 }
 
 export async function getStaticProps() {
     const composedData = []
     let plussign, updown = ''
-
+    Math.random() > 0.5 ? updown = '▲' : updown = '▼'
     console.log('[API Data fetching]')
     let json = Object.values(await fetch(`https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${symbolList.join()}&tsyms=USD`).then(res => res.json()))
     // Last hour timestamp

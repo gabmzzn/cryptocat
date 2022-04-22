@@ -9,7 +9,10 @@ export default function CoinDetails(props) {
 
     return <div className={style.container}>
         <div className={style.leftContainer}>
-            <CoinChart data={historicalData} />
+            <CoinChart
+                name={coinInfo.name}
+                data={historicalData}
+            />
             <CoinDescription
                 name={coinInfo.name}
                 symbol={coinInfo.symbol}

@@ -9,7 +9,7 @@ export default function CoinChart(props) {
             trigger: 'axis',
             axisPointer: {
                 type: 'cross',
-                animation: false,
+                animation: true,
                 label: {
                     backgroundColor: '#505765'
                 }
@@ -22,8 +22,8 @@ export default function CoinChart(props) {
             bottom: 30
         },
         // title: {
-        //   left: 'center',
-        //   text: this.selectedCurrency + ' to ' + this.selectedCurrencyToCompare
+        //     left: 'center',
+        //     text: `${props.symbol} to USD`
         // },
         xAxis: {
             type: 'time',
@@ -55,10 +55,10 @@ export default function CoinChart(props) {
         series: [
             {
                 data: props.data,
-                name: 'BTC',
+                name: props.name,
                 type: 'line',
                 smooth: false,
-                animationThreshold: 5000,
+                // animationThreshold: 5000,
                 showSymbol: false,
                 symbolSize: 9,
                 sampling: 'lttb',

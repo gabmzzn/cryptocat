@@ -2,9 +2,9 @@ import CoinTitle from "./body/CoinTitle"
 import CoinDetails from "./body/CoinDetails/CoinDetails"
 import { useEffect, useState } from "react"
 
-export default function CoinInfo() {
+export default function CoinInfo(props) {
 
-    const selCoin = 'ETH'
+    const selCoin = props.coin.toUpperCase()
     const selCoinTC = 'USD'
 
     const [historicalData, setHistoricalData] = useState(false)
@@ -13,7 +13,7 @@ export default function CoinInfo() {
     useEffect(() => {
         let histoData = []
         async function getHistoricalData() {
-            const URL = 'https://min-api.cryptocompare.com/data/v2/histoday?fsym=BTC&tsym=USD&toTs=1650550414&limit=999'
+            const URL = `https://min-api.cryptocompare.com/data/v2/histoday?fsym=${selCoin}&tsym=${selCoinTC}&toTs=1650550414&limit=999`
             const json = await fetch(URL).then(res => res.json())
             histoData = json.Data.Data
                 .map(r => Object.values({ time: r.time * 1000, close: r.close }))

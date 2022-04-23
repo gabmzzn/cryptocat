@@ -1,6 +1,6 @@
 import Button from '@mui/material/Button'
 import Link from 'next/link'
-import style from './Naxvbar.module.css'
+import style from './Navbar.module.css'
 
 
 export default function NavBar() {

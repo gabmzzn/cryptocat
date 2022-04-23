@@ -1,5 +1,5 @@
 import Navbar from './navbar/Navbar'
-import style from './Layout.module.css'
+import style from './Laxyout.module.css'
 
 const Layout = (props) => {
     return <>

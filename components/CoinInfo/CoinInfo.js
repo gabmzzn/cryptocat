@@ -13,27 +13,23 @@ export default function CoinInfo(props) {
     useEffect(() => {
         let histoData = []
         async function getHistoricalData() {
-            const URL = `https://min-api.cryptocompare.com/data/v2/histoday?fsym=${selCoin}&tsym=${selCoinTC}&toTs=1650550414&limit=999`
+            const URL = `https://min-api.cryptocompare.com/data/v2/histoday?fsym=${selCoin}&tsym=${selCoinTC}&toTs=${Date.parse(new Date()) / 1000}&limit=999`
             const json = await fetch(URL).then(res => res.json())
             histoData = json.Data.Data
-                .map(r => Object.values({ time: r.time * 1000, close: r.close }))
             setHistoricalData(histoData)
             getCoinInfo()
         }
         getHistoricalData()
 
         async function getCoinInfo() {
-            const coinList = `https://min-api.cryptocompare.com/data/all/coinlist?fsym=${selCoin}`
-            const json = await fetch(coinList).then(res => res.json())
-            const singlePrice = `https://min-api.cryptocompare.com/data/price?fsym=${selCoin}&tsyms=${selCoinTC}`
-            const json2 = await fetch(singlePrice).then(res => res.json())
-            const coin = json.Data[selCoin]
+            const coinsURL = `https://min-api.cryptocompare.com/data/all/coinlist?fsym=${selCoin}`
+            const coinList = await fetch(coinsURL).then(res => res.json())
+            const priceURL = `https://min-api.cryptocompare.com/data/price?fsym=${selCoin}&tsyms=${selCoinTC}`
+            const singlePrice = await fetch(priceURL).then(res => res.json())
 
-            const price = json2[selCoinTC]
-            const high24 = histoData[999][1]
-            const low24 = histoData[999][1]
+            const coin = coinList.Data[selCoin]
             const data = {
-                price: price.toLocaleString(
+                price: singlePrice[selCoinTC].toLocaleString(
                     'en-GB', {
                     style: 'decimal',
                     minimumFractionDigits: 2,
@@ -42,33 +38,28 @@ export default function CoinInfo(props) {
                 symbol: coin.Symbol,
                 name: coin.CoinName,
                 description: coin.Description.replaceAll(/\. /g, '.<br><br>'),
-                high24: high24.toLocaleString(
+                high24: histoData[999].high.toLocaleString(
                     'en-GB', {
                     style: 'decimal',
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 5,
                 }),
-                low24: low24.toLocaleString(
+                low24: histoData[999].low.toLocaleString(
                     'en-GB', {
                     style: 'decimal',
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 5,
                 }),
-                priceChange: (price - low24).toFixed(2),
+                priceChange: (singlePrice[selCoinTC] - histoData[999].low).toFixed(2),
                 sortOrder: coin.SortOrder,
                 rating: coin.Rating.Weiss.Rating,
                 technologyAdoptionRating: coin.Rating.Weiss.TechnologyAdoptionRating,
                 marketPerformanceRating: coin.Rating.Weiss.MarketPerformanceRating,
-                // if (coin.TotalCoinsMined == undefined) { TotalCoinsMined = 18822199 } // This is because sometimes the API fails
-                // else { TotalCoinsMined = (coin.TotalCoinsMined).toFixed(0) }
+                totalCoinsMined: (coin.TotalCoinsMined).toFixed(0),
                 platformType: coin.PlatformType,
                 algorithm: coin.Algorithm,
                 assetWebsiteUrl: coin.AssetWebsiteUrl,
                 imageURL: coin.ImageUrl,
-                // let i = currenciesTC.findIndex(((obj) => obj.name == selCoinTC)),
-                // imageURLTC: currenciesTC[i].img,
-                // if (rating == '') {
-                //     rating = technologyAdoptionRating = marketPerformanceRating = 'N/A'
             }
             setCoinInfo(data)
         }

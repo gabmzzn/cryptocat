@@ -4,6 +4,9 @@ import * as echarts from 'echarts'
 
 export default function CoinChart(props) {
 
+    const data = props.data
+        .map(r => Object.values({ time: r.time * 1000, close: r.close }))
+
     const chartOptions = {
         tooltip: {
             trigger: 'axis',
@@ -54,7 +57,7 @@ export default function CoinChart(props) {
         ],
         series: [
             {
-                data: props.data,
+                data: data,
                 name: props.name,
                 type: 'line',
                 smooth: false,

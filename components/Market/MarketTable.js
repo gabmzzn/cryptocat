@@ -12,23 +12,6 @@ import Link from 'next/link'
 import { w3cwebsocket as W3CWebSocket } from "websocket"
 import style from './MarketTable.module.css'
 
-const symbolList = ['BTC', 'ETH', 'BNB', 'ADA', 'SOL', 'XRP',
-  'DOGE', 'LUNA', 'UNI', 'AVAX', 'LINK', 'ALGO', 'LTC', 'BCH',
-  'WBTC', 'MATIC', 'AXS', 'ATOM', 'ICP', 'FIL', 'XTZ', 'XLM', 'VET',
-  'FTT', 'ETC', 'TRX', 'DAI', 'DASH', 'OXT', 'FTM', 'EGLD', 'XMR', 'CAKE',
-  'EOS', 'STX', 'AAVE', 'SUSHI', 'NEAR', 'SNX', 'QNT', 'GRT', 'NEO',
-  'WAVES', 'KSM', 'LEO', 'MKR', 'CHR', 'ONE', 'HNT', 'AMP']
-
-const currenciesnames = ['Bitcoin', 'Ethereum', 'Binance', 'Cardano',
-  'Solana', 'XRP', 'Dogecoin', 'Terra', 'Uniswap', 'Avalanche',
-  'Chainlink', 'Algorand', 'Litecoin', 'Bitcoin Cash', 'Wrapped Bitcoin',
-  'Polygon', 'Axie Infinity', 'Cosmos', 'Internet Computer', 'Filecoin',
-  'Tezos', 'Stellar', 'VeChain', 'FTX Token', 'Ethereum Classic', 'TRON',
-  'Dai', 'Dash', 'Orchid Protocol', 'Fantom', 'Elrond', 'Monero', 'PancakeSwap', 'EOS',
-  'Stacks', 'Aave', 'SushiSwap', 'NEAR Protocol', 'Synthetix', 'Quant',
-  'The Graph', 'Neo', 'Waves', 'Kusama', 'LEO Token', 'Maker',
-  'Chroma', 'Harmony', 'Helium', 'Amp']
-
 export default function MarketTable(props) {
 
   const [currencyData, setCurrencyData] = useState(props.data.composedData)
@@ -42,10 +25,10 @@ export default function MarketTable(props) {
 
       // WebSocket Connection 
       const apiKey = '6e659e1244d9e7ccf3b6bdf6ada561766883d528a2025f01004787c096d1b005'
-      const client = new W3CWebSocket('wss://streamer.cryptocompare.com/v2?api_key=' + apiKey)
+      const client = new W3CWebSocket(`wss://streamer.cryptocompare.com/v2?api_key=${apiKey}`)
       const subs = []
-      symbolList.forEach(symbol => {
-        subs.push(`5~CCCAGG~${symbol}~USD`)
+      props.data.composedData.forEach(coin => {
+        subs.push(`5~CCCAGG~${coin.symbol}~USD`)
       })
       client.onopen = () => {
         client.send(JSON.stringify({
@@ -87,8 +70,6 @@ export default function MarketTable(props) {
 
           // THIS POSSIBLY NEEDS OPTIMIZATION
           setCurrencyData([...currencyList])
-          // priceRef.current[sym].className += '▼' == currencyList[sym].updown ? ' ' + style.higherprice : ' ' + style.lowerprice
-          // priceRef.current[sym].textContent = currencyList[sym].updown + currencyList[sym].price
 
         }
       }

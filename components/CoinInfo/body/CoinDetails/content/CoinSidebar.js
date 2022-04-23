@@ -16,13 +16,13 @@ export default function CoinSidebar(props) {
       <table>
         <tbody>
           <tr>
-            <td><img width={30} height={30} src={`https://www.cryptocompare.com/${imageURL}`} />
+            <td><Image width={30} height={30} src={`https://www.cryptocompare.com/${imageURL}`} />
               {symbol}
             </td>
             <td>1</td>
           </tr>
           <tr>
-            <td><img width={30} height={30} src={'https://www.cryptocompare.com/'} />
+            <td><Image width={30} height={30} src={'https://www.cryptocompare.com/'} />
               {selCurrencyToCompare}</td>
             <td>${price}</td>
           </tr>

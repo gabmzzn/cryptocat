@@ -14,7 +14,7 @@ import style from './MarketTable.module.css'
 
 export default function MarketTable(props) {
 
-  const [currencyData, setCurrencyData] = useState(false)
+  const [currencyData, setCurrencyData] = useState(props.data)
 
   useEffect(() => {
     // WebSocket Connection 
@@ -133,5 +133,4 @@ export default function MarketTable(props) {
     </TableContainer>
   </>
   )
-
 }

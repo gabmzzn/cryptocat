@@ -81,61 +81,57 @@ export default function MarketTable(props) {
 
   }, [props.data])
 
-  if (currencyData) {
-    return (<>
-      <TableContainer component={Paper} className={style.table}>
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
-          <TableHead>
-            <TableRow>
-              <TableCell align="right">#</TableCell>
-              <TableCell align="left">CURRENCY</TableCell>
-              <TableCell align="right" width={150}>PRICE</TableCell>
-              <TableCell align="right">LAST 24h</TableCell>
-              <TableCell align="right">TOTAL VOL</TableCell>
-              <TableCell align="right">MARKET CAP</TableCell>
-              <TableCell>LAST 7 DAYS</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {currencyData.map((row, i) => {
-              return (
-                <Link href={`/coins/${row.symbol.toLowerCase()}`} key={row.rank} passHref>
-                  <TableRow >
-                    <TableCell align="right">{row.rank}</TableCell>
-                    <TableCell align="left">
-                      <div className={style.name}>
-                        <Image src={`https://www.cryptocompare.com${row.logo}`} width={40} height={40} alt={row.name} loading={'eager'} />
-                        {row.name} {row.symbol}
-                      </div>
+  return (<>
+    <TableContainer component={Paper} className={style.table}>
+      <Table sx={{ minWidth: 700 }} aria-label="customized table">
+        <TableHead>
+          <TableRow>
+            <TableCell align="right">#</TableCell>
+            <TableCell align="left">CURRENCY</TableCell>
+            <TableCell align="right" width={150}>PRICE</TableCell>
+            <TableCell align="right">LAST 24h</TableCell>
+            <TableCell align="right">TOTAL VOL</TableCell>
+            <TableCell align="right">MARKET CAP</TableCell>
+            <TableCell>LAST 7 DAYS</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {currencyData.map((row, i) => {
+            return (
+              <Link href={`/coins/${row.symbol.toLowerCase()}`} key={row.rank} passHref>
+                <TableRow >
+                  <TableCell align="right">{row.rank}</TableCell>
+                  <TableCell align="left">
+                    <div className={style.name}>
+                      <Image src={`https://www.cryptocompare.com${row.logo}`} width={40} height={40} alt={row.name} loading={'eager'} />
+                      {row.name} {row.symbol}
+                    </div>
 
-                    </TableCell>
-                    <TableCell align="right"
-                      id={row.rank}
-                      // ref={e => priceRef.current[i] = e}
-                      style={{ fontWeight: 'bold', width: '200px' }}
-                      className={'▲' == row.updown ? style.higherprice : style.lowerprice}
-                    >
-                      <span>
-                        {row.updown}{row.price}
-                      </span>
-                    </TableCell>
-                    <TableCell align="right" className={0 < row.changepct ? style.higherpct : style.lowerpct}><span>{row.changepct}%</span></TableCell>
-                    <TableCell align="right">{row.totalvolume}</TableCell>
-                    <TableCell align="right">{row.marketcap}</TableCell>
-                    <TableCell align="right">
-                      <Image src={row.sparkchart} width={150} height={35} alt={row.name} loading={'eager'} />
-                    </TableCell>
-                  </TableRow>
-                </Link>
-              )
-            })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </>
-    )
-  }
-  return (
-    <h1>Loading data...</h1>
+                  </TableCell>
+                  <TableCell align="right"
+                    id={row.rank}
+                    // ref={e => priceRef.current[i] = e}
+                    style={{ fontWeight: 'bold', width: '200px' }}
+                    className={'▲' == row.updown ? style.higherprice : style.lowerprice}
+                  >
+                    <span>
+                      {row.updown}{row.price}
+                    </span>
+                  </TableCell>
+                  <TableCell align="right" className={0 < row.changepct ? style.higherpct : style.lowerpct}><span>{row.changepct}%</span></TableCell>
+                  <TableCell align="right">{row.totalvolume}</TableCell>
+                  <TableCell align="right">{row.marketcap}</TableCell>
+                  <TableCell align="right">
+                    <Image src={row.sparkchart} width={150} height={35} alt={row.name} loading={'eager'} />
+                  </TableCell>
+                </TableRow>
+              </Link>
+            )
+          })}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  </>
   )
+
 }

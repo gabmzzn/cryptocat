@@ -42,7 +42,6 @@ export default function Market() {
     }, [])
 
     if (data) {
-        console.log(data)
         return (
             <MarketTable data={data} />
         )

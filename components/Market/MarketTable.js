@@ -11,12 +11,51 @@ import Link from 'next/link'
 
 import { w3cwebsocket as W3CWebSocket } from "websocket"
 import style from './MarketTable.module.css'
+import Skeleton from '@mui/material/Skeleton'
+import LoadingScreen from '../layout/LoadingScreen/LoadingScreen'
+
 
 export default function MarketTable(props) {
 
-  const [currencyData, setCurrencyData] = useState(props.data)
+  const [isLoading, setIsLoading] = useState(true)
+  const [currencyData, setCurrencyData] = useState([])
 
   useEffect(() => {
+    async function getData() {
+      const composedData = []
+      const URL = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${symbolList.join()}&tsyms=USD`
+      const prices = Object.values(await fetch(URL).then(res => res.json()))
+      // Last hour timestamp
+      let d = (new Date()).toString(), timestampLastHour = Date.parse((d.substr(0, 18) + ':00:00' + d.substr(24))) / 1000
+
+      for (let [i, currency] of symbolList.entries()) {
+        const sign = Math.sign(prices[0][currency].USD.CHANGEPCT24HOUR) == 1 ? '+' : ''
+        composedData.push(
+          {
+            rank: i + 1,
+            logo: prices[1][currency].USD.IMAGEURL,
+            name: currenciesNames[i],
+            symbol: currency,
+            price: prices[1][currency].USD.PRICE.toLocaleString(
+              'en-GB', {
+              style: 'decimal',
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 5,
+            }),
+            changepct: sign + prices[1][currency].USD.CHANGEPCT24HOUR,
+            updown: Math.random() > 0.5 ? '▲' : '▼',
+            open24: prices[0][currency].USD.OPEN24HOUR,
+            totalvolume: prices[1][currency].USD.TOTALTOPTIERVOLUME24HTO,
+            marketcap: prices[1][currency].USD.MKTCAP,
+            sparkchart: 'https://images.cryptocompare.com/sparkchart/' + currency + '/USD/latest.png?ts=' + timestampLastHour
+          })
+        i++
+      }
+      setCurrencyData(composedData)
+      getCurrencyData(composedData)
+    }
+    getData()
+
     // WebSocket Connection 
     const apiKey = '6e659e1244d9e7ccf3b6bdf6ada561766883d528a2025f01004787c096d1b005'
     const client = new W3CWebSocket(`wss://streamer.cryptocompare.com/v2?api_key=${apiKey}`)
@@ -28,7 +67,7 @@ export default function MarketTable(props) {
       // this.performersSource = performers
 
       const subs = []
-      props.data.forEach(coin => {
+      currencyList.forEach(coin => {
         subs.push(`5~CCCAGG~${coin.symbol}~USD`)
       })
       client.onopen = () => {
@@ -70,16 +109,19 @@ export default function MarketTable(props) {
 
           // THIS POSSIBLY NEEDS OPTIMIZATION
           setCurrencyData([...currencyList])
+          setIsLoading(false)
         }
       }
     }
-    getCurrencyData(props.data)
 
     return () => {
       client.close()
     }
 
   }, [props.data])
+
+
+  if (isLoading) return <LoadingScreen />
 
   return (<>
     <TableContainer component={Paper} className={style.table}>
@@ -92,7 +134,7 @@ export default function MarketTable(props) {
             <TableCell align="right">LAST 24h</TableCell>
             <TableCell align="right">TOTAL VOL</TableCell>
             <TableCell align="right">MARKET CAP</TableCell>
-            <TableCell>LAST 7 DAYS</TableCell>
+            <TableCell align="center">LAST 7 DAYS</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -134,3 +176,21 @@ export default function MarketTable(props) {
   </>
   )
 }
+
+
+const symbolList = ['BTC', 'ETH', 'BNB', 'ADA', 'SOL', 'XRP',
+  'DOGE', 'LUNA', 'UNI', 'AVAX', 'LINK', 'ALGO', 'LTC', 'BCH',
+  'WBTC', 'MATIC', 'AXS', 'ATOM', 'ICP', 'FIL', 'XTZ', 'XLM', 'VET',
+  'FTT', 'ETC', 'TRX', 'DAI', 'DASH', 'OXT', 'FTM', 'EGLD', 'XMR', 'CAKE',
+  'EOS', 'STX', 'AAVE', 'SUSHI', 'NEAR', 'SNX', 'QNT', 'GRT', 'NEO',
+  'WAVES', 'KSM', 'LEO', 'MKR', 'CHR', 'ONE', 'HNT', 'AMP']
+
+const currenciesNames = ['Bitcoin', 'Ethereum', 'Binance', 'Cardano',
+  'Solana', 'XRP', 'Dogecoin', 'Terra', 'Uniswap', 'Avalanche',
+  'Chainlink', 'Algorand', 'Litecoin', 'Bitcoin Cash', 'Wrapped Bitcoin',
+  'Polygon', 'Axie Infinity', 'Cosmos', 'Internet Computer', 'Filecoin',
+  'Tezos', 'Stellar', 'VeChain', 'FTX Token', 'Ethereum Classic', 'TRON',
+  'Dai', 'Dash', 'Orchid Protocol', 'Fantom', 'Elrond', 'Monero', 'PancakeSwap', 'EOS',
+  'Stacks', 'Aave', 'SushiSwap', 'NEAR Protocol', 'Synthetix', 'Quant',
+  'The Graph', 'Neo', 'Waves', 'Kusama', 'LEO Token', 'Maker',
+  'Chroma', 'Harmony', 'Helium', 'Amp']

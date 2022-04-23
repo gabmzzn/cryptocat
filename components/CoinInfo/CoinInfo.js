@@ -1,8 +1,11 @@
 import CoinTitle from "./body/CoinTitle"
 import CoinDetails from "./body/CoinDetails/CoinDetails"
+import LoadingScreen from '../layout/LoadingScreen/LoadingScreen'
 import { useEffect, useState } from "react"
 
 export default function CoinInfo(props) {
+
+    const [isLoading, setIsLoading] = useState(true)
 
     const selCoin = props.coin.toUpperCase()
     const selCoinTC = 'USD'
@@ -62,23 +65,22 @@ export default function CoinInfo(props) {
                 imageURL: coin.ImageUrl,
             }
             setCoinInfo(data)
+            setIsLoading(false)
         }
     }, [])
 
-    if (coinInfo && historicalData) {
-        return <>
-            <CoinTitle
-                name={coinInfo.name}
-                symbol={coinInfo.symbol}
-                logo={coinInfo.imageURL}
-            />
-            <CoinDetails
-                historicalData={historicalData}
-                coinInfo={coinInfo}
-            />
-        </>
-    }
-    return (
-        <h1>Loading data...</h1>
-    )
+    if (isLoading) return <LoadingScreen />
+
+    return <>
+        <CoinTitle
+            name={coinInfo.name}
+            symbol={coinInfo.symbol}
+            logo={coinInfo.imageURL}
+        />
+        <CoinDetails
+            historicalData={historicalData}
+            coinInfo={coinInfo}
+        />
+    </>
+
 }

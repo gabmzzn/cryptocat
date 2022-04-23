@@ -1,4 +1,4 @@
-import Navbar from './navbar/Navbar'
+import Navbar from './navbar/Nxavbar'
 import style from './Layout.module.css'
 
 const Layout = (props) => {

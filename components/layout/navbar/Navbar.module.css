@@ -12,9 +12,14 @@
     z-index: 100;
 }
 
-.navbar span, .navbar a {
+.navbar span {
     font-weight: bold;
     font-size: 25px;
+}
+
+.navbar a {
+    font-weight: bold;
+    font-size: 20px;
 }
 
 .content {

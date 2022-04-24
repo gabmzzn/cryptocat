@@ -1,5 +1,4 @@
 import ReactECharts from 'echarts-for-react'
-import { useState, useEffect } from 'react'
 import * as echarts from 'echarts'
 
 export default function CoinChart(props) {
@@ -20,9 +19,9 @@ export default function CoinChart(props) {
         },
         grid: {
             left: 45,
-            top: 30,
-            right: 30,
-            bottom: 30
+            top: 15,
+            right: 5,
+            bottom: 70
         },
         // title: {
         //     left: 'center',
@@ -39,7 +38,7 @@ export default function CoinChart(props) {
             splitLine: {
                 show: true,
                 lineStyle: {
-                    color: 'rgb(230, 230, 230)'
+                    color: 'rgb(240, 240, 240)'
                 }
             }
         },
@@ -66,25 +65,28 @@ export default function CoinChart(props) {
                 symbolSize: 9,
                 sampling: 'lttb',
                 itemStyle: {
-                    color: '#20c689'
+                    color: 'SlateGray'
                 },
-                // areaStyle: {
-                //     color: new echarts.LinearGradient(0, 0, 0, 1, [
-                //         {
-                //             offset: 1,
-                //             color: 'transparent'
-                //         },
-                //         {
-                //             offset: 0,
-                //             color: '#20c689'
-                //         }
-                //     ])
-                // },
+                areaStyle: {
+                    opacity: 0.8,
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                        {
+                            offset: 0,
+                            color: 'SlateGray'
+                        },
+                        {
+                            offset: 1,
+                            color: 'AliceBlue'
+                        }
+                    ])
+                },
             }
         ]
     }
 
-    return <ReactECharts
-        option={chartOptions}
-    />
+    return (
+        <ReactECharts
+            style={{ height: '400px', width: '100%' }}
+            option={chartOptions}
+        />)
 }

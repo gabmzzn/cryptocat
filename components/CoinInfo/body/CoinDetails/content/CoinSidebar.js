@@ -22,7 +22,7 @@ export default function CoinSidebar(props) {
             <td>1</td>
           </tr>
           <tr>
-            <td><img width={30} height={30} src={'https://www.cryptocompare.com/'} alt='' />
+            <td><img width={30} height={30} src={'https://cdn-icons-png.flaticon.com/512/197/197484.png'} alt='' />
               {selCurrencyToCompare}</td>
             <td>${price}</td>
           </tr>

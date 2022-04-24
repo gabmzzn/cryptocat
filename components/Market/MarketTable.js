@@ -16,12 +16,14 @@ import LoadingScreen from '../layout/LoadingScreen/LoadingScreen'
 
 
 export default function MarketTable(props) {
-
+  console.log('FIRST READING')
   const [isLoading, setIsLoading] = useState(true)
   const [currencyData, setCurrencyData] = useState([])
 
   useEffect(() => {
+    console.log('USEEFFECT')
     async function getData() {
+      console.log('GETDAATA')
       const composedData = []
       const URL = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${symbolList.join()}&tsyms=USD`
       const prices = Object.values(await fetch(URL).then(res => res.json()))
@@ -52,8 +54,10 @@ export default function MarketTable(props) {
         i++
       }
       setCurrencyData(composedData)
+      console.log('FUNCTION CALL WEBSOCKET')
       getCurrencyData(composedData)
     }
+    console.log('FUNCTION CALL')
     getData()
 
     // WebSocket Connection 
@@ -61,6 +65,7 @@ export default function MarketTable(props) {
     const client = new W3CWebSocket(`wss://streamer.cryptocompare.com/v2?api_key=${apiKey}`)
 
     async function getCurrencyData(currencyList) {
+      console.log('GETCURRENCY')
       console.log('[Websocket Connection]')
       // let performers = [...this.appService.currencyList].sort((a, b) => b.changepct - a.changepct)
       // performers.splice(3, 44)
@@ -109,18 +114,20 @@ export default function MarketTable(props) {
 
           // THIS POSSIBLY NEEDS OPTIMIZATION
           setCurrencyData([...currencyList])
+          console.log('DISABEL LOADING')
           setIsLoading(false)
         }
       }
     }
 
     return () => {
+      console.log('CLIENT CLOSE')
       client.close()
     }
 
   }, [props.data])
 
-
+  console.log('IS LOADING?')
   if (isLoading) return <LoadingScreen status={isLoading} />
 
   return (<>

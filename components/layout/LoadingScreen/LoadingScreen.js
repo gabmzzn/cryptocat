@@ -6,7 +6,7 @@ export default function LoadingScreen() {
     return (
         <div className={style.App}>
             <div className={style.spinLoader}></div>
-            <Image className={style.logo} src={logo} height={275} width={275} alt="logo" />
+            <Image className={style.logo} src={logo} height={275} width={275} loading={'eager'} alt="logo" />
         </div>
     )
 }

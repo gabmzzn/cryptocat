@@ -121,7 +121,7 @@ export default function MarketTable(props) {
   }, [props.data])
 
 
-  if (isLoading) return <LoadingScreen />
+  if (isLoading) return <LoadingScreen status={isLoading} />
 
   return (<>
     <TableContainer component={Paper} className={style.table}>

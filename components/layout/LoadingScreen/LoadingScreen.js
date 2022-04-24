@@ -7,7 +7,7 @@ export default function LoadingScreen() {
         <div className={style.App}>
             <header className={style['App-header']}>
                 <Image src={logo} height={400} className={style['App-logo']} alt="logo" />
-                <p>Loading data...</p>
+                {/* <p>Loading data...</p> */}
             </header>
         </div>
     )

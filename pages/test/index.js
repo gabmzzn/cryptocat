@@ -1,31 +1,25 @@
 import { useEffect, useState } from "react"
 import Thing from "./Thing"
+import { useTransition, animated } from 'react-spring'
+
 
 export default function Test() {
 
-    const array1 = [1]
-    const array2 = [1, 2]
+    const [isVisible, setIsVisible] = useState(false)
+    const transition = useTransition(isVisible, {
+        from: { opacity: 0 },
+        enter: { opacity: 1 },
+        leave: { opacity: 0 }
+    })
 
-    const [cosa1, setCosa1] = useState(1)
-    const [cosa2, setCosa2] = useState(2)
-
-    useEffect(() => {
-        // setCosa2(9)
-    }, [])
-
-    console.log('render Test')
     return <>
-
-        {array1.map((x, i) => {
-            console.log('first')
-            return <h1 key={i}>Cosa {cosa1}</h1>
-        })
-        }
-        {array2.map((x, i) => {
-            console.log('second')
-            return <h1 key={i}>Coso {cosa2}</h1>
-        })
-        }
-
+        <button onClick={() => {
+            setIsVisible(v => !v)
+        }}>Click</button>
+        <div>
+            {transition((style, item) =>
+                item ? <animated.div style={style} className="cont">ASD</animated.div> : ''
+            )}
+        </div>
     </>
 }

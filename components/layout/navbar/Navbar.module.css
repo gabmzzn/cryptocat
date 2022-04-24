@@ -4,11 +4,12 @@
     align-items: center;
     position: fixed;
     width: 100%;
-    z-index: 100;
     height: 75px;
     background-color: rgba(255, 255, 255, 0.7);
     border-bottom: 1px solid rgba(224, 224, 224, 1);
-    backdrop-filter: blur(5px);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(10px);
+    z-index: 100;
 }
 
 .navbar span {
@@ -21,6 +22,7 @@
     width: 1200px;
     align-items: center;
     justify-content: space-between;
+    padding: 0 35px;
 }
 
 .button {

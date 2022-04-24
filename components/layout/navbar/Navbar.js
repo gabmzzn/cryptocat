@@ -10,7 +10,9 @@ export default function NavBar() {
 		<div className={style.navbar}>
 			<div className={style.content}>
 				<Link href='/' passHref>
-					<span style={{ cursor: 'pointer' }}>CRYPTO-CAT</span>
+					<span style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}><span style={{ marginRight: '5px' }} >CRYPTO</span>
+						<img src='/icon.webp' height={30} width={30} alt='' />
+						<span style={{ marginLeft: '5px' }} >CAT</span></span>
 				</Link>
 				<div className={style.buttons}>
 					<ThemeProvider theme={theme}>

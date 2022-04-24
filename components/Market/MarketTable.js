@@ -65,7 +65,6 @@ export default function MarketTable(props) {
     const client = new W3CWebSocket(`wss://streamer.cryptocompare.com/v2?api_key=${apiKey}`)
 
     async function getCurrencyData(currencyList) {
-      console.log('GETCURRENCY')
       console.log('[Websocket Connection]')
       // let performers = [...this.appService.currencyList].sort((a, b) => b.changepct - a.changepct)
       // performers.splice(3, 44)
@@ -114,10 +113,10 @@ export default function MarketTable(props) {
 
           // THIS POSSIBLY NEEDS OPTIMIZATION
           setCurrencyData([...currencyList])
-          console.log('DISABEL LOADING ' + isLoading)
-          setIsLoading(false)
         }
       }
+      console.log('DISABEL LOADING ' + isLoading)
+      setIsLoading(false)
     }
 
     return () => {

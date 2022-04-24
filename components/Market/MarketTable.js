@@ -114,7 +114,7 @@ export default function MarketTable(props) {
 
           // THIS POSSIBLY NEEDS OPTIMIZATION
           setCurrencyData([...currencyList])
-          console.log('DISABEL LOADING')
+          console.log('DISABEL LOADING ' + isLoading)
           setIsLoading(false)
         }
       }
@@ -127,7 +127,7 @@ export default function MarketTable(props) {
 
   }, [])
 
-  console.log('IS LOADING?')
+  console.log('IS LOADING? ' + isLoading)
   if (isLoading) return <LoadingScreen status={isLoading} />
 
   return (<>

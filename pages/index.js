@@ -8,9 +8,9 @@ function Home() {
       alignItems: 'center',
       justifyContent: 'center'
     }}>
-      <h1 style={{ fontSize: '120px', display: 'flex', alignItems: 'center' }}>Crypto
+      <h1 style={{ fontSize: '120px', display: 'flex', alignItems: 'center' }}><span style={{ marginRight: '15px' }} >Crypto</span>
         <Image src={logo} height={125} width={125} priority={true} alt='' />
-        Cat</h1>
+        <span style={{ marginLeft: '15px' }} >Cat</span></h1>
     </div>
 
   )

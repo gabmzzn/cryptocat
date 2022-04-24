@@ -125,7 +125,7 @@ export default function MarketTable(props) {
       client.close()
     }
 
-  }, [props.data])
+  }, [])
 
   console.log('IS LOADING?')
   if (isLoading) return <LoadingScreen status={isLoading} />

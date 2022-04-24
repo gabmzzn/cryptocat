@@ -35,4 +35,10 @@
     margin-left: 15px !important;
 }
 
+.buttonActive {
+    color: steelblue;
+    font-size: 20px;
+    margin-left: 15px !important;
+}
+
 .buttons {}

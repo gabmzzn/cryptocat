@@ -13,8 +13,8 @@
 .spinLoader {
   width: 275px;
   height: 275px;
-  border: 5px solid rgba(91, 186, 245, 0.44);
-  border-left-color: rgb(29, 161, 242);
+  border: 5px solid black;
+  border-left-color: steelblue;
   border-radius: 50%;
   background: transparent;
   animation-name: rotate-s-loader;

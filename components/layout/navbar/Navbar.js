@@ -2,10 +2,14 @@ import Button from '@mui/material/Button'
 import Link from 'next/link'
 import style from './Navbar.module.css'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { useRouter } from 'next/router'
 
 const theme = createTheme({ palette: { primary: { main: '#000' } } })
 
 export default function NavBar() {
+
+	const router = useRouter()
+
 	return (
 		<div className={style.navbar}>
 			<div className={style.content}>
@@ -17,10 +21,10 @@ export default function NavBar() {
 				<div className={style.buttons}>
 					<ThemeProvider theme={theme}>
 						<Link href='/market' passHref>
-							<Button className={style.button}>MARKET LIVE DATA</Button>
+							<Button className={router.pathname == "/market" ? style.buttonActive : style.button}>MARKET LIVE DATA</Button>
 						</Link>
 						<Link href='/coins/btc' passHref>
-							<Button className={style.button}>COIN INFO</Button>
+							<Button className={router.pathname.startsWith("/coins") ? style.buttonActive : style.button}>COIN INFO</Button>
 						</Link>
 					</ThemeProvider>
 				</div>

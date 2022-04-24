@@ -38,7 +38,7 @@ export default function CoinChart(props) {
             splitLine: {
                 show: true,
                 lineStyle: {
-                    color: 'rgb(240, 240, 240)'
+                    color: 'rgb(150, 150, 150, 0.1)'
                 }
             }
         },
@@ -60,14 +60,14 @@ export default function CoinChart(props) {
                 symbolSize: 9,
                 sampling: 'lttb',
                 itemStyle: {
-                    color: 'SlateGray'
+                    color: 'steelblue'
                 },
                 areaStyle: {
                     opacity: 0.8,
                     color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
                         {
                             offset: 0,
-                            color: 'SlateGray'
+                            color: 'steelblue'
                         },
                         {
                             offset: 1,

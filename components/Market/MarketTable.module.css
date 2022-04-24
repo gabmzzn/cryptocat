@@ -1,31 +1,96 @@
-.lowerprice span, .higherprice span {
+.lowerPrice, .higherPrice {
     padding: 7px;
     border-radius: 10px;
 }
 
-.lowerprice span {
-    border: 1px solid rgb(225, 0, 0);
-    color: rgb(225, 0, 0);
+.lowerPrice {
+    border: 2px solid rgba(255, 0, 0, 0.35);
+    background-color: rgba(255, 0, 0, 0.25);
+    animation: fadeInDown 2s forwards linear;
 }
 
-.higherprice span {
-    border: 1px solid rgb(0, 135, 0);
-    color: rgb(0, 135, 0);
+@keyframes fadeInDown {
+    0% {
+        border: 2px solid rgba(255, 0, 0, 1);
+        background-color: transparent;
+    }
+
+    20% {
+        color: white;
+        border: 2px solid rgba(255, 0, 0, 0.3);
+        background-color: rgba(255, 0, 0, 0.55);
+    }
+
+    80% {
+        color: white;
+        border: 2px solid rgba(255, 0, 0, 0.3);
+        background-color: rgba(255, 0, 0, 0.55);
+    }
+
+    100% {
+        border: 2px solid rgba(255, 0, 0, 1);
+        background-color: transparent;
+    }
 }
+
+
+.higherPrice {
+    border: 2px solid rgba(0, 128, 0, 0.55);
+    background-color: rgba(0, 128, 0, 0.4);
+    animation: fadeInUp 2s forwards linear;
+}
+
+@keyframes fadeInUp {
+    0% {
+        border: 2px solid rgba(0, 128, 0, 1);
+        background-color: transparent;
+    }
+
+    20% {
+        color: white;
+        border: 2px solid rgba(0, 128, 0, 0.3);
+        background-color: rgba(0, 128, 0, 0.75);
+    }
+
+    80% {
+        color: white;
+        border: 2px solid rgba(0, 128, 0, 0.3);
+        background-color: rgba(0, 128, 0, 0.75);
+    }
+
+    100% {
+        border: 2px solid rgba(0, 128, 0, 1);
+        background-color: transparent;
+    }
+}
+
 
 .lowerpct span, .higherpct span {
     padding: 7px;
     border-radius: 10px;
+    transition: all 500ms;
 }
 
 .lowerpct span {
-    border: 1px solid rgb(225, 0, 0);
+    border: 2px solid rgb(225, 0, 0);
     color: rgb(225, 0, 0);
+    transition: all 500ms;
 }
 
 .higherpct span {
-    border: 1px solid rgb(0, 135, 0);
+    border: 2px solid rgb(0, 135, 0);
     color: rgb(0, 135, 0);
+    transition: all 500ms;
+}
+
+.arrowDown {
+    color: red !important;
+    transition: color 150ms;
+}
+
+.arrowUp {
+    color: green !important;
+    transition: color 150ms;
 }
 
 .table td {

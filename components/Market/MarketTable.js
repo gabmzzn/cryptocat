@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { useState, useEffect, useRef } from 'react'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -16,14 +17,11 @@ import LoadingScreen from '../layout/LoadingScreen/LoadingScreen'
 
 
 export default function MarketTable(props) {
-  console.log('FIRST READING')
   const [isLoading, setIsLoading] = useState(true)
   const [currencyData, setCurrencyData] = useState([])
 
   useEffect(() => {
-    console.log('USEEFFECT')
     async function getData() {
-      console.log('GETDAATA')
       const composedData = []
       const URL = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${symbolList.join()}&tsyms=USD`
       const prices = Object.values(await fetch(URL).then(res => res.json()))
@@ -54,10 +52,8 @@ export default function MarketTable(props) {
         i++
       }
       setCurrencyData(composedData)
-      console.log('FUNCTION CALL WEBSOCKET')
       getCurrencyData(composedData)
     }
-    console.log('FUNCTION CALL')
     getData()
 
     // WebSocket Connection 
@@ -65,7 +61,6 @@ export default function MarketTable(props) {
     const client = new W3CWebSocket(`wss://streamer.cryptocompare.com/v2?api_key=${apiKey}`)
 
     async function getCurrencyData(currencyList) {
-      console.log('[Websocket Connection]')
       // let performers = [...this.appService.currencyList].sort((a, b) => b.changepct - a.changepct)
       // performers.splice(3, 44)
       // this.performersSource = performers
@@ -115,18 +110,15 @@ export default function MarketTable(props) {
           setCurrencyData([...currencyList])
         }
       }
-      console.log('DISABEL LOADING ' + isLoading)
       setIsLoading(false)
     }
 
     return () => {
-      console.log('CLIENT CLOSE')
       client.close()
     }
 
   }, [])
 
-  console.log('IS LOADING? ' + isLoading)
   if (isLoading) return <LoadingScreen status={isLoading} />
 
   return (<>
@@ -151,7 +143,7 @@ export default function MarketTable(props) {
                   <TableCell align="right">{row.rank}</TableCell>
                   <TableCell align="left">
                     <div className={style.name}>
-                      <img src={`https://www.cryptocompare.com${row.logo}`} width={40} height={40} alt={row.name} priority={true} />
+                      <img src={`https://www.cryptocompare.com${row.logo}`} width={40} height={40} alt={row.name} />
                       {row.name} {row.symbol}
                     </div>
 
@@ -160,17 +152,16 @@ export default function MarketTable(props) {
                     id={row.rank}
                     // ref={e => priceRef.current[i] = e}
                     style={{ fontWeight: 'bold', width: '200px' }}
-                    className={'▲' == row.updown ? style.higherprice : style.lowerprice}
                   >
-                    <span>
-                      {row.updown}{row.price}
+                    <span className={row.updown == '▲' ? style.higherPrice : style.lowerPrice}>
+                      <span className={row.updown == '▲' ? style.arrowUp : style.arrowDown}>{row.updown}</span>{row.price}
                     </span>
                   </TableCell>
                   <TableCell align="right" className={0 < row.changepct ? style.higherpct : style.lowerpct}><span>{row.changepct}%</span></TableCell>
                   <TableCell align="right">{row.totalvolume}</TableCell>
                   <TableCell align="right">{row.marketcap}</TableCell>
                   <TableCell align="right">
-                    <img src={row.sparkchart} width={150} height={35} alt={row.name} priority={true} />
+                    <img src={row.sparkchart} width={150} height={35} alt={row.name} />
                   </TableCell>
                 </TableRow>
               </Link>

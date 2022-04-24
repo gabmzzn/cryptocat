@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Button from '@mui/material/Button'
 import Link from 'next/link'
 import style from './Navbar.module.css'

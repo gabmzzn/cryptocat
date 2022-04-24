@@ -39,3 +39,12 @@
 .container td {
     text-align: right;
 }
+
+.coin {
+    display: flex;
+    align-items: center;
+}
+
+.coin img {
+    margin-right: 5px;
+}

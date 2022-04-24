@@ -34,11 +34,11 @@
 }
 
 .table tr:hover {
-    background-color: rgb(247, 253, 255);
+    background-color: rgb(245, 245, 249);
 }
 
 .table tr:active {
-    background-color: rgb(236, 242, 245);
+    background-color: rgb(235, 235, 239);
 }
 
 .name {

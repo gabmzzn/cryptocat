@@ -9,7 +9,7 @@ function Home() {
       justifyContent: 'center'
     }}>
       <h1 style={{ fontSize: '120px', display: 'flex', alignItems: 'center' }}><span style={{ marginRight: '15px' }} >Crypto</span>
-        <Image src={logo} height={125} width={125} priority={true} alt='' />
+        <Image src={logo} height={125} width={125} loading={'eager'} priority={true} alt='' />
         <span style={{ marginLeft: '15px' }} >Cat</span></h1>
     </div>
 

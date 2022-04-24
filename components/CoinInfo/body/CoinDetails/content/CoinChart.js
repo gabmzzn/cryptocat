@@ -21,7 +21,7 @@ export default function CoinChart(props) {
             left: 45,
             top: 15,
             right: 5,
-            bottom: 70
+            bottom: 25
         },
         // title: {
         //     left: 'center',
@@ -45,12 +45,7 @@ export default function CoinChart(props) {
         dataZoom: [
             {
                 type: 'inside',
-                start: 80,
-                end: 100,
-                zoomOnMouseWheel: false,
-            },
-            {
-                start: 80,
+                start: 72,
                 end: 100
             }
         ],
@@ -86,7 +81,7 @@ export default function CoinChart(props) {
 
     return (
         <ReactECharts
-            style={{ height: '400px', width: '100%' }}
+            style={{ height: '375px', width: '100%' }}
             option={chartOptions}
         />)
 }

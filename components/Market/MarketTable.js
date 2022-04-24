@@ -151,7 +151,7 @@ export default function MarketTable(props) {
                   <TableCell align="right">{row.rank}</TableCell>
                   <TableCell align="left">
                     <div className={style.name}>
-                      <Image src={`https://www.cryptocompare.com${row.logo}`} width={40} height={40} alt={row.name} priority={true} />
+                      <img src={`https://www.cryptocompare.com${row.logo}`} width={40} height={40} alt={row.name} priority={true} />
                       {row.name} {row.symbol}
                     </div>
 
@@ -170,7 +170,7 @@ export default function MarketTable(props) {
                   <TableCell align="right">{row.totalvolume}</TableCell>
                   <TableCell align="right">{row.marketcap}</TableCell>
                   <TableCell align="right">
-                    <Image src={row.sparkchart} width={150} height={35} alt={row.name} priority={true} />
+                    <img src={row.sparkchart} width={150} height={35} alt={row.name} priority={true} />
                   </TableCell>
                 </TableRow>
               </Link>

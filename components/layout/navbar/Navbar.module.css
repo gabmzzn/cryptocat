@@ -24,7 +24,8 @@
 
 .content {
     display: flex;
-    width: 1200px;
+    width: 100%;
+    max-width: 1200px;
     align-items: center;
     justify-content: space-between;
     padding: 0 35px;

@@ -1,0 +1,171 @@
+.card {
+    position: relative;
+    width: 200px;
+    height: 210px;
+    border: 1px solid rgba(112, 128, 144, 0.5);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10%;
+    margin: 15px;
+    padding: 15px;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.subtitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.subtitle h4 {
+    margin: 0;
+    font-size: 10px;
+    color: gray;
+}
+
+.subtitle span {
+    margin: 0;
+    padding: 5px 7px;
+    border-radius: 10px;
+    font-size: 12px;
+    transition: all 500ms;
+}
+
+.lowerpct {
+    border: 1px solid rgb(225, 0, 0);
+    color: rgb(225, 0, 0);
+    transition: all 500ms;
+}
+
+.higherpct {
+    border: 1px solid rgb(0, 135, 0);
+    color: rgb(0, 135, 0);
+    transition: all 500ms;
+}
+
+.price {
+    margin: 0;
+    font-size: 23px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.price p {
+    margin: 15px 0;
+}
+
+.lowerPrice, .higherPrice {
+    padding: 7px;
+    border-radius: 10px;
+}
+
+.higherPrice {
+    border: 1px solid green;
+    animation: fadeInUp 2s forwards linear;
+}
+
+@keyframes fadeInUp {
+    0% {
+        background-color: transparent;
+        /* background-color: rgba(0, 128, 0, 0.08) */
+    }
+
+    20% {
+        color: white;
+        background-color: rgba(0, 128, 0, 0.9);
+    }
+
+    80% {
+        color: white;
+        background-color: rgba(0, 128, 0, 0.9);
+    }
+
+    100% {
+        background-color: transparent;
+        /* background-color: rgba(0, 128, 0, 0.08) */
+    }
+}
+
+.arrowUp {
+    color: green;
+    animation: fadeInArrowUp 2s forwards linear;
+}
+
+@keyframes fadeInArrowUp {
+    0% {
+        color: green;
+    }
+
+    20% {
+        color: white;
+    }
+
+    80% {
+        color: white;
+    }
+
+    100% {
+        color: green;
+    }
+}
+
+.lowerPrice {
+    border: 1px solid red;
+    animation: fadeInDown 2s forwards linear;
+}
+
+@keyframes fadeInDown {
+    0% {
+        background-color: transparent;
+        /* background-color: rgb(220, 20, 30, 0.08); */
+    }
+
+    20% {
+        color: white;
+        background-color: rgb(220, 20, 30, 0.8);
+    }
+
+    80% {
+        color: white;
+        background-color: rgb(220, 20, 30, 0.8);
+    }
+
+    100% {
+        background-color: transparent;
+        /* background-color: rgb(220, 20, 30, 0.08); */
+    }
+}
+
+.arrowDown {
+    color: red;
+    animation: fadeInArrowDown 2s forwards linear;
+}
+
+@keyframes fadeInArrowDown {
+    0% {
+        color: red;
+    }
+
+    20% {
+        color: white;
+    }
+
+    80% {
+        color: white;
+    }
+
+    100% {
+        color: red;
+    }
+}
+
+.chart {}

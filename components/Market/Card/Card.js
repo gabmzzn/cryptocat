@@ -3,25 +3,30 @@
 import style from './Card.module.css'
 
 export default function Card(props) {
+
+    const coin = props.data
+
     return (
-        <div>
+        <div className={style.card}>
             <div className={style.title}>
-                <h1>{props.price}</h1>
-                <img src={props.image} />
+                <h1>{coin.symbol}</h1>
+                <img src={coin.logo} width={40} height={40} />
             </div>
-            <div>
-                <div>
-                    {props.name}
-                </div>
-                <div>
-                    {props.changepct}
-                </div>
+            <div className={style.subtitle}>
+                <h4>
+                    {coin.name}
+                </h4>
+                <span className={coin.changepct > 0 ? style.higherpct : style.lowerpct}>
+                    {coin.changepct}%
+                </span>
             </div>
-            <div>
-                {props.price}
-            </div>
-            <div>
-                {props.chart}
+            <p className={style.price}>
+                <p className={coin.updown == '▲' ? style.higherPrice : style.lowerPrice}>
+                    <span className={coin.updown == '▲' ? style.arcoinUp : style.arcoinDown}>{coin.updown}</span>{coin.price}
+                </p>
+            </p>
+            <div className={style.chart}>
+                <img src={coin.chart} />
             </div>
         </div>
     )

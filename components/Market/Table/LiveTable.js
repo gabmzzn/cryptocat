@@ -26,32 +26,32 @@ export default function LiveTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {props.data.map((row, i) => {
+          {props.data.map((coin, i) => {
             return (
-              <Link href={`/coins/${row.symbol.toLowerCase()}`} key={row.rank} passHref>
+              <Link href={`/coins/${coin.symbol.toLowerCase()}`} key={coin.rank} passHref>
                 <TableRow >
-                  <TableCell align="right">{row.rank}</TableCell>
+                  <TableCell align="right">{coin.rank}</TableCell>
                   <TableCell align="left">
                     <div className={style.name}>
-                      <img src={`https://www.cryptocompare.com${row.logo}`} width={40} height={40} alt={row.name} />
-                      {row.name} {row.symbol}
+                      <img src={coin.logo} width={40} height={40} alt={coin.name} />
+                      {coin.name} {coin.symbol}
                     </div>
 
                   </TableCell>
                   <TableCell align="right"
-                    id={row.rank}
+                    id={coin.rank}
                     // ref={e => priceRef.current[i] = e}
                     style={{ fontWeight: 'bold', width: '200px' }}
                   >
-                    <span className={row.updown == '▲' ? style.higherPrice : style.lowerPrice}>
-                      <span className={row.updown == '▲' ? style.arrowUp : style.arrowDown}>{row.updown}</span>{row.price}
+                    <span className={coin.updown == '▲' ? style.higherPrice : style.lowerPrice}>
+                      <span className={coin.updown == '▲' ? style.arrowUp : style.arrowDown}>{coin.updown}</span>{coin.price}
                     </span>
                   </TableCell>
-                  <TableCell align="right" className={0 < row.changepct ? style.higherpct : style.lowerpct}><span>{row.changepct}%</span></TableCell>
-                  <TableCell align="right">{row.totalvolume}</TableCell>
-                  <TableCell align="right">{row.marketcap}</TableCell>
+                  <TableCell align="right" className={coin.changepct > 0 ? style.higherpct : style.lowerpct}><span>{coin.changepct}%</span></TableCell>
+                  <TableCell align="right">{coin.totalvolume}</TableCell>
+                  <TableCell align="right">{coin.marketcap}</TableCell>
                   <TableCell align="right">
-                    <img src={row.chart} width={150} height={35} alt={row.name} />
+                    <img src={coin.chart} width={150} height={35} alt={coin.name} />
                   </TableCell>
                 </TableRow>
               </Link>

@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react'
 import LiveTable from "../../components/Market/Table/LiveTable"
 import { w3cwebsocket as W3CWebSocket } from "websocket"
 import LoadingScreen from '../../components/layout/LoadingScreen/LoadingScreen'
+import Card from '../../components/Market/Card/Card'
+import style from './market.module.css'
 
 export default function Market() {
 
@@ -22,7 +24,7 @@ export default function Market() {
                 composedData.push(
                     {
                         rank: i + 1,
-                        logo: prices[1][currency].USD.IMAGEURL,
+                        logo: `https://www.cryptocompare.com${prices[1][currency].USD.IMAGEURL}`,
                         name: currenciesNames[i],
                         symbol: currency,
                         price: prices[1][currency].USD.PRICE.toLocaleString(
@@ -110,9 +112,14 @@ export default function Market() {
 
     if (isLoading) return <LoadingScreen status={isLoading} />
 
-    return (
-        <LiveTable data={currencyData} />
-    )
+    return (<>
+        <div className={style.cards}>
+            {currencyData.map((coin, i) => {
+                return (<Card key={coin.rank} data={currencyData[i]} />)
+            })}
+        </div>
+        {/* <LiveTable data={currencyData} /> */}
+    </>)
 }
 
 // export async function getStaticProps() {

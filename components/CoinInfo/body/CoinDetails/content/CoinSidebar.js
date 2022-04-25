@@ -8,27 +8,15 @@ export default function CoinSidebar(props) {
     sortOrder, rating, technologyAdoptionRating,
     marketPerformanceRating, platformType, algorithm,
     assetWebsiteUrl, imageURL } = props.data
-  const selCurrencyToCompare = 'USD'
+
   return <>
     <div className={style.container}>
       <div>
-        <h2>{symbol} price to {selCurrencyToCompare}</h2>
+        <h2>{symbol} price to USD</h2>
       </div>
-      <table>
-        <tbody>
-          <tr>
-            <td className={style.coin}><img width={30} height={30} src={`https://www.cryptocompare.com/${imageURL}`} alt='' />
-              {symbol}
-            </td>
-            <td>1</td>
-          </tr>
-          <tr>
-            <td className={style.coin}><img width={30} height={30} src={'https://cdn-icons-png.flaticon.com/512/197/197484.png'} alt='' />
-              {selCurrencyToCompare}</td>
-            <td>${price}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div>
+        <h2>$ {price}</h2>
+      </div>
     </div>
 
     <div className={style.container}>

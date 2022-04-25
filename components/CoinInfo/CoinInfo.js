@@ -60,7 +60,7 @@ export default function CoinInfo(props) {
                 rating: coin.Rating.Weiss.Rating,
                 technologyAdoptionRating: coin.Rating.Weiss.TechnologyAdoptionRating,
                 marketPerformanceRating: coin.Rating.Weiss.MarketPerformanceRating,
-                totalCoinsMined: (coin.TotalCoinsMined).toFixed(0),
+                totalCoinsMined: coin.TotalCoinsMined == undefined ? 'N/A' : (coin.TotalCoinsMined).toFixed(0),
                 platformType: coin.PlatformType,
                 algorithm: coin.Algorithm,
                 assetWebsiteUrl: coin.AssetWebsiteUrl,

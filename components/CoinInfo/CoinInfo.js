@@ -1,4 +1,3 @@
-import CoinTitle from "./body/CoinTitle"
 import CoinDetails from "./body/CoinDetails/CoinDetails"
 import LoadingScreen from '../layout/LoadingScreen/LoadingScreen'
 import { useEffect, useState } from "react"
@@ -6,6 +5,7 @@ import { CSSTransition } from 'react-transition-group'
 
 
 export default function CoinInfo(props) {
+    console.log(props)
 
     const [isLoading, setIsLoading] = useState(true)
 
@@ -74,11 +74,6 @@ export default function CoinInfo(props) {
     if (isLoading) return <LoadingScreen status={isLoading} />
 
     return <>
-        <CoinTitle
-            name={coinInfo.name}
-            symbol={coinInfo.symbol}
-            logo={coinInfo.imageURL}
-        />
         <CoinDetails
             historicalData={historicalData}
             coinInfo={coinInfo}

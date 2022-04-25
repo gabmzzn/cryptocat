@@ -46,7 +46,8 @@ export default function CoinChart(props) {
             {
                 type: 'inside',
                 start: 72,
-                end: 100
+                end: 100,
+                zoomOnMouseWheel: false,
             }
         ],
         series: [

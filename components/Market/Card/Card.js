@@ -12,19 +12,19 @@ export default function Card(props) {
                 <h1>{coin.symbol}</h1>
                 <img src={coin.logo} width={40} height={40} />
             </div>
+            {/* <h4>
+                {coin.name}
+            </h4> */}
             <div className={style.subtitle}>
-                <h4>
-                    {coin.name}
-                </h4>
+                <span className={coin.updown == '▲' ? style.higherPrice : style.lowerPrice}>
+                    <b className={coin.updown == '▲' ? style.arcoinUp : style.arcoinDown}>{coin.updown}
+                    </b>
+                    {coin.price}
+                </span>
                 <span className={coin.changepct > 0 ? style.higherpct : style.lowerpct}>
                     {coin.changepct}%
                 </span>
             </div>
-            <p className={style.price}>
-                <p className={coin.updown == '▲' ? style.higherPrice : style.lowerPrice}>
-                    <span className={coin.updown == '▲' ? style.arcoinUp : style.arcoinDown}>{coin.updown}</span>{coin.price}
-                </p>
-            </p>
             <div className={style.chart}>
                 <img src={coin.chart} />
             </div>

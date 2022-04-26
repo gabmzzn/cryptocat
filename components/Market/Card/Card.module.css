@@ -9,7 +9,7 @@
     border-radius: 25px;
     flex-basis: 20%;
     margin: 20px 25px;
-    padding: 22px 18px;
+    padding: 20px 20px;
     transition: border 0.5s, outline 0.5s;
 }
 
@@ -51,7 +51,7 @@
 .subtitle span {
     padding: 6px 7px;
     border-radius: 10px;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: bold;
     transition: all 500ms;
 }

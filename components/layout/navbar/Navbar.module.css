@@ -14,7 +14,7 @@
 
 .navbar span {
     font-weight: bold;
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .navbar a {
@@ -37,7 +37,12 @@
 }
 
 .buttonActive {
-    color: steelblue;
     font-size: 20px;
+    color: #d6b600;
+    /* text-shadow:
+        0 0 2px #716000,
+        0 0 2px #716000,
+        0 0 2px #716000,
+        0 0 2px #716000; */
     margin-left: 15px !important;
 }

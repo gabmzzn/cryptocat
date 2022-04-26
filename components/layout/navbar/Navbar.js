@@ -22,7 +22,7 @@ export default function NavBar() {
 				<div className={style.buttons}>
 					<ThemeProvider theme={theme}>
 						<Link href='/market' passHref>
-							<Button className={router.pathname == "/market" ? style.buttonActive : style.button}>MARKET</Button>
+							<Button className={router.pathname == "/market" ? style.buttonActive : style.button}><span>MARKET</span></Button>
 						</Link>
 						<Link href='/coins/btc' passHref>
 							<Button className={router.pathname.startsWith("/coins") ? style.buttonActive : style.button}>COIN INFO</Button>

@@ -12,9 +12,6 @@ export default function Card(props) {
                 <h1>{coin.symbol}</h1>
                 <img src={coin.logo} width={40} height={40} />
             </div>
-            {/* <h4>
-                {coin.name}
-            </h4> */}
             <div className={style.subtitle}>
                 <span className={coin.updown == '▲' ? style.higherPrice : style.lowerPrice}>
                     <b className={coin.updown == '▲' ? style.arcoinUp : style.arcoinDown}>{coin.updown}

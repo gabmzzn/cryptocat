@@ -61,18 +61,18 @@ export default function CoinChart(props) {
                 symbolSize: 9,
                 sampling: 'lttb',
                 itemStyle: {
-                    color: 'steelblue'
+                    color: '#dbc500'
                 },
                 areaStyle: {
                     opacity: 0.8,
                     color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
                         {
                             offset: 0,
-                            color: 'steelblue'
+                            color: '#dbc500'
                         },
                         {
                             offset: 1,
-                            color: 'AliceBlue'
+                            color: 'white'
                         }
                     ])
                 },

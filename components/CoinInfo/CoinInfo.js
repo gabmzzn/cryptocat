@@ -7,8 +7,10 @@ import { CSSTransition } from 'react-transition-group'
 export default function CoinInfo(props) {
 
     const [isLoading, setIsLoading] = useState(true)
+    const [isLoading2, setIsLoading2] = useState(true)
     const [historicalData, setHistoricalData] = useState(false)
     const [coinInfo, setCoinInfo] = useState(false)
+    const [newsFeed, setNewsFeed] = useState(false)
 
     const selCoin = props.coin.toUpperCase()
     const histoTime = 999
@@ -69,12 +71,27 @@ export default function CoinInfo(props) {
         }
     }, [])
 
-    if (isLoading) return <LoadingScreen status={isLoading} />
+    useEffect(() => {
+        async function NewsFeed() {
+            const URL = `https://min-api.cryptocompare.com/data/v2/news/?&lang=EN&categories=${selCoin}&excludeCategories=Sponsored&lTs=${Date.parse(new Date()) / 1000}`
+            const news = await fetch(URL).then(res => res.json())
+
+            // this.cards = json.Data.slice(json.Data.length - 15)
+            // for (let i = 0; i < this.cards.length; i++) {
+            //     this.cards[i].body = json.Data[i].body.replaceAll(/\. /g, '.<br><br>')
+            // }
+            setNewsFeed(news)
+            setIsLoading2(false)
+        }
+        NewsFeed()
+    }, [])
+    if (isLoading && isLoading2) return <LoadingScreen status={isLoading} />
 
     return <>
         <CoinDetails
             historicalData={historicalData}
-            coinInfo={coinInfo}
+            coin={coinInfo}
+            news={newsFeed}
         />
     </>
 

@@ -1,14 +1,26 @@
 .card {
     position: relative;
+    user-select: none;
     cursor: pointer;
     width: 200px;
+    outline: 2px solid transparent;
     border: 1px solid rgba(112, 128, 144, 0.2);
     box-shadow: 5px 10px 20px rgb(0 0 0 / 15%);
-    border-radius: 10%;
+    border-radius: 25px;
     flex-basis: 20%;
     margin: 20px 25px;
     padding: 22px 18px;
-    transition: 2s all;
+    transition: border 0.5s, outline 0.5s;
+}
+
+.card:hover {
+    border: 1px solid rgb(240, 212, 0);
+    outline: 2px solid rgb(240, 212, 0);
+}
+
+.card:active {
+    background-color: rgba(240, 212, 0, 0.075);
+    ;
 }
 
 .title {

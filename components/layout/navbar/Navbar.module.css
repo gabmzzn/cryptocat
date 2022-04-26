@@ -36,13 +36,8 @@
     margin-left: 15px !important;
 }
 
-.buttonActive {
+.active {
     font-size: 20px;
     color: #d6b600;
-    /* text-shadow:
-        0 0 2px #716000,
-        0 0 2px #716000,
-        0 0 2px #716000,
-        0 0 2px #716000; */
     margin-left: 15px !important;
 }

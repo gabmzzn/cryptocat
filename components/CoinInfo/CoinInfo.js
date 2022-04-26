@@ -1,19 +1,17 @@
-import CoinDetails from "./body/CoinDetails/CoinDetails"
+import CoinDetails from "./CoinDetails/CoinDetails"
 import LoadingScreen from '../layout/LoadingScreen/LoadingScreen'
 import { useEffect, useState } from "react"
 import { CSSTransition } from 'react-transition-group'
 
 
 export default function CoinInfo(props) {
-    console.log(props)
 
     const [isLoading, setIsLoading] = useState(true)
-
-    const selCoin = props.coin.toUpperCase()
-    const histoTime = 500
-
     const [historicalData, setHistoricalData] = useState(false)
     const [coinInfo, setCoinInfo] = useState(false)
+
+    const selCoin = props.coin.toUpperCase()
+    const histoTime = 999
 
     useEffect(() => {
         let histoData = []

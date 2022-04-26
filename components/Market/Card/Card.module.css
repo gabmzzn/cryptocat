@@ -16,12 +16,13 @@
 .card:hover {
     border: 1px solid rgb(240, 212, 0);
     outline: 2px solid rgb(240, 212, 0);
+    background-color: rgba(240, 212, 0, 0.025);
 }
 
 .card:active {
     border: 1px solid rgb(240, 212, 0);
     outline: 2px solid rgb(240, 212, 0);
-    background-color: rgba(240, 212, 0, 0.075);
+    background-color: rgba(240, 212, 0, 0.085);
 }
 
 .title {
@@ -35,6 +36,11 @@
     font-size: 28px;
 }
 
+.title img {
+    border-radius: 50%;
+    background-color: rgba(176, 165, 1, 0.124);
+}
+
 .subtitle {
     margin: 10px 0;
     display: flex;
@@ -45,7 +51,7 @@
 .subtitle span {
     padding: 6px 7px;
     border-radius: 10px;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: bold;
     transition: all 500ms;
 }
@@ -77,12 +83,12 @@
         background-color: rgb(240, 240, 240);
     }
 
-    10% {
+    5% {
         color: #006100;
         background-color: #C6EFCE;
     }
 
-    90% {
+    95% {
         color: #006100;
         background-color: #C6EFCE;
     }
@@ -111,12 +117,12 @@
         background-color: rgb(240, 240, 240);
     }
 
-    10% {
+    5% {
         color: #9C0006;
         background-color: #FFC7CE;
     }
 
-    90% {
+    95% {
         color: #9C0006;
         background-color: #FFC7CE;
     }

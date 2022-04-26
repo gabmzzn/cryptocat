@@ -7,16 +7,6 @@ export default function CoinChart(props) {
         .map(r => Object.values({ time: r.time * 1000, close: r.close }))
 
     const chartOptions = {
-        tooltip: {
-            trigger: 'axis',
-            axisPointer: {
-                type: 'cross',
-                animation: true,
-                label: {
-                    backgroundColor: '#505765'
-                }
-            }
-        },
         grid: {
             left: 45,
             top: 15,
@@ -29,18 +19,55 @@ export default function CoinChart(props) {
         yAxis: {
             type: 'value',
             scale: true,
-            splitNumber: 6,
+            splitNumber: 4,
             splitLine: {
-                show: true,
                 lineStyle: {
                     color: 'rgb(150, 150, 150, 0.1)'
                 }
             }
         },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross',
+                animation: true,
+                label: {
+                    backgroundColor: '#505765'
+                }
+            }
+        },
+        series: [
+            {
+                data: data,
+                name: props.name,
+                type: 'line',
+                smooth: false,
+                showSymbol: false,
+                symbolSize: 9,
+                sampling: 'lttb',
+                animationEasing: 'sinusoidalOut',
+                itemStyle: {
+                    color: '#dbc500'
+                },
+                areaStyle: {
+                    opacity: 0.8,
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                        {
+                            offset: 0,
+                            color: '#dbc500'
+                        },
+                        {
+                            offset: 1,
+                            color: 'white'
+                        }
+                    ])
+                },
+            }
+        ],
         dataZoom: [
             {
                 type: 'inside',
-                start: 80,
+                start: 70,
                 end: 100,
                 zoomOnMouseWheel: false,
             },
@@ -51,7 +78,7 @@ export default function CoinChart(props) {
                 top: 315,
                 height: 50,
                 borderColor: 'transparent',
-                fillerColor: 'rgb(219 197 0 / 20%)',
+                fillerColor: 'rgb(219 197 0 / 18%)',
                 showDetail: false,
                 brushSelect: false,
                 handleSize: '60%',
@@ -81,34 +108,6 @@ export default function CoinChart(props) {
                 },
             }
         ],
-        series: [
-            {
-                data: data,
-                name: props.name,
-                type: 'line',
-                smooth: false,
-                // animationThreshold: 5000,
-                showSymbol: false,
-                symbolSize: 9,
-                sampling: 'lttb',
-                itemStyle: {
-                    color: '#dbc500'
-                },
-                areaStyle: {
-                    opacity: 0.8,
-                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                        {
-                            offset: 0,
-                            color: '#dbc500'
-                        },
-                        {
-                            offset: 1,
-                            color: 'white'
-                        }
-                    ])
-                },
-            }
-        ]
     }
 
     return (

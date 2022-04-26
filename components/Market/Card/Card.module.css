@@ -19,8 +19,9 @@
 }
 
 .card:active {
+    border: 1px solid rgb(240, 212, 0);
+    outline: 2px solid rgb(240, 212, 0);
     background-color: rgba(240, 212, 0, 0.075);
-    ;
 }
 
 .title {

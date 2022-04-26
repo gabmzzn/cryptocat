@@ -107,20 +107,6 @@ ChartJS.register(
     Tooltip,
     Legend)
 
-export const options = {
-    responsive: true,
-    plugins: {
-        legend: {
-            position: 'top',
-        },
-    },
-    elements: {
-        point: {
-            radius: 0
-        }
-    }
-}
-
 export default function CoinChart(props) {
     const open = props.data.map(c => c.open)
     const time = props.data.map(c => c.time)
@@ -139,6 +125,26 @@ export default function CoinChart(props) {
                 borderColor: '#dbc500'
             },
         ],
+    }
+    const options = {
+        scales: {
+            x: {
+                grid: {
+                    display: false
+                }
+            },
+        },
+        plugins: {
+            legend: {
+                display: false
+            }
+        },
+        responsive: true,
+        elements: {
+            point: {
+                radius: 0
+            }
+        },
     }
     return <Line options={options} data={data} />
 }

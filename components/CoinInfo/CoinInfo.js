@@ -10,7 +10,7 @@ export default function CoinInfo(props) {
     const [isLoading, setIsLoading] = useState(true)
 
     const selCoin = props.coin.toUpperCase()
-    const selCoinTC = 'USD'
+    const histoTime = 500
 
     const [historicalData, setHistoricalData] = useState(false)
     const [coinInfo, setCoinInfo] = useState(false)
@@ -18,7 +18,7 @@ export default function CoinInfo(props) {
     useEffect(() => {
         let histoData = []
         async function getHistoricalData() {
-            const URL = `https://min-api.cryptocompare.com/data/v2/histoday?fsym=${selCoin}&tsym=${selCoinTC}&toTs=${Date.parse(new Date()) / 1000}&limit=999`
+            const URL = `https://min-api.cryptocompare.com/data/v2/histoday?fsym=${selCoin}&tsym=USD&toTs=${Date.parse(new Date()) / 1000}&limit=${histoTime}`
             const json = await fetch(URL).then(res => res.json())
             histoData = json.Data.Data
             setHistoricalData(histoData)
@@ -29,12 +29,12 @@ export default function CoinInfo(props) {
         async function getCoinInfo() {
             const coinsURL = `https://min-api.cryptocompare.com/data/all/coinlist?fsym=${selCoin}`
             const coinList = await fetch(coinsURL).then(res => res.json())
-            const priceURL = `https://min-api.cryptocompare.com/data/price?fsym=${selCoin}&tsyms=${selCoinTC}`
+            const priceURL = `https://min-api.cryptocompare.com/data/price?fsym=${selCoin}&tsyms=USD`
             const singlePrice = await fetch(priceURL).then(res => res.json())
 
             const coin = coinList.Data[selCoin]
             const data = {
-                price: singlePrice[selCoinTC].toLocaleString(
+                price: singlePrice['USD'].toLocaleString(
                     'en-GB', {
                     style: 'decimal',
                     minimumFractionDigits: 2,
@@ -43,19 +43,19 @@ export default function CoinInfo(props) {
                 symbol: coin.Symbol,
                 name: coin.CoinName,
                 description: coin.Description.replaceAll(/\. /g, '.<br><br>'),
-                high24: histoData[999].high.toLocaleString(
+                high24: histoData[histoTime].high.toLocaleString(
                     'en-GB', {
                     style: 'decimal',
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 5,
                 }),
-                low24: histoData[999].low.toLocaleString(
+                low24: histoData[histoTime].low.toLocaleString(
                     'en-GB', {
                     style: 'decimal',
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 5,
                 }),
-                priceChange: (singlePrice[selCoinTC] - histoData[999].low).toFixed(2),
+                priceChange: (singlePrice['USD'] - histoData[histoTime].low).toFixed(2),
                 sortOrder: coin.SortOrder,
                 rating: coin.Rating.Weiss.Rating,
                 technologyAdoptionRating: coin.Rating.Weiss.TechnologyAdoptionRating,

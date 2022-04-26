@@ -1,8 +1,19 @@
-.App {
+.content {
   position: fixed;
   top: 50% !important;
   left: 50% !important;
   transform: translate(-50%, -50%);
+  animation: siia 0.3s ease;
+}
+
+@keyframes siia {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .logo {

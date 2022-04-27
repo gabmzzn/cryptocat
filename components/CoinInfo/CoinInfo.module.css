@@ -10,6 +10,6 @@
 }
 
 .newsFeed {
-    columns: 2 600px;
-    column-gap: 2rem;
+    display: flex;
+    flex-wrap: wrap;
 }

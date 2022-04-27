@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react'
 import LiveTable from "../../components/Market/Table/LiveTable"
-import LoadingScreen from '../../components/lxayout/LoadingScreen/LoadingScreen'
+import LoadingScreen from '../../components/Layout/LoadingScreen/LoadingScreen'
 import Card from '../../components/Market/Card/Card'
 import style from './market.module.css'
 

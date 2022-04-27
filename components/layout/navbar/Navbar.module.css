@@ -38,6 +38,6 @@
 
 .active {
     font-size: 20px;
-    color: #d6b600;
+    color: #d6b600 !important;
     margin-left: 15px !important;
 }

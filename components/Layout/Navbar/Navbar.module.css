@@ -43,6 +43,7 @@
 }
 
 .logo {
+    user-select: none;
     display: flex;
     cursor: pointer;
     align-items: center;
@@ -58,7 +59,29 @@
 }
 
 .logo:active {
-    animation: logoClick 1s ease;
+    animation: logoClick 0.1s;
 }
 
-@keyframes logoClick {}
+.logo:not(:active) {
+    animation: logoNotClick 0.1s;
+}
+
+@keyframes logoClick {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.15);
+    }
+}
+
+@keyframes logoNotClick {
+    from {
+        transform: scale(1.15);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}

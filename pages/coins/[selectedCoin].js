@@ -2,16 +2,15 @@ import CoinInfo from "../../components/CoinInfo/CoinInfo"
 import { useRouter } from 'next/router'
 import LoadingScreen from "../../components/Layout/LoadingScreen/LoadingScreen"
 import { useEffect, useState } from "react"
+import Layout from "../../components/Layout/Layout"
 
 export default function Coins() {
-
     const [isLoading, setIsLoading] = useState(0)
     const [historicalData, setHistoricalData] = useState(false)
     const [coinInfo, setCoinInfo] = useState(false)
     const [newsFeed, setNewsFeed] = useState(false)
 
     const router = useRouter()
-
     const histoTime = 999
 
     useEffect(() => {
@@ -96,5 +95,13 @@ export default function Coins() {
     }
 
     return <LoadingScreen status={isLoading} />
+}
 
+Coins.getLayout = function getLayout(page) {
+    console.log('HOla??')
+    return (
+        <Layout>
+            <h1>aw</h1>
+        </Layout>
+    )
 }

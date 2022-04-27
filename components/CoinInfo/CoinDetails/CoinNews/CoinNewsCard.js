@@ -4,6 +4,7 @@ import style from './NewsCard.module.css'
 export default function NewsCard(props) {
 
     const news = props.data
+    const body = news.body.replaceAll(/\. /g, '.<br><br>')
 
     return (
         <div className={style.card}>
@@ -11,8 +12,8 @@ export default function NewsCard(props) {
                 <h1>{news.title}</h1>
                 <img src={news.imageurl} width={60} height={60} />
             </div>
-            <div className={style.subtitle}>
-                <span>{news.body}</span>
+            <div className={style.body}>
+                <span dangerouslySetInnerHTML={{ __html: body }} />
             </div>
         </div>
     )

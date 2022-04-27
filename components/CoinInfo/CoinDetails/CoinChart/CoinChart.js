@@ -15,6 +15,11 @@ export default function CoinChart(props) {
         },
         xAxis: {
             type: 'time',
+            axisLine: {
+                lineStyle: {
+                    color: 'rgb(120,120,100)'
+                }
+            }
         },
         yAxis: {
             type: 'value',

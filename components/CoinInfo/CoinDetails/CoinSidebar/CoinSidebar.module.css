@@ -5,8 +5,9 @@
     margin-bottom: 16px;
     margin-left: 30px;
     line-height: 1.4;
-    background-color: rgb(245, 245, 248);
-    border: 1px solid rgb(230, 230, 235);
+    border: 1px solid rgba(112, 128, 144, 0.2);
+    box-shadow: 0 0 3px rgb(0 0 0 / 15%);
+    background-color: rgb(253, 253, 253);
     border-radius: 12px;
 }
 

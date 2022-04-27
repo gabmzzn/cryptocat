@@ -1,9 +1,9 @@
-import CoinChart from "./content/CoinChart"
-import CoinDescription from "./content/CoinDescription"
-import CoinSidebar from "./content/CoinSidebar"
-import CoinTitle from "./content/CoinTitle"
+import CoinChart from "./CoinChart/CoinChart"
+import CoinDescription from "./CoinDescription/CoinDescription"
+import CoinSidebar from "./CoinSidebar/CoinSidebar"
+import CoinTitle from "./CoinTitle/CoinTitle"
 import style from './CoinDetails.module.css'
-import NewsCard from "./NewsFeed/NewsCard"
+import CoinNewsCard from "./CoinNews/CoinNewsCard"
 
 export default function CoinDetails(props) {
     const { coin, historicalData, news } = props
@@ -30,8 +30,10 @@ export default function CoinDetails(props) {
                 <CoinSidebar data={coin} />
             </div>
         </div>
-        {news.Data.slice(0, 10).map(n => {
-            return <NewsCard key={n.id} data={n} />
-        })}
+        <div className={style.newsFeed}>
+            {news.Data.slice(0, 10).map(n => {
+                return <CoinNewsCard key={n.id} data={n} />
+            })}
+        </div>
     </div>
 }

@@ -10,15 +10,14 @@ export default function CoinSidebar(props) {
     assetWebsiteUrl, imageURL } = props.data
 
   return <>
-    <div className={style.container}>
+    {/* <div className={style.container}>
       <div>
-        <h2>{symbol} price to USD</h2>
+        <h2>{symbol} price</h2>
       </div>
       <div>
         <h2>$ {price}</h2>
       </div>
-    </div>
-
+    </div> */}
     <div className={style.container}>
       <div>
         <h2>{symbol} Statistics and info</h2>

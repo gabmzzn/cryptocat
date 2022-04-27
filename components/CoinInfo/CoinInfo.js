@@ -6,8 +6,7 @@ import { CSSTransition } from 'react-transition-group'
 
 export default function CoinInfo(props) {
 
-    const [isLoading, setIsLoading] = useState(true)
-    const [isLoading2, setIsLoading2] = useState(true)
+    const [isLoading, setIsLoading] = useState(0)
     const [historicalData, setHistoricalData] = useState(false)
     const [coinInfo, setCoinInfo] = useState(false)
     const [newsFeed, setNewsFeed] = useState(false)
@@ -23,8 +22,8 @@ export default function CoinInfo(props) {
             histoData = json.Data.Data
             setHistoricalData(histoData)
             getCoinInfo()
+            setIsLoading(load => load + 1)
         }
-        getHistoricalData()
 
         async function getCoinInfo() {
             const coinsURL = `https://min-api.cryptocompare.com/data/all/coinlist?fsym=${selCoin}`
@@ -42,7 +41,7 @@ export default function CoinInfo(props) {
                 }),
                 symbol: coin.Symbol,
                 name: coin.CoinName,
-                description: coin.Description.replaceAll(/\. /g, '.<br><br>'),
+                description: coin.Description,
                 high24: histoData[histoTime].high.toLocaleString(
                     'en-GB', {
                     style: 'decimal',
@@ -60,39 +59,37 @@ export default function CoinInfo(props) {
                 rating: coin.Rating.Weiss.Rating,
                 technologyAdoptionRating: coin.Rating.Weiss.TechnologyAdoptionRating,
                 marketPerformanceRating: coin.Rating.Weiss.MarketPerformanceRating,
-                totalCoinsMined: coin.TotalCoinsMined == undefined ? 'N/A' : (coin.TotalCoinsMined).toFixed(0),
+                totalCoinsMined: coin.TotalCoinsMined.toFixed(0),
                 platformType: coin.PlatformType,
                 algorithm: coin.Algorithm,
                 assetWebsiteUrl: coin.AssetWebsiteUrl,
                 imageURL: coin.ImageUrl,
             }
             setCoinInfo(data)
-            setIsLoading(false)
+            setIsLoading(load => load + 1)
         }
-    }, [])
 
-    useEffect(() => {
-        async function NewsFeed() {
+        async function getNewsFeed() {
             const URL = `https://min-api.cryptocompare.com/data/v2/news/?&lang=EN&categories=${selCoin}&excludeCategories=Sponsored&lTs=${Date.parse(new Date()) / 1000}`
             const news = await fetch(URL).then(res => res.json())
 
-            // this.cards = json.Data.slice(json.Data.length - 15)
-            // for (let i = 0; i < this.cards.length; i++) {
-            //     this.cards[i].body = json.Data[i].body.replaceAll(/\. /g, '.<br><br>')
-            // }
             setNewsFeed(news)
-            setIsLoading2(false)
+            setIsLoading(load => load + 1)
         }
-        NewsFeed()
+
+        getHistoricalData()
+        getNewsFeed()
     }, [])
-    if (isLoading && isLoading2) return <LoadingScreen status={isLoading} />
 
-    return <>
-        <CoinDetails
-            historicalData={historicalData}
-            coin={coinInfo}
-            news={newsFeed}
-        />
-    </>
+    if (isLoading > 2) {
+        return <>
+            <CoinDetails
+                historicalData={historicalData}
+                coin={coinInfo}
+                news={newsFeed}
+            />
+        </>
+    }
 
+    return <LoadingScreen status={isLoading} />
 }

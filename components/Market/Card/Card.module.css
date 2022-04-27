@@ -3,6 +3,7 @@
     user-select: none;
     cursor: pointer;
     width: 200px;
+    max-width: 260px;
     height: 180px;
     outline: 1px solid transparent;
     border: 1px solid rgba(112, 128, 144, 0.2);
@@ -21,7 +22,7 @@
 
 .card:active {
     border: 1px solid rgb(240, 212, 0);
-    outline: 2px solid rgb(240, 212, 0);
+    outline: 1px solid rgb(240, 212, 0);
     background-color: rgba(240, 212, 0, 0.085);
 }
 
@@ -38,7 +39,7 @@
 
 .title img {
     border-radius: 50%;
-    background-color: rgba(176, 165, 1, 0.124);
+    background-color: rgba(180, 180, 180, 0.15);
 }
 
 .subtitle {
@@ -161,4 +162,8 @@
     align-items: center;
     justify-content: center;
     margin: 22px 0 0 0;
+}
+
+.chart img {
+    user-select: none;
 }

@@ -41,3 +41,24 @@
     color: #d6b600 !important;
     margin-left: 15px !important;
 }
+
+.logo {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+}
+
+.logo span {
+    font-size: 23px;
+    font-weight: 900;
+}
+
+.logo img {
+    margin: 0 5px;
+}
+
+.logo:active {
+    animation: logoClick 1s ease;
+}
+
+@keyframes logoClick {}

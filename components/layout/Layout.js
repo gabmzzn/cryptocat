@@ -1,13 +1,13 @@
 import Navbar from './navbar/Navbar'
 import style from './Layout.module.css'
+import Footer from './Footer/Footer.js'
 
-const Layout = (props) => {
-    return <>
+export default function Layout(props) {
+    return <div className={style.main}>
         <Navbar />
-        <div className={style.main}>
+        <div className={style.content}>
             {props.children}
         </div>
-    </>
+        <Footer />
+    </div>
 }
-
-export default Layout

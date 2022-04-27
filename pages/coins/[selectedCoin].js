@@ -1,6 +1,6 @@
 import CoinInfo from "../../components/CoinInfo/CoinInfo"
 import { useRouter } from 'next/router'
-import LoadingScreen from "../../components/Layout/LoadingScreen/LoadingScreen"
+import LoadingScreen from "../../components/lxayout/LoadingScreen/LoadingScreen"
 import { useEffect, useState } from "react"
 
 export default function Coins() {

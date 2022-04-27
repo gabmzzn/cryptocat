@@ -1,7 +1,6 @@
 
 import { useState, useEffect } from 'react'
 import LiveTable from "../../components/Market/Table/LiveTable"
-import { w3cwebsocket as W3CWebSocket } from "websocket"
 import LoadingScreen from '../../components/layout/LoadingScreen/LoadingScreen'
 import Card from '../../components/Market/Card/Card'
 import style from './market.module.css'
@@ -13,96 +12,92 @@ export default function Market() {
 
     useEffect(() => {
         async function getData() {
-            const composedData = []
-            const URL = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${symbolList.join()}&tsyms=USD`
-            const prices = Object.values(await fetch(URL).then(res => res.json()))
-            // Last hour timestamp
-            let d = (new Date()).toString(), timestampLastHour = Date.parse((d.substr(0, 18) + ':00:00' + d.substr(24))) / 1000
+            const date = (new Date()).toString()
+            const timeLastHour = Date.parse((date.substr(0, 18) + ':00:00' + date.substr(24))) / 1000
 
-            for (let [i, currency] of symbolList.entries()) {
-                const sign = Math.sign(prices[0][currency].USD.CHANGEPCT24HOUR) == 1 ? '+' : ''
-                composedData.push(
-                    {
-                        rank: i + 1,
-                        logo: `https://www.cryptocompare.com${prices[1][currency].USD.IMAGEURL}`,
-                        name: currenciesNames[i],
-                        symbol: currency,
-                        price: prices[1][currency].USD.PRICE.toLocaleString(
+            const URL = 'https://min-api.cryptocompare.com/data/top/totalvolfull?limit=100&tsym=USD'
+            const fetchedData = await fetch(URL).then(r => r.json())
+            const data = fetchedData.Data.reduce((result, crypto, index) => {
+                if ('RAW' in crypto) {
+                    const coin = crypto.CoinInfo
+                    const coinDIS = crypto.DISPLAY.USD
+                    const coinRAW = crypto.RAW.USD
+                    result.push({
+                        rank: index + 1,
+                        logo: `https://www.cryptocompare.com${coin.ImageUrl}`,
+                        name: coin.FullName,
+                        symbol: coin.Name,
+                        price: coinDIS.PRICE.toLocaleString(
                             'en-GB', {
                             style: 'decimal',
                             minimumFractionDigits: 2,
                             maximumFractionDigits: 5,
                         }),
-                        changepct: sign + prices[1][currency].USD.CHANGEPCT24HOUR,
+                        changepct: (Math.sign(coinRAW.CHANGEPCT24HOUR) == 1 ? '+' : '') + coinDIS.CHANGEPCT24HOUR,
                         updown: Math.random() > 0.5 ? '▲' : '▼',
-                        open24: prices[0][currency].USD.OPEN24HOUR,
-                        totalvolume: prices[1][currency].USD.TOTALTOPTIERVOLUME24HTO,
-                        marketcap: prices[1][currency].USD.MKTCAP,
-                        chart: 'https://images.cryptocompare.com/sparkchart/' + currency + '/USD/latest.png?ts=' + timestampLastHour
+                        open24: coinRAW.OPEN24HOUR,
+                        totalvolume: coinDIS.TOTALTOPTIERVOLUME24HTO,
+                        marketcap: coinDIS.MKTCAP,
+                        chart: `https://images.cryptocompare.com/sparkchart/${coin.Name}/USD/latest.png?ts=${timeLastHour}`
                     })
-                i++
-            }
-            setCurrencyData(composedData)
-            getCurrencyData(composedData)
+                }
+                return result
+            }, []).slice(0, 50)
+
+            setCurrencyData(data)
+            getLiveData(data)
         }
-        getData()
 
-        // WebSocket Connection 
-        const apiKey = '6e659e1244d9e7ccf3b6bdf6ada561766883d528a2025f01004787c096d1b005'
-        const client = new W3CWebSocket(`wss://streamer.cryptocompare.com/v2?api_key=${apiKey}`)
-
-        async function getCurrencyData(currencyList) {
-            // let performers = [...this.appService.currencyList].sort((a, b) => b.changepct - a.changepct)
-            // performers.splice(3, 44)
-            // this.performersSource = performers
-
-            const subs = []
-            currencyList.forEach(coin => {
-                subs.push(`5~CCCAGG~${coin.symbol}~USD`)
+        let client = null // If it declared outside it doesnt work
+        async function getLiveData(coins) {
+            const previous = coins.map(coin => {
+                return { price: coin.price }
             })
+
+            const apiKey = '6e659e1244d9e7ccf3b6bdf6ada561766883d528a2025f01004787c096d1b005'
+            client = new WebSocket(`wss://streamer.cryptocompare.com/v2?api_key=${apiKey}`)
+
+            const subs = coins.map(coin => {
+                return `5~CCCAGG~${coin.symbol}~USD`
+            })
+
             client.onopen = () => {
                 client.send(JSON.stringify({
                     "action": "SubAdd",
                     "subs": subs
                 }))
             }
-            let subibaja = []
-            for (let i = 0; i < 50; i++) {
-                subibaja.push({
-                    price: currencyList[i].price
-                })
-            }
+
             client.onmessage = (message) => pushWebSocketData(JSON.parse(message.data))
 
             function pushWebSocketData(data) {
-                if (data.PRICE !== undefined) {
-                    const sym = currencyList.findIndex(((obj) => obj.symbol == data.FROMSYMBOL))
-                    currencyList[sym].price = '$ ' + (data.PRICE.toLocaleString(
+                if ('PRICE' in data) {
+                    const sym = coins.findIndex(((obj) => obj.symbol == data.FROMSYMBOL))
+                    coins[sym].price = '$ ' + (data.PRICE.toLocaleString(
                         'en-GB', {
                         style: 'decimal',
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 5,
                     }))
-                    currencyList[sym].changepct = (currencyList[sym].changepct >= 0 ? '+' : '') +
-                        (((data.PRICE - currencyList[sym].open24) / data.PRICE) * 100).toFixed(2)
+                    coins[sym].changepct = (coins[sym].changepct >= 0 ? '+' : '') +
+                        (((data.PRICE - coins[sym].open24) / data.PRICE) * 100).toFixed(2)
 
-                    if (currencyList[sym].price > subibaja[sym].price) {
-                        subibaja[sym].price = currencyList[sym].price
-                        currencyList[sym].updown = '▲'
-                    } else if (currencyList[sym].price < subibaja) {
-                        subibaja[sym].price = currencyList[sym].price
-                        currencyList[sym].updown = '▼'
+                    if (coins[sym].price > previous[sym].price) {
+                        previous[sym].price = coins[sym].price
+                        coins[sym].updown = '▲'
+                    } else if (coins[sym].price < previous) {
+                        previous[sym].price = coins[sym].price
+                        coins[sym].updown = '▼'
                     }
-                    // let performers = [...currencyList].sort((a, b) => b.changepct - a.changepct)
-                    // performers.splice(3, 44)
-                    // performersSource = performers
 
                     // THIS POSSIBLY NEEDS OPTIMIZATION
-                    setCurrencyData([...currencyList])
+                    setCurrencyData([...coins])
                 }
             }
             setIsLoading(false)
         }
+
+        getData()
 
         return () => {
             client.close()
@@ -115,68 +110,10 @@ export default function Market() {
     return (<>
         <div className={style.cards}>
             {currencyData.map((coin, i) => {
+                console.log('asd')
                 return (<Card key={coin.rank} data={currencyData[i]} />)
             })}
         </div>
         {/* <LiveTable data={currencyData} /> */}
     </>)
 }
-
-// export async function getStaticProps() {
-//     const composedData = []
-//     let plussign, updown = ''
-//     Math.random() > 0.5 ? updown = '▲' : updown = '▼'
-//     console.log('[API Data fetching]')
-//     let prices = Object.values(await (await fetch(`https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${symbolList.join()}&tsyms=USD`)).prices())
-//     // Last hour timestamp
-//     let d = (new Date()).toString(), timestampLastHour = Date.parse((d.substr(0, 18) + ':00:00' + d.substr(24))) / 1000
-
-//     for (let [i, currency] of symbolList.entries()) {
-//         prices[0][currency].USD.CHANGEPCT24HOUR >= 0.00 ? plussign = '+' : plussign = ''
-//         composedData.push(
-//             {
-//                 rank: i + 1,
-//                 logo: prices[1][currency].USD.IMAGEURL,
-//                 name: currenciesNames[i],
-//                 symbol: currency,
-//                 price: prices[1][currency].USD.PRICE.toLocaleString(
-//                     'en-GB', {
-//                     style: 'decimal',
-//                     minimumFractionDigits: 2,
-//                     maximumFractionDigits: 5,
-//                 }),
-//                 changepct: plussign + prices[1][currency].USD.CHANGEPCT24HOUR,
-//                 updown: updown,
-//                 open24: prices[0][currency].USD.OPEN24HOUR,
-//                 totalvolume: prices[1][currency].USD.TOTALTOPTIERVOLUME24HTO,
-//                 marketcap: prices[1][currency].USD.MKTCAP,
-//                 sparkchart: 'https://images.cryptocompare.com/sparkchart/' + currency + '/USD/latest.png?ts=' + timestampLastHour
-//             })
-//         i++
-//     }
-
-//     return {
-//         props: {
-//             composedData
-//         },
-//         revalidate: 10,
-//     }
-
-// }
-
-const symbolList = ['BTC', 'ETH', 'BNB', 'ADA', 'SOL', 'XRP',
-    'DOGE', 'LUNA', 'UNI', 'AVAX', 'LINK', 'ALGO', 'LTC', 'BCH',
-    'WBTC', 'MATIC', 'AXS', 'ATOM', 'ICP', 'FIL', 'XTZ', 'XLM', 'VET',
-    'FTT', 'ETC', 'TRX', 'DAI', 'DASH', 'OXT', 'FTM', 'EGLD', 'XMR', 'CAKE',
-    'EOS', 'STX', 'AAVE', 'SUSHI', 'NEAR', 'SNX', 'QNT', 'GRT', 'NEO',
-    'WAVES', 'KSM', 'LEO', 'MKR', 'CHR', 'ONE', 'HNT', 'AMP']
-
-const currenciesNames = ['Bitcoin', 'Ethereum', 'Binance', 'Cardano',
-    'Solana', 'XRP', 'Dogecoin', 'Terra', 'Uniswap', 'Avalanche',
-    'Chainlink', 'Algorand', 'Litecoin', 'Bitcoin Cash', 'Wrapped Bitcoin',
-    'Polygon', 'Axie Infinity', 'Cosmos', 'Internet Computer', 'Filecoin',
-    'Tezos', 'Stellar', 'VeChain', 'FTX Token', 'Ethereum Classic', 'TRON',
-    'Dai', 'Dash', 'Orchid Protocol', 'Fantom', 'Elrond', 'Monero', 'PancakeSwap', 'EOS',
-    'Stacks', 'Aave', 'SushiSwap', 'NEAR Protocol', 'Synthetix', 'Quant',
-    'The Graph', 'Neo', 'Waves', 'Kusama', 'LEO Token', 'Maker',
-    'Chroma', 'Harmony', 'Helium', 'Amp']

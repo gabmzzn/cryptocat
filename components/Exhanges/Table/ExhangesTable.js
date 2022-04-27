@@ -1,4 +1,4 @@
-import style from './exchanges.module.css'
+import style from './Exchanges.module.css'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'

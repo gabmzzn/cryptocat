@@ -1,4 +1,4 @@
-import Navbar from './navbar/Navbar'
+import Navbar from './Nxavbar/Navbar'
 import style from './Layout.module.css'
 import Footer from './Footer/Footer.js'
 

@@ -11,7 +11,7 @@ export default function Coins() {
 
     const router = useRouter()
     const histoTime = 999
-
+    console.log(router)
     useEffect(() => {
         if (router.isReady) {
             const selected = router.query.coins.toLocaleUpperCase()
@@ -80,7 +80,7 @@ export default function Coins() {
             getHistoricalData()
             getNewsFeed()
         }
-    }, [router.isReady])
+    }, [router])
 
     if (isLoading > 2) {
         return <>

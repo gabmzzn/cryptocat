@@ -34,7 +34,6 @@ export default function CoinTable(props) {
                                             <img src={coin.logo} width={40} height={40} alt={coin.name} />
                                             {coin.name} {coin.symbol}
                                         </div>
-
                                     </TableCell>
                                     <TableCell align="right"
                                         id={coin.rank}

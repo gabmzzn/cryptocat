@@ -1,13 +1,14 @@
 
 import { useState, useEffect } from 'react'
 import LoadingScreen from '../../components/Layout/LoadingScreen/LoadingScreen'
-import Card from '../../components/Market/Card/Card'
-import css from './market.module.css'
+import ViewToggle from '../../components/Market/ViewToggle/ViewToggle'
+import CoinTable from '../../components/Market/CoinTable/CoinTable'
+import CoinGrid from '../../components/Market/CoinGrid/CoinGrid'
 
 export default function Market() {
 
     const [isLoading, setIsLoading] = useState(true)
-    const [currencyData, setCurrencyData] = useState([])
+    const [coinData, setCoinData] = useState([])
 
     useEffect(() => {
         async function getData() {
@@ -43,7 +44,7 @@ export default function Market() {
                 return result
             }, [])
 
-            setCurrencyData(data)
+            setCoinData(data)
             getLiveData(data)
         }
 
@@ -90,7 +91,7 @@ export default function Market() {
                     }
 
                     // THIS POSSIBLY NEEDS OPTIMIZATION
-                    setCurrencyData([...coins])
+                    setCoinData([...coins])
                 }
             }
             setIsLoading(false)
@@ -104,14 +105,20 @@ export default function Market() {
 
     }, [])
 
+    const [viewMode, setViewMode] = useState('grid')
+
+    const handleViewMode = (event, mode) => {
+        if (mode !== null) setViewMode(mode)
+    }
+
     if (isLoading) return <LoadingScreen />
 
     return (<>
-        <h1>Market Live data</h1>
-        <div className={css.cards}>
-            {currencyData.map((coin, i) => {
-                return (<Card key={coin.rank} data={currencyData[i]} />)
-            })}
-        </div>
+        <h2>Market Live data</h2>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+        <ViewToggle viewMode={viewMode} onViewChange={handleViewMode} />
+        {viewMode == 'grid' ? <CoinGrid data={coinData} /> : <CoinTable data={coinData} />}
     </>)
 }

@@ -41,19 +41,19 @@
 .button {
     font-size: 20px;
     font-weight: bold !important;
-    border-radius: 15px;
-    padding: 2px 12px;
+    border-radius: 15px !important;
+    padding: 2px 12px !important;
     margin-left: 15px;
-    text-transform: none;
+    text-transform: none !important;
 }
 
 .active {
     font-size: 20px;
-    border-radius: 15px;
-    padding: 2px 12px;
+    border-radius: 15px !important;
+    padding: 2px 12px !important;
     margin-left: 15px;
     background-color: rgba(214, 182, 0, 0.15);
-    text-transform: none;
+    text-transform: none !important;
     color: rgb(194, 165, 0) !important;
 }
 

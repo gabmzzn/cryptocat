@@ -6,19 +6,26 @@
     width: 100%;
     height: 75px;
     background-color: rgba(255, 255, 255, 0.55);
-    border-bottom: 1px solid rgba(224, 224, 224, 1);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.35);
+    border-bottom: 1px solid rgba(224, 224, 224, 0);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
     backdrop-filter: blur(16px);
     z-index: 100;
+    transition: all 0.2s;
+}
+
+.pop {
+    border-bottom: 1px solid rgba(224, 224, 224, 1);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.35);
+    transition: all 0.2s;
 }
 
 .navbar span {
-    font-weight: bold;
+    font-weight: bold !important;
     font-size: 20px;
 }
 
 .navbar a {
-    font-weight: bold;
+    font-weight: bold !important;
     font-size: 20px;
 }
 
@@ -33,13 +40,21 @@
 
 .button {
     font-size: 20px;
-    margin-left: 15px !important;
+    font-weight: bold !important;
+    border-radius: 15px;
+    padding: 2px 10px;
+    margin-left: 15px;
+    text-transform: none;
 }
 
 .active {
     font-size: 20px;
-    color: #d6b600 !important;
-    margin-left: 15px !important;
+    border-radius: 15px;
+    padding: 2px 10px;
+    margin-left: 15px;
+    background-color: rgba(214, 182, 0, 0.15);
+    text-transform: none;
+    color: rgb(194, 165, 0) !important;
 }
 
 .logo {

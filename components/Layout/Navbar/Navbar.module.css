@@ -39,6 +39,7 @@
     padding: 0 35px;
 }
 
+/* MUI V5 Override */
 .button {
     font-size: 20px !important;
     font-weight: bold !important;
@@ -48,6 +49,7 @@
     text-transform: none !important;
 }
 
+/* MUI V5 Override */
 .active {
     font-size: 20px !important;
     border-radius: 15px !important;

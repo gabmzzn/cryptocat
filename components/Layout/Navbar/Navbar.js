@@ -28,6 +28,7 @@ export default function NavBar() {
 	const rn = router.pathname
 
 	const [scroll, setScroll] = useState(false)
+
 	useEffect(() => {
 		window.addEventListener("scroll", () => {
 			setScroll(window.scrollY > 5)

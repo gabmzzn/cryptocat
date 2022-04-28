@@ -75,7 +75,7 @@ export default function Market() {
                     const sym = coins.findIndex(((obj) => obj.symbol == data.FROMSYMBOL))
                     coins[sym].price = '$ ' + (data.PRICE.toLocaleString(
                         'en-GB', {
-                        css: 'decimal',
+                        scss: 'decimal',
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 5,
                     }))

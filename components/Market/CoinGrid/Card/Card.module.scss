@@ -1,0 +1,135 @@
+.card {
+  position: relative;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  width: 200px;
+  max-width: 260px;
+  height: 180px;
+  outline: 1px solid transparent;
+  border: 1px solid rgba(112, 128, 144, 0.2);
+  box-shadow: 5px 10px 20px rgb(0 0 0 / 15%);
+  border-radius: 25px;
+  flex-basis: 20%;
+  margin: 20px 25px;
+  padding: 20px 20px;
+  transition: border 0.5s, outline 0.5s;
+
+  &:hover {
+    border: 1px solid rgb(240, 212, 0);
+    outline: 1px solid rgb(240, 212, 0);
+  }
+
+  &:active {
+    border: 1px solid rgb(240, 212, 0);
+    outline: 1px solid rgb(240, 212, 0);
+    background-color: rgba(240, 212, 0, 0.085);
+  }
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h1 {
+    margin: 0;
+    font-size: 28px;
+  }
+
+  img {
+    border-radius: 50%;
+    background-color: rgba(180, 180, 180, 0.15);
+  }
+}
+
+.subtitle {
+  margin: 10px 0;
+  display: flex;
+  font-size: 14px;
+  font-weight: bold;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.higherpct, .lowerpct {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  transition: all 2s;
+}
+
+.higherpct {
+  color: rgb(0, 135, 0);
+}
+
+.lowerpct {
+  color: rgb(225, 0, 0);
+}
+
+.higherPrice, .lowerPrice {
+  padding: 6px 7px;
+  border-radius: 10px;
+  color: black;
+  background-color: rgb(240, 240, 240);
+  transition: 2s all;
+}
+
+.higherPrice {
+  animation: fadeHigherPrice 2s forwards linear;
+}
+
+.lowerPrice {
+  animation: fadeLowerPrice 2s forwards linear;
+}
+
+@keyframes fadeHigherPrice {
+  0% {
+    color: black;
+    background-color: rgb(240, 240, 240);
+  }
+
+  5% {
+    color: #006100;
+    background-color: #C6EFCE;
+  }
+
+  95% {
+    color: #006100;
+    background-color: #C6EFCE;
+  }
+
+  100% {
+    color: black;
+    background-color: rgb(240, 240, 240);
+  }
+}
+
+@keyframes fadeLowerPrice {
+  0% {
+    color: black;
+    background-color: rgb(240, 240, 240);
+  }
+
+  5% {
+    color: #9C0006;
+    background-color: #FFC7CE;
+  }
+
+  95% {
+    color: #9C0006;
+    background-color: #FFC7CE;
+  }
+
+  100% {
+    color: black;
+    background-color: rgb(240, 240, 240);
+  }
+}
+
+.chart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 22px 0 0 0;
+}

@@ -1,11 +1,11 @@
 import Image from 'next/image'
-import css from './CoinTitle.module.css'
+import scss from './CoinTitle.module.scss'
 
 export default function CoinTitle(props) {
 
-    return <div className={css.currencyHeader}>
+    return <div className={scss.currencyHeader}>
         <img width={50} height={50} src={`https://www.cryptocompare.com/${props.logo}`} alt='' />
-        <span className={css.currency}>{props.name}</span>
-        <span className={css.symbol}>{props.symbol}</span>
+        <span className={scss.currency}>{props.name}</span>
+        <span className={scss.symbol}>{props.symbol}</span>
     </div>
 }

@@ -1,4 +1,4 @@
-import css from './CoinTable.module.css'
+import scss from './CoinTable.module.scss'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
@@ -10,13 +10,13 @@ import Link from 'next/link'
 
 export default function CoinTable(props) {
     return (
-        <TableContainer component={Paper} className={css.table}>
+        <TableContainer component={Paper} className={scss.table}>
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
                 <TableHead>
                     <TableRow>
                         <TableCell align="right">#</TableCell>
                         <TableCell align="left">CURRENCY</TableCell>
-                        <TableCell align="right" width={150}>PRICE</TableCell>
+                        <TableCell align="right">PRICE</TableCell>
                         <TableCell align="right">LAST 24h</TableCell>
                         <TableCell align="right">TOTAL VOL</TableCell>
                         <TableCell align="right">MARKET CAP</TableCell>
@@ -30,7 +30,7 @@ export default function CoinTable(props) {
                                 <TableRow >
                                     <TableCell align="right">{coin.rank}</TableCell>
                                     <TableCell align="left">
-                                        <div className={css.name}>
+                                        <div className={scss.name}>
                                             <img src={coin.logo} width={40} height={40} alt={coin.name} />
                                             {coin.name} {coin.symbol}
                                         </div>
@@ -38,13 +38,13 @@ export default function CoinTable(props) {
                                     <TableCell align="right"
                                         id={coin.rank}
                                         // ref={e => priceRef.current[i] = e}
-                                        css={{ fontWeight: 'bold', width: '200px' }}
+                                        scss={{ fontWeight: 'bold', width: '200px' }}
                                     >
-                                        <span className={coin.updown == '▲' ? css.higherPrice : css.lowerPrice}>
-                                            <span className={coin.updown == '▲' ? css.arrowUp : css.arrowDown}>{coin.updown}</span>{coin.price}
+                                        <span className={coin.updown == '▲' ? scss.higherPrice : scss.lowerPrice}>
+                                            {coin.updown}{coin.price}
                                         </span>
                                     </TableCell>
-                                    <TableCell align="right" className={coin.changepct > 0 ? css.higherpct : css.lowerpct}><span>{coin.changepct}%</span></TableCell>
+                                    <TableCell align="right" className={coin.changepct > 0 ? scss.higherpct : scss.lowerpct}><span>{coin.changepct}%</span></TableCell>
                                     <TableCell align="right">{coin.totalvolume}</TableCell>
                                     <TableCell align="right">{coin.marketcap}</TableCell>
                                     <TableCell align="right">

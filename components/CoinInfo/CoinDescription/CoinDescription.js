@@ -1,4 +1,4 @@
-import css from './CoinDescription.module.css'
+import scss from './CoinDescription.module.scss'
 
 export default function CoinDescription(props) {
 
@@ -6,7 +6,7 @@ export default function CoinDescription(props) {
 
     return <>
         <h2>What is {props.name} ({props.symbol})?</h2>
-        <p className={css.body}
+        <p className={scss.body}
             dangerouslySetInnerHTML={{ __html: body }}
         />
     </>

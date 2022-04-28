@@ -17,6 +17,8 @@ a {
 }
 
 img {
+  -webkit-user-select: none;
+  -ms-user-select: none;
   user-select: none;
   user-drag: none;
   -webkit-user-drag: none;

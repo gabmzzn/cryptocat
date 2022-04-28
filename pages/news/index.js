@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import css from './news.module.css'
+import scss from './news.module.scss'
 import NewsCard from '../../components/News/NewsCard'
 import LoadingScreen from '../../components/Layout/LoadingScreen/LoadingScreen'
 
@@ -19,7 +19,7 @@ export default function News() {
 
     if (isLoading) return <LoadingScreen />
 
-    return (<div className={css.content}>
+    return (<div className={scss.content}>
         {newsFeed.Data.filter(news => {
             return news.body.length > 600
         }).map(news => {

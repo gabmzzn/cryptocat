@@ -1,11 +1,11 @@
 import Navbar from './Navbar/Navbar'
-import css from './Layout.module.css'
+import scss from './Layout.module.scss'
 import Footer from './Footer/Footer.js'
 
 export default function Layout(props) {
-    return <div className={css.main}>
+    return <div className={scss.main}>
         <Navbar />
-        <div className={css.content}>
+        <div className={scss.content}>
             {props.children}
         </div>
         <Footer />

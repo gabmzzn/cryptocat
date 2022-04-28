@@ -1,11 +1,11 @@
-import css from './LoadingScreen.module.css'
+import scss from './LoadingScreen.module.scss'
 
 export default function LoadingScreen() {
     return (
-        <div className={css.content}>
-            <div className={css.cuteCat}>
-                <div className={css.spinLoader}></div>
-                <img className={css.logo} src='/catn.webp' height={275} width={275} alt='' />
+        <div className={scss.content}>
+            <div className={scss.cuteCat}>
+                <div className={scss.spinLoader}></div>
+                <img className={scss.logo} src='/catn.webp' height={275} width={275} alt='' />
             </div>
         </div>
     )

@@ -1,0 +1,52 @@
+.container {
+  font-weight: bold;
+  width: 340px;
+  padding: 16px;
+  margin-bottom: 16px;
+  margin-left: 30px;
+  line-height: 1.4;
+  border: 1px solid rgba(112, 128, 144, 0.2);
+  box-shadow: 0 0 3px rgb(0 0 0 / 15%);
+  background-color: rgb(253, 253, 253);
+  border-radius: 12px;
+
+  h2 {
+    margin: 5px 0 12px 0;
+    padding: 0 10px;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  td, th {
+    border-bottom: 1px solid rgb(220, 220, 225);
+    padding: 10px;
+  }
+
+  td {
+    font-size: 20px;
+  }
+
+  th {
+    font-size: 14px;
+    text-align: left;
+  }
+
+  td {
+    &:nth-child(1) {
+      text-align: left;
+    }
+
+    text-align: right;
+  }
+}
+
+.coin {
+  display: flex;
+  align-items: center;
+
+  img {
+    margin-right: 5px;
+  }
+}

@@ -1,5 +1,5 @@
 
-import css from './shop.module.css'
+import scss from './shop.module.scss'
 
 export default function Shop() {
 

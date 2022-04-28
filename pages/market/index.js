@@ -14,7 +14,7 @@ export default function Market() {
             const date = (new Date()).toString()
             const timeLastHour = Date.parse((date.substr(0, 18) + ':00:00' + date.substr(24))) / 1000
 
-            const URL = 'https://min-api.cryptocompare.com/data/top/totalvolfull?limit=100&tsym=USD'
+            const URL = 'https://min-api.cryptocompare.com/data/top/totalvolfull?limit=32&tsym=USD'
             const fetchedData = await fetch(URL).then(r => r.json())
             const data = fetchedData.Data.reduce((result, crypto, index) => {
                 if ('RAW' in crypto) {
@@ -41,7 +41,7 @@ export default function Market() {
                     })
                 }
                 return result
-            }, []).slice(0, 50)
+            }, [])
 
             setCurrencyData(data)
             getLiveData(data)

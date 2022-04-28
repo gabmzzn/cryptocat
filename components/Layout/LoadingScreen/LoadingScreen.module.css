@@ -29,7 +29,7 @@
 .logo {
   width: 275px;
   height: 275px;
-  image-rendering: -webkit-optimize-contrast;
+  image-rendering: -webkit-optimize-contrast !important;
 }
 
 .spinLoader {

@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import style from './CoinNewsCard.module.css'
-export default function NewsCard(props) {
+export default function CoinNewsCard(props) {
 
     const news = props.data
     const body = news.body.replaceAll(/\. /g, '.<br><br>')

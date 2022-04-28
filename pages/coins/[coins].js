@@ -71,7 +71,7 @@ export default function Coins() {
             }
 
             async function getNewsFeed() {
-                const URL = `https://min-api.cryptocompare.com/data/v2/news/?&lang=EN&categories=${selected}&excludeCategories=Sponsored&lTs=${Date.parse(new Date()) / 1000}`
+                const URL = `https://min-api.cryptocompare.com/data/v2/news/?lang=EN`
                 const news = await fetch(URL).then(res => res.json())
 
                 setNewsFeed(news)

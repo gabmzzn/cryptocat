@@ -32,15 +32,12 @@ export default function NavBar() {
 						<Link href='/news' passHref>
 							<Button className={router.pathname == "/news" ? style.active : style.button}>NEWS</Button>
 						</Link>
-						<Link href='/social' passHref>
-							<Button className={router.pathname == "/social" ? style.active : style.button}>SOCIAL</Button>
+						<Link href='/exchanges' passHref>
+							<Button className={router.pathname == "/exchanges" ? style.active : style.button}>EXCHANGES</Button>
 						</Link>
 						<Link href='/shop' passHref>
 							<Button className={router.pathname == "/shop" ? style.active : style.button}>SHOP</Button>
 						</Link>
-						{/* <Link href='/exchanges' passHref>
-							<Button className={router.pathname == "/exchanges" ? style.active : style.button}>EXCHANGES</Button>
-						</Link> */}
 						<Link href='/about' passHref>
 							<Button className={router.pathname == "/about" ? style.active : style.button}>ABOUT</Button>
 						</Link>

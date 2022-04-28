@@ -56,32 +56,62 @@
 
 .logo img {
     margin: 0 5px;
+    image-rendering: -webkit-optimize-contrast;
 }
 
-.logo:active {
-    animation: logoClick 0.1s;
+/* 
+.logo span:active {
+    animation: logoClick 0.2s;
 }
 
-.logo:not(:active) {
-    animation: logoNotClick 0.1s;
+.logo span:not(:active) {
+    animation: logoNotClick 0.2s;
 }
 
 @keyframes logoClick {
     from {
-        transform: scale(1);
+        color: black;
     }
 
     to {
-        transform: scale(1.15);
+        color: rgb(255, 247, 0);
     }
 }
 
 @keyframes logoNotClick {
     from {
+        color: rgb(255, 247, 0);
+    }
+
+    to {
+        color: black;
+    }
+} */
+
+/* .logo:hover {
+    animation: logoHover 0.2s forwards;
+}
+
+.logo:not(:hover) {
+    animation: logoNotHover 0.2s forwards;
+}
+
+@keyframes logoHover {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.15);
+    }
+}
+
+@keyframes logoNotHover {
+    from {
         transform: scale(1.15);
     }
 
     to {
         transform: scale(1);
     }
-}
+} */

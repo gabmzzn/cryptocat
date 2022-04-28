@@ -1,18 +1,18 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
-import style from './CoinNewsCard.module.css'
+import css from './CoinNewsCard.module.css'
 export default function CoinNewsCard(props) {
 
     const news = props.data
     const body = news.body.replaceAll(/\. /g, '.<br><br>')
 
     return (
-        <div className={style.card}>
-            <div className={style.title}>
+        <div className={css.card}>
+            <div className={css.title}>
                 <h1>{news.title}</h1>
                 <img src={news.imageurl} width={60} height={60} />
             </div>
-            <div className={style.body}>
+            <div className={css.body}>
                 <span dangerouslySetInnerHTML={{ __html: body }} />
             </div>
         </div>

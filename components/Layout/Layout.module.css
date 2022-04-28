@@ -8,5 +8,6 @@
 .content {
     margin-top: 75px;
     flex: 1 0 auto;
+    padding: 0 35px;
     max-width: 1200px;
 }

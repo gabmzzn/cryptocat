@@ -2,20 +2,20 @@ import CoinChart from "./CoinChart/CoinChart"
 import CoinDescription from "./CoinDescription/CoinDescription"
 import CoinSidebar from "./CoinSidebar/CoinSidebar"
 import CoinTitle from "./CoinTitle/CoinTitle"
-import style from './CoinInfo.module.css'
+import css from './CoinInfo.module.css'
 import CoinNewsCard from "./CoinNews/CoinNewsCard"
 
 export default function CoinDetails(props) {
     const { coin, historicalData, news } = props
 
-    return <div style={{ margin: '0 30px' }}>
+    return <div css={{ margin: '0 30px' }}>
         <CoinTitle
             name={coin.name}
             symbol={coin.symbol}
             logo={coin.imageURL}
         />
-        <div className={style.container}>
-            <div className={style.leftContainer}>
+        <div className={css.container}>
+            <div className={css.leftContainer}>
                 <CoinChart
                     name={coin.name}
                     data={historicalData}
@@ -26,11 +26,11 @@ export default function CoinDetails(props) {
                     description={coin.description}
                 />
             </div>
-            <div className={style.rightContainer}>
+            <div className={css.rightContainer}>
                 <CoinSidebar data={coin} />
             </div>
         </div>
-        <div className={style.newsFeed}>
+        <div className={css.newsFeed}>
             {news.Data.slice(0, 10).map(n => {
                 return <CoinNewsCard key={n.id} data={n} />
             })}

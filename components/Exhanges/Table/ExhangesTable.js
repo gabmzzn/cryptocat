@@ -1,4 +1,4 @@
-import style from './Exchanges.module.css'
+import css from './Exchanges.module.css'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
@@ -14,7 +14,7 @@ export default function ExchangesTable(props) {
             {props.data.map(e => { return JSON.stringify(e) })}
         </div>
 
-        // <TableContainer component={Paper} className={style.table}>
+        // <TableContainer component={Paper} className={css.table}>
         //     <Table sx={{ minWidth: 700 }} aria-label="customized table">
         //         <TableHead>
         //             <TableRow>
@@ -34,7 +34,7 @@ export default function ExchangesTable(props) {
         //                         <TableRow >
         //                             <TableCell align="right">{coin.rank}</TableCell>
         //                             <TableCell align="left">
-        //                                 <div className={style.name}>
+        //                                 <div className={css.name}>
         //                                     <img src={coin.logo} width={40} height={40} alt={coin.name} />
         //                                     {coin.name} {coin.symbol}
         //                                 </div>
@@ -43,13 +43,13 @@ export default function ExchangesTable(props) {
         //                             <TableCell align="right"
         //                                 id={coin.rank}
         //                                 // ref={e => priceRef.current[i] = e}
-        //                                 style={{ fontWeight: 'bold', width: '200px' }}
+        //                                 css={{ fontWeight: 'bold', width: '200px' }}
         //                             >
-        //                                 <span className={coin.updown == '▲' ? style.higherPrice : style.lowerPrice}>
-        //                                     <span className={coin.updown == '▲' ? style.arrowUp : style.arrowDown}>{coin.updown}</span>{coin.price}
+        //                                 <span className={coin.updown == '▲' ? css.higherPrice : css.lowerPrice}>
+        //                                     <span className={coin.updown == '▲' ? css.arrowUp : css.arrowDown}>{coin.updown}</span>{coin.price}
         //                                 </span>
         //                             </TableCell>
-        //                             <TableCell align="right" className={coin.changepct > 0 ? style.higherpct : style.lowerpct}><span>{coin.changepct}%</span></TableCell>
+        //                             <TableCell align="right" className={coin.changepct > 0 ? css.higherpct : css.lowerpct}><span>{coin.changepct}%</span></TableCell>
         //                             <TableCell align="right">{coin.totalvolume}</TableCell>
         //                             <TableCell align="right">{coin.marketcap}</TableCell>
         //                             <TableCell align="right">

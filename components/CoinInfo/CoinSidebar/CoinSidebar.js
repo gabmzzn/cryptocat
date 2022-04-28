@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Image from "next/image"
-import style from './CoinSidebar.module.css'
+import css from './CoinSidebar.module.css'
 import Button from '@mui/material/Button'
 
 export default function CoinSidebar(props) {
@@ -10,7 +10,7 @@ export default function CoinSidebar(props) {
     assetWebsiteUrl, imageURL } = props.data
 
   return <>
-    {/* <div className={style.container}>
+    {/* <div className={css.container}>
       <div>
         <h2>{symbol} price</h2>
       </div>
@@ -18,7 +18,7 @@ export default function CoinSidebar(props) {
         <h2>$ {price}</h2>
       </div>
     </div> */}
-    <div className={style.container}>
+    <div className={css.container}>
       <div>
         <h2>{symbol} Statistics and info</h2>
       </div>

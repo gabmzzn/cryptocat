@@ -1,5 +1,5 @@
 
-import style from './about.module.css'
+import css from './about.module.css'
 
 export default function About() {
 

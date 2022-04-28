@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
-import style from './Card.module.css'
+import css from './Card.module.css'
 import Link from 'next/link'
 
 export default function Card(props) {
@@ -9,22 +9,22 @@ export default function Card(props) {
 
     return (
         <Link href={`/coins/${coin.symbol.toLowerCase()}`} passHref>
-            <div className={style.card}>
-                <div className={style.title}>
+            <div className={css.card}>
+                <div className={css.title}>
                     <h1>{coin.symbol}</h1>
                     <img src={coin.logo} width={40} height={40} />
                 </div>
-                <div className={style.subtitle}>
-                    <span className={coin.updown == '▲' ? style.higherPrice : style.lowerPrice}>
-                        <b className={coin.updown == '▲' ? style.arcoinUp : style.arcoinDown}>{coin.updown}
+                <div className={css.subtitle}>
+                    <span className={coin.updown == '▲' ? css.higherPrice : css.lowerPrice}>
+                        <b className={coin.updown == '▲' ? css.arcoinUp : css.arcoinDown}>{coin.updown}
                         </b>
                         {coin.price}
                     </span>
-                    <span className={coin.changepct > 0 ? style.higherpct : style.lowerpct}>
+                    <span className={coin.changepct > 0 ? css.higherpct : css.lowerpct}>
                         {coin.changepct}%
                     </span>
                 </div>
-                <div className={style.chart}>
+                <div className={css.chart}>
                     <img src={coin.chart} />
                 </div>
             </div>

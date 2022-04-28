@@ -1,4 +1,4 @@
-import style from './NewsCard.module.css'
+import css from './NewsCard.module.css'
 
 export default function NewsCard(props) {
 
@@ -6,12 +6,12 @@ export default function NewsCard(props) {
     const body = news.body.replaceAll(/\. /g, '.<br><br>')
 
     return (
-        <div className={style.card}>
+        <div className={css.card}>
             <div>
-                <div className={style.title}>
+                <div className={css.title}>
                     <h1>{news.title}</h1>
                 </div>
-                <div className={style.body}>
+                <div className={css.body}>
                     <span dangerouslySetInnerHTML={{ __html: body }} />
                 </div>
                 <div>{news.categories}</div>

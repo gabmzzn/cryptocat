@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 import LoadingScreen from '../../components/Layout/LoadingScreen/LoadingScreen'
 import Card from '../../components/Market/Card/Card'
-import style from './market.module.css'
+import css from './market.module.css'
 
 export default function Market() {
 
@@ -74,7 +74,7 @@ export default function Market() {
                     const sym = coins.findIndex(((obj) => obj.symbol == data.FROMSYMBOL))
                     coins[sym].price = '$ ' + (data.PRICE.toLocaleString(
                         'en-GB', {
-                        style: 'decimal',
+                        css: 'decimal',
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 5,
                     }))
@@ -104,12 +104,12 @@ export default function Market() {
 
     }, [])
 
-    if (isLoading) return <LoadingScreen status={isLoading} />
+    if (isLoading) return <LoadingScreen />
 
     return (<>
-        <div className={style.cards}>
+        <h1>Market Live data</h1>
+        <div className={css.cards}>
             {currencyData.map((coin, i) => {
-                console.log('asd')
                 return (<Card key={coin.rank} data={currencyData[i]} />)
             })}
         </div>

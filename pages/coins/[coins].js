@@ -83,7 +83,7 @@ export default function CoinsPage() {
         }
     }, [router])
 
-    if (isReady > 2) {
+    if (isReady == 3) {
         return (
             <LoadingScreen ready={isReady > 2 ? true : false}>
                 <CoinInfo

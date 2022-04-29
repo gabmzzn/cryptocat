@@ -1,9 +1,6 @@
+import Shop from "../../components/Pages/Shop/Shop"
 
-import scss from './shop.module.scss'
+export default function ShopPage() {
 
-export default function Shop() {
-
-    return (<>
-        <h1>Shop page</h1>
-    </>)
+    return <Shop />
 }

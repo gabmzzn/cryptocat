@@ -1,6 +1,6 @@
 import LoadingScreen from '../../components/Layout/LoadingScreen/LoadingScreen'
 import { useState, useEffect } from 'react'
-import News from '../../components/News/news'
+import News from '../../components/Pages/News/news'
 
 export default function NewsPage() {
     const [newsFeed, setNewsFeed] = useState(false)

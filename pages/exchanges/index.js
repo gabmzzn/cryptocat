@@ -1,5 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
-import ExchangesTable from "../../components/Exhanges/Table/ExhangesTable"
+import ExchangesTable from "../../components/Pages/Exhanges/Table/ExchangesTable"
 import { useState, useEffect } from "react"
 import LoadingScreen from "../../components/Layout/LoadingScreen/LoadingScreen"
 
@@ -21,11 +20,8 @@ export default function ExchangesPage() {
         getData()
     }, [])
 
-
     return (
         <LoadingScreen ready={isReady}>
             <ExchangesTable exchanges={exchangeData} />
         </LoadingScreen>)
-
-
 }

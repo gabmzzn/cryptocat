@@ -1,9 +1,6 @@
-
 import { useState, useEffect } from 'react'
 import LoadingScreen from '../../components/Layout/LoadingScreen/LoadingScreen'
-import ViewToggle from '../../components/Market/ViewToggle/ViewToggle'
-import CoinTable from '../../components/Market/CoinTable/CoinTable'
-import CoinGrid from '../../components/Market/CoinGrid/CoinGrid'
+import Market from '../../components/Pages/Market/Market'
 
 export default function MarketPage() {
 
@@ -105,19 +102,8 @@ export default function MarketPage() {
 
     }, [])
 
-    const [viewMode, setViewMode] = useState('grid')
-
-    const handleViewMode = (event, mode) => {
-        if (mode !== null) setViewMode(mode)
-    }
-
     return (
         <LoadingScreen ready={isReady}>
-            <h2>Market Live data</h2>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </p>
-            <ViewToggle viewMode={viewMode} onViewChange={handleViewMode} />
-            {viewMode == 'grid' ? <CoinGrid coins={coinData} /> : <CoinTable coins={coinData} />}
+            <Market coins={coinData} />
         </LoadingScreen>)
 }

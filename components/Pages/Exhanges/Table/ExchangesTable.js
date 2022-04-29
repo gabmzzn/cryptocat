@@ -1,4 +1,4 @@
-import scss from './Exchanges.module.scss'
+import scss from './ExchangesTable.module.scss'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'

@@ -4,7 +4,11 @@
     align-items: center;
     justify-content: center;
     transform: scale(1);
+
     /* animation: siia 2s ease; */
+    img {
+        image-rendering: -webkit-optimize-contrast !important;
+    }
 }
 
 @keyframes siia {

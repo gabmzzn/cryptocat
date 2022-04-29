@@ -1,15 +1,17 @@
-import CoinInfo from "../../components/CoinInfo/CoinInfo"
+import CoinInfo from "../../components/Pages/CoinInfo/CoinInfo"
 import { useRouter } from 'next/router'
 import LoadingScreen from "../../components/Layout/LoadingScreen/LoadingScreen"
 import { useEffect, useState } from "react"
 
 export default function CoinsPage() {
+
     const [isReady, setIsReady] = useState(0)
     const [historicalData, setHistoricalData] = useState(false)
     const [coinInfo, setCoinInfo] = useState(false)
     const [newsFeed, setNewsFeed] = useState(false)
 
     const router = useRouter()
+
     const histoTime = 999
 
     useEffect(() => {
@@ -81,8 +83,6 @@ export default function CoinsPage() {
         }
     }, [router])
 
-
-
     return (
         <LoadingScreen ready={isReady > 2 ? true : false}>
             <CoinInfo
@@ -91,5 +91,4 @@ export default function CoinsPage() {
                 news={newsFeed}
             />
         </LoadingScreen>)
-
 }

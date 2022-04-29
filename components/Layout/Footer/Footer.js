@@ -1,6 +1,6 @@
 import scss from './Footer.module.scss'
 
-const Footer = () => {
+export default function Footer() {
 
     return (
         <div className={scss.footer}>
@@ -8,4 +8,3 @@ const Footer = () => {
                 This stays at the bottom of the page.</p>
         </div>)
 }
-export default Footer

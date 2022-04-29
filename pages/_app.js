@@ -3,7 +3,7 @@ import Layout from '../components/Layout/Layout'
 import '../pages/test/index.css'
 import Head from 'next/head'
 
-function MyApp({ Component, pageProps }) {
+export default function MyApp({ Component, pageProps }) {
   return (
     <Layout>
       <Head>
@@ -13,5 +13,3 @@ function MyApp({ Component, pageProps }) {
       <Component {...pageProps} />
     </Layout>)
 }
-
-export default MyApp

@@ -1,8 +1,8 @@
+import scss from './CoinInfo.module.scss'
 import CoinChart from "./CoinChart/CoinChart"
 import CoinDescription from "./CoinDescription/CoinDescription"
 import CoinSidebar from "./CoinSidebar/CoinSidebar"
 import CoinTitle from "./CoinTitle/CoinTitle"
-import scss from './CoinInfo.module.scss'
 import CoinNewsCard from "./CoinNews/CoinNewsCard"
 
 export default function CoinDetails(props) {

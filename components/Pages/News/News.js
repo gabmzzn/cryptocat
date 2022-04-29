@@ -1,4 +1,4 @@
-import scss from './news.module.scss'
+import scss from './News.module.scss'
 import NewsCard from './NewsCard/NewsCard'
 
 export default function News(props) {

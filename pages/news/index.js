@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import News from '../../components/Pages/News/News'
 
 export default function NewsPage() {
+    console.log('news')
     const [newsFeed, setNewsFeed] = useState(false)
     const [isReady, setIsReady] = useState(false)
     useEffect(() => {

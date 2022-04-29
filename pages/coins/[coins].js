@@ -4,7 +4,7 @@ import LoadingScreen from "../../components/Layout/LoadingScreen/LoadingScreen"
 import { useEffect, useState } from "react"
 
 export default function CoinsPage() {
-
+    console.log('coins')
     const [isReady, setIsReady] = useState(0)
     const [historicalData, setHistoricalData] = useState(false)
     const [coinInfo, setCoinInfo] = useState(false)

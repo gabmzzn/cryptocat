@@ -1,11 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
+import Button from '@mui/material/Button'
+import Link from 'next/link'
 import scss from './Navbar.module.scss'
 import cx from 'classnames'
+import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
-import LinkButton from '../../UI/Buttons/LinkButton'
-import Link from 'next/link'
 
 export default function NavBar() {
+
+	const router = useRouter()
+	const rp = router.pathname
 
 	const [scroll, setScroll] = useState(false)
 
@@ -28,12 +32,25 @@ export default function NavBar() {
 					</div>
 				</Link>
 				<div className={buttons}>
-					<LinkButton href='/market'>Market</LinkButton>
-					<LinkButton href='/coins'>Coin Info</LinkButton>
-					<LinkButton href='/news'>News</LinkButton>
-					<LinkButton href='/exchanges'>Exchanges</LinkButton>
-					<LinkButton href='/shop'>Shop</LinkButton>
-					<LinkButton href='/about'>About</LinkButton>
+					<Link href='/market' passHref>
+						<Button className={rp == "/market" ? active : button}>Market
+						</Button>
+					</Link>
+					<Link href='/coins/btc' passHref>
+						<Button className={rp.startsWith("/coins") ? active : button}>Coin Info</Button>
+					</Link>
+					<Link href='/news' passHref>
+						<Button className={rp == "/news" ? active : button}>News</Button>
+					</Link>
+					<Link href='/exchanges' passHref>
+						<Button className={rp == "/exchanges" ? active : button}>Exchanges</Button>
+					</Link>
+					<Link href='/shop' passHref>
+						<Button className={rp == "/shop" ? active : button}>Shop</Button>
+					</Link>
+					<Link href='/about' passHref>
+						<Button className={rp == "/about" ? active : button}>About</Button>
+					</Link>
 				</div>
 			</div>
 		</div>

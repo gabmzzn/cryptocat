@@ -7,12 +7,14 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 
 export default function ViewToggle(props) {
 
+    const { viewMode, onViewChange } = props
+
     return (
         <Stack direction="row" spacing={4}>
             <ToggleButtonGroup
-                value={props.viewMode}
+                value={viewMode}
                 exclusive
-                onChange={props.onViewChange}
+                onChange={onViewChange}
                 size="large"
                 aria-label="view-mode"
             >

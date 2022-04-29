@@ -9,9 +9,12 @@ import Paper from '@mui/material/Paper'
 import Link from 'next/link'
 
 export default function ExchangesTable(props) {
+
+    const { exchanges } = props
+
     return (
         <div>
-            {props.data.map(e => { return JSON.stringify(e) })}
+            {exchanges.map(e => { return JSON.stringify(e) })}
         </div>
 
         // <TableContainer component={Paper} className={scss.table}>

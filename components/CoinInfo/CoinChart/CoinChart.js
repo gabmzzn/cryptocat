@@ -80,7 +80,7 @@ export default function CoinChart(props) {
                 type: 'slider',
                 start: 80,
                 end: 100,
-                top: 315,
+                top: 265,
                 height: 50,
                 borderColor: 'transparent',
                 fillerColor: 'rgb(219 197 0 / 18%)',
@@ -117,7 +117,7 @@ export default function CoinChart(props) {
 
     return (
         <ReactECharts
-            style={{ height: '375px', width: '100%', minWidth: '100%' }}
+            style={{ height: '325px', width: '100%', minWidth: '100%' }}
             option={chartOptions}
         />)
 }

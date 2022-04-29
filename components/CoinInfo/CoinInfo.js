@@ -6,6 +6,7 @@ import scss from './CoinInfo.module.scss'
 import CoinNewsCard from "./CoinNews/CoinNewsCard"
 
 export default function CoinDetails(props) {
+
     const { coin, historicalData, news } = props
 
     return <div scss={{ margin: '0 30px' }}>
@@ -31,8 +32,8 @@ export default function CoinDetails(props) {
             </div>
         </div>
         <div className={scss.newsFeed}>
-            {news.Data.slice(0, 10).map(n => {
-                return <CoinNewsCard key={n.id} data={n} />
+            {news.slice(0, 10).map(n => {
+                return <CoinNewsCard key={n.id} news={n} />
             })}
         </div>
     </div>

@@ -4,6 +4,7 @@ import scss from './CoinSidebar.module.scss'
 import Button from '@mui/material/Button'
 
 export default function CoinSidebar(props) {
+
   const { price, symbol, high24, low24, priceChange,
     sortOrder, rating, technologyAdoptionRating,
     marketPerformanceRating, platformType, algorithm,

@@ -5,9 +5,9 @@ import ViewToggle from '../../components/Market/ViewToggle/ViewToggle'
 import CoinTable from '../../components/Market/CoinTable/CoinTable'
 import CoinGrid from '../../components/Market/CoinGrid/CoinGrid'
 
-export default function Market() {
+export default function MarketPage() {
 
-    const [isLoading, setIsLoading] = useState(true)
+    const [isReady, setIsReady] = useState(false)
     const [coinData, setCoinData] = useState([])
 
     useEffect(() => {
@@ -79,7 +79,7 @@ export default function Market() {
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 5,
                     }))
-                    coins[sym].changepct = (coins[sym].changepct >= 0 ? '+' : '') +
+                    coins[sym].changepct = (Math.sign(coins[sym].changepct) == 1 ? '+' : '') +
                         (((data.PRICE - coins[sym].open24) / data.PRICE) * 100).toFixed(2)
 
                     if (coins[sym].price > previous[sym].price) {
@@ -94,7 +94,7 @@ export default function Market() {
                     setCoinData([...coins])
                 }
             }
-            setIsLoading(false)
+            setIsReady(true)
         }
 
         getData()
@@ -111,14 +111,13 @@ export default function Market() {
         if (mode !== null) setViewMode(mode)
     }
 
-    if (isLoading) return <LoadingScreen />
-
-    return (<>
-        <h2>Market Live data</h2>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        </p>
-        <ViewToggle viewMode={viewMode} onViewChange={handleViewMode} />
-        {viewMode == 'grid' ? <CoinGrid data={coinData} /> : <CoinTable data={coinData} />}
-    </>)
+    return (
+        <LoadingScreen ready={isReady}>
+            <h2>Market Live data</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+            <ViewToggle viewMode={viewMode} onViewChange={handleViewMode} />
+            {viewMode == 'grid' ? <CoinGrid coins={coinData} /> : <CoinTable coins={coinData} />}
+        </LoadingScreen>)
 }

@@ -35,35 +35,37 @@ export default function NavBar() {
 		})
 	}, [])
 
+	const { logo, navbar, navbarShadow, content, buttons, button, active } = scss
+
 	return (
-		<div className={cx(scss.navbar, { [scss.navbarShadow]: scroll })}>
-			<div className={scss.content}>
+		<div className={cx(navbar, { [navbarShadow]: scroll })}>
+			<div className={content}>
 				<Link href='/' passHref>
-					<div className={scss.logo}>
+					<div className={logo}>
 						<span>CRYPTO</span>
 						<img src='/icon.webp' height={30} width={30} alt='' />
 						<span>CAT</span>
 					</div>
 				</Link>
-				<div className={scss.buttons}>
+				<div className={buttons}>
 					<ThemeProvider theme={theme}>
 						<Link href='/market' passHref>
-							<Button className={rn == "/market" ? scss.active : scss.button}><span>Market</span></Button>
+							<Button className={rn == "/market" ? active : button}><span>Market</span></Button>
 						</Link>
 						<Link href='/coins/btc' passHref>
-							<Button className={rn.startsWith("/coins") ? scss.active : scss.button}>Coin Info</Button>
+							<Button className={rn.startsWith("/coins") ? active : button}>Coin Info</Button>
 						</Link>
 						<Link href='/news' passHref>
-							<Button className={rn == "/news" ? scss.active : scss.button}>News</Button>
+							<Button className={rn == "/news" ? active : button}>News</Button>
 						</Link>
 						<Link href='/exchanges' passHref>
-							<Button className={rn == "/exchanges" ? scss.active : scss.button}>Exchanges</Button>
+							<Button className={rn == "/exchanges" ? active : button}>Exchanges</Button>
 						</Link>
 						<Link href='/shop' passHref>
-							<Button className={rn == "/shop" ? scss.active : scss.button}>Shop</Button>
+							<Button className={rn == "/shop" ? active : button}>Shop</Button>
 						</Link>
 						<Link href='/about' passHref>
-							<Button className={rn == "/about" ? scss.active : scss.button}>About</Button>
+							<Button className={rn == "/about" ? active : button}>About</Button>
 						</Link>
 					</ThemeProvider>
 				</div>

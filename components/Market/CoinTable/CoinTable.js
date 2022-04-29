@@ -9,6 +9,9 @@ import Paper from '@mui/material/Paper'
 import Link from 'next/link'
 
 export default function CoinTable(props) {
+
+    const { coins } = props
+
     return (
         <TableContainer component={Paper} className={scss.table}>
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -24,7 +27,7 @@ export default function CoinTable(props) {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {props.data.map((coin, i) => {
+                    {coins.map(coin => {
                         return (
                             <Link href={`/coins/${coin.symbol.toLowerCase()}`} key={coin.rank} passHref>
                                 <TableRow >

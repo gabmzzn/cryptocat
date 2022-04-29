@@ -3,7 +3,7 @@
 import scss from './CoinNewsCard.module.scss'
 export default function CoinNewsCard(props) {
 
-    const news = props.data
+    const { news } = props
     const body = news.body.replaceAll(/\. /g, '.<br><br>')
 
     return (

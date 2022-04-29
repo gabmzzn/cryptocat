@@ -3,6 +3,7 @@ import scss from './Layout.module.scss'
 import Footer from './Footer/Footer.js'
 
 export default function Layout(props) {
+
     return <div className={scss.main}>
         <Navbar />
         <div className={scss.content}>

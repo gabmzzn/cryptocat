@@ -3,15 +3,15 @@ import { useRouter } from 'next/router'
 import LoadingScreen from "../../components/Layout/LoadingScreen/LoadingScreen"
 import { useEffect, useState } from "react"
 
-export default function Coins() {
-    const [isLoading, setIsLoading] = useState(0)
+export default function CoinsPage() {
+    const [isReady, setIsReady] = useState(0)
     const [historicalData, setHistoricalData] = useState(false)
     const [coinInfo, setCoinInfo] = useState(false)
     const [newsFeed, setNewsFeed] = useState(false)
 
     const router = useRouter()
     const histoTime = 999
-    console.log(router)
+
     useEffect(() => {
         if (router.isReady) {
             const selected = router.query.coins.toLocaleUpperCase()
@@ -22,7 +22,7 @@ export default function Coins() {
                 histoData = json.Data.Data
                 setHistoricalData(histoData)
                 getCoinInfo()
-                setIsLoading(load => load + 1)
+                setIsReady(load => load + 1)
             }
 
             async function getCoinInfo() {
@@ -66,15 +66,14 @@ export default function Coins() {
                     imageURL: coin.ImageUrl,
                 }
                 setCoinInfo(data)
-                setIsLoading(load => load + 1)
+                setIsReady(load => load + 1)
             }
 
             async function getNewsFeed() {
                 const URL = `https://min-api.cryptocompare.com/data/v2/news/?lang=EN`
                 const news = await fetch(URL).then(res => res.json())
-
-                setNewsFeed(news)
-                setIsLoading(load => load + 1)
+                setNewsFeed(news.Data)
+                setIsReady(load => load + 1)
             }
 
             getHistoricalData()
@@ -82,15 +81,15 @@ export default function Coins() {
         }
     }, [router])
 
-    if (isLoading > 2) {
-        return <>
+
+
+    return (
+        <LoadingScreen ready={isReady > 2 ? true : false}>
             <CoinInfo
                 historicalData={historicalData}
                 coin={coinInfo}
                 news={newsFeed}
             />
-        </>
-    }
+        </LoadingScreen>)
 
-    return <LoadingScreen />
 }

@@ -4,10 +4,12 @@ import Footer from './Footer/Footer.js'
 
 export default function Layout(props) {
 
+    const { main, content } = scss
+
     return (
-        <div className={scss.main}>
+        <div className={main}>
             <Navbar />
-            <div className={scss.content}>
+            <div className={content}>
                 {props.children}
             </div>
             <Footer />

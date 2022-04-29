@@ -1,4 +1,4 @@
-import ExchangesTable from "../../components/Pages/Exhanges/Table/ExchangesTable"
+import Exchanges from "../../components/Pages/Exchanges/Exchanges"
 import { useState, useEffect } from "react"
 import LoadingScreen from "../../components/Layout/LoadingScreen/LoadingScreen"
 
@@ -9,12 +9,9 @@ export default function ExchangesPage() {
 
     useEffect(() => {
         async function getData() {
-            const URL = 'https://min-api.cryptocompare.com/data/top/exchanges?fsym=BTC&tsym=USD&limit=30'
+            const URL = 'https://api.coingecko.com/api/v3/exchanges?per_page=30'
             const fetchedData = await fetch(URL).then(r => r.json())
-            const data = fetchedData.Data.map((exchange, index) => {
-                return exchange
-            })
-            setExchangeData(data)
+            setExchangeData(fetchedData)
             setIsReady(true)
         }
         getData()
@@ -22,6 +19,7 @@ export default function ExchangesPage() {
 
     return (
         <LoadingScreen ready={isReady}>
-            <ExchangesTable exchanges={exchangeData} />
-        </LoadingScreen>)
+            <Exchanges exchanges={exchangeData} />
+        </LoadingScreen>
+    )
 }

@@ -5,12 +5,14 @@ export default function LoadingScreen(props) {
 
     const { ready } = props
 
+    const { content, cuteCat, spinLoader, logo } = scss
+
     return (<>
         {!ready &&
-            <div className={scss.content}>
-                <div className={scss.cuteCat}>
-                    <div className={scss.spinLoader}></div>
-                    <img className={scss.logo} src='/catn.webp' height={275} width={275} alt='' />
+            <div className={content}>
+                <div className={cuteCat}>
+                    <div className={spinLoader}></div>
+                    <img className={logo} src='/catn.webp' height={275} width={275} alt='' />
                 </div>
             </div>}
         {ready && props.children}

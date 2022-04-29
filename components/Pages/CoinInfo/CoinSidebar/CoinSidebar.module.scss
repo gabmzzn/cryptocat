@@ -19,7 +19,8 @@
     width: 100%;
   }
 
-  td, th {
+  td,
+  th {
     border-bottom: 1px solid rgb(220, 220, 225);
     padding: 10px;
   }
@@ -48,5 +49,19 @@
 
   img {
     margin-right: 5px;
+  }
+}
+
+/* MUI V5 Override */
+.button {
+  font-weight: bold !important;
+  border-radius: 15px !important;
+  padding: 2px 12px !important;
+  margin-left: 15px !important;
+  text-transform: none !important;
+  color: rgb(10, 10, 10) !important;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05) !important;
   }
 }

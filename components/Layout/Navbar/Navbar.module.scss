@@ -21,7 +21,9 @@
 }
 
 .navbar {
-  span, a {
+
+  span,
+  a {
     font-weight: bold !important;
     font-size: 20px;
   }
@@ -34,29 +36,6 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 35px;
-}
-
-/* MUI V5 Override */
-
-.button {
-  font-size: 20px !important;
-  font-weight: bold !important;
-  border-radius: 15px !important;
-  padding: 2px 12px !important;
-  margin-left: 15px !important;
-  text-transform: none !important;
-}
-
-/* MUI V5 Override */
-
-.active {
-  font-size: 20px !important;
-  border-radius: 15px !important;
-  padding: 2px 12px !important;
-  margin-left: 15px !important;
-  background-color: rgba(214, 182, 0, 0.15) !important;
-  text-transform: none !important;
-  color: rgb(194, 165, 0) !important;
 }
 
 .logo {
@@ -77,60 +56,3 @@
     image-rendering: -webkit-optimize-contrast !important;
   }
 }
-
-/* 
-.logo span:active {
-    animation: logoClick 0.2s;
-}
-
-.logo span:not(:active) {
-    animation: logoNotClick 0.2s;
-}
-
-@keyframes logoClick {
-    from {
-        color: black;
-    }
-
-    to {
-        color: rgb(255, 247, 0);
-    }
-}
-
-@keyframes logoNotClick {
-    from {
-        color: rgb(255, 247, 0);
-    }
-
-    to {
-        color: black;
-    }
-} */
-
-/* .logo:hover {
-    animation: logoHover 0.2s forwards;
-}
-
-.logo:not(:hover) {
-    animation: logoNotHover 0.2s forwards;
-}
-
-@keyframes logoHover {
-    from {
-        transform: scale(1);
-    }
-
-    to {
-        transform: scale(1.15);
-    }
-}
-
-@keyframes logoNotHover {
-    from {
-        transform: scale(1.15);
-    }
-
-    to {
-        transform: scale(1);
-    }
-} */

@@ -2,29 +2,32 @@
 /* eslint-disable @next/next/no-img-element */
 import scss from './Card.module.scss'
 import Link from 'next/link'
+import cx from 'classnames'
+import { useState, useEffect } from 'react'
 
 export default function Card(props) {
 
-    const coin = props.data
+    const { symbol, logo, updown, price, changepct, chart } = props.coin
+    const { card, title, prices, higherPrice, lowerPrice, higherPct, lowerPct } = scss
 
     return (
-        <Link href={`/coins/${coin.symbol.toLowerCase()}`} passHref>
-            <div className={scss.card}>
-                <div className={scss.title}>
-                    <h1>{coin.symbol}</h1>
-                    <img src={coin.logo} width={40} height={40} />
+        <Link href={`/coins/${symbol.toLowerCase()}`} passHref>
+            <div className={card}>
+                <div className={title}>
+                    <h1>{symbol}</h1>
+                    <img src={logo} width={40} height={40} />
                 </div>
-                <div className={scss.subtitle}>
-                    <span className={coin.updown == '▲' ? scss.higherPrice : scss.lowerPrice}>
-                        {coin.updown}
-                        {coin.price}
+                <div className={prices}>
+                    <span className={updown == '▲' ? higherPrice : lowerPrice}>
+                        {updown}
+                        {price}
                     </span>
-                    <span className={coin.changepct > 0 ? scss.higherpct : scss.lowerpct}>
-                        {coin.changepct}%
+                    <span className={changepct > 0 ? higherPct : lowerPct}>
+                        {changepct}%
                     </span>
                 </div>
                 <div className={scss.chart}>
-                    <img src={coin.chart} />
+                    <img src={chart} />
                 </div>
             </div>
         </Link>

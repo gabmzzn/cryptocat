@@ -103,7 +103,8 @@
   }
 }
 
-.lowerpct span, .higherpct span {
+.lowerpct span,
+.higherpct span {
   padding: 7px;
   border-radius: 10px;
   transition: all 500ms;
@@ -127,14 +128,8 @@
     font-weight: 500;
   }
 
-  tr {
-    &:hover {
-      background-color: rgb(245, 245, 249);
-    }
-
-    &:active {
-      background-color: rgb(235, 235, 239);
-    }
+  th {
+    font-weight: 900;
   }
 }
 

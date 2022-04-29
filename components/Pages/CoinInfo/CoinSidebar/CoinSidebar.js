@@ -73,7 +73,7 @@ export default function CoinSidebar(props) {
               <th>Website:</th>
               <td>
                 <a href={assetWebsiteUrl} target='_blank' rel="noreferrer">
-                  <Button variant="outlined">Link</Button>
+                  <Button variant="outlined" className={scss.button}>Link</Button>
                 </a>
               </td>
             </tr>

@@ -3,17 +3,17 @@
 import scss from './CoinNewsCard.module.scss'
 export default function CoinNewsCard(props) {
 
-    const { news } = props
-    const body = news.body.replaceAll(/\. /g, '.<br><br>')
+    const { title, imageurl, body } = props.news
+    const text = body.replaceAll(/\. /g, '.<br><br>')
 
     return (
         <div className={scss.card}>
             <div className={scss.title}>
-                <h1>{news.title}</h1>
-                <img src={news.imageurl} width={60} height={60} />
+                <h1>{title}</h1>
+                <img src={imageurl} width={60} height={60} />
             </div>
             <div className={scss.body}>
-                <span dangerouslySetInnerHTML={{ __html: body }} />
+                <span dangerouslySetInnerHTML={{ __html: text }} />
             </div>
         </div>
     )

@@ -2,8 +2,6 @@
 /* eslint-disable @next/next/no-img-element */
 import scss from './Card.module.scss'
 import Link from 'next/link'
-import cx from 'classnames'
-import { useState, useEffect } from 'react'
 
 export default function Card(props) {
 

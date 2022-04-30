@@ -7,7 +7,14 @@
 
     /* animation: siia 2s ease; */
     img {
+        margin: 0 -40px;
         image-rendering: -webkit-optimize-contrast !important;
+    }
+
+    h1 {
+        font-size: 9.5vw;
+        display: flex;
+        align-items: center;
     }
 }
 

@@ -30,9 +30,8 @@ export default function NavBar() {
 		})
 	}, [])
 
-	const { logo, navbar, navbarShadow, content, buttons, button, active } = scss
+	const { logo, navbar, navbarShadow, content, buttons, button, active, hamburguer, navbarItems } = scss
 
-	const [smallViewPort, setSmallViewPort] = useState(false)
 	const [drawer, setDrawer] = useState(false)
 	const toggleDrawer = (open) => () => {
 		setDrawer(open)
@@ -40,11 +39,12 @@ export default function NavBar() {
 
 	const pages = <>
 		<LinkButton href='/market'>Market</LinkButton>
-		<LinkButton href='/coins/btc' active='/coins'>Coin Info</LinkButton>
+		<LinkButton href='/coins/btc' activeOn='/coins'>Coin Info</LinkButton>
 		<LinkButton href='/news'>News</LinkButton>
 		<LinkButton href='/exchanges'>Exchanges</LinkButton>
 		<LinkButton href='/shop'>Shop</LinkButton>
-		<LinkButton href='/about'>About</LinkButton></>
+		<LinkButton href='/about'>About</LinkButton>
+	</>
 
 	return (
 		<div className={cx(navbar, { [navbarShadow]: scroll })}>
@@ -56,28 +56,40 @@ export default function NavBar() {
 						<span>CAT</span>
 					</div>
 				</Link>
-				<div className={buttons}>
-					{!smallViewPort && pages}
-					{smallViewPort &&
-						<>
-							<Hamburger rounded toggled={drawer} toggle={toggleDrawer(true)} />
-							<Drawer
-								anchor={'right'}
-								open={drawer}
-								onClose={toggleDrawer(false)}
+				<div>
+					<div className={navbarItems}>
+						{pages}
+					</div>
+					<div className={hamburguer}>
+						<Hamburger rounded toggled={drawer} toggle={toggleDrawer(true)} />
+						<Drawer
+							anchor={'right'}
+							open={drawer}
+							onClose={toggleDrawer(false)}
+							BackdropProps={{ invisible: true }}
+							PaperProps={{ sx: { backgroundColor: 'transparent', backdropFilter: 'blur(30px)' } }}>
+							<Box
+								sx={{ width: 240 }}
+								role="presentation"
+								onClick={toggleDrawer(false)}
+								onKeyDown={toggleDrawer(false)}
 							>
-								<Box
-									sx={{ width: 250 }}
-									role="presentation"
-									onClick={toggleDrawer(false)}
-									onKeyDown={toggleDrawer(false)}
-								>
-									<List style={{ display: 'flex', flexDirection: 'column' }}>
-										{pages}
-									</List>
-								</Box>
-							</Drawer>
-						</>}
+								<List style={{ display: 'flex', flexDirection: 'column' }}>
+									<div className={logo} style={{ margin: '10px 0' }}>
+										<Link href='/' passHref>
+											<div className={logo}>
+												<span>CRYPTO</span>
+												<img src='/icon.webp' height={30} width={30} alt='' />
+												<span>CAT</span>
+											</div>
+										</Link>
+									</div>
+									<Divider style={{ margin: '10px 0' }} />
+									{pages}
+								</List>
+							</Box>
+						</Drawer>
+					</div>
 				</div>
 			</div>
 		</div>

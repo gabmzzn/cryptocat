@@ -7,10 +7,10 @@ import { CleaningServices } from '@mui/icons-material'
 export default function LinkButton(props) {
 
     const { pathname } = useRouter()
-    const { href, active } = props
+    const { href, activeOn } = props
     const { button, buttonActive } = scss
 
-    const pathLink = active ? active : href
+    const pathLink = activeOn ? activeOn : href
 
     return (
         <Link href={href} passHref>

@@ -38,32 +38,6 @@
   padding: 0 35px;
 }
 
-/* MUI V5 Override */
-.button {
-  font-size: 20px !important;
-  font-weight: bold !important;
-  border-radius: 15px !important;
-  padding: 2px 12px !important;
-  margin-left: 15px !important;
-  text-transform: none !important;
-  color: rgb(10, 10, 10) !important;
-
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.05) !important;
-  }
-}
-
-/* MUI V5 Override */
-.active {
-  font-size: 20px !important;
-  border-radius: 15px !important;
-  padding: 2px 12px !important;
-  margin-left: 15px !important;
-  background-color: rgba(214, 182, 0, 0.15) !important;
-  text-transform: none !important;
-  color: rgb(194, 165, 0) !important;
-}
-
 .logo {
   -ms-user-select: none;
   -webkit-user-select: none;
@@ -71,6 +45,7 @@
   display: flex;
   cursor: pointer;
   align-items: center;
+  justify-content: center;
 
   span {
     font-size: 23px;
@@ -80,5 +55,23 @@
   img {
     margin: 0 5px;
     image-rendering: -webkit-optimize-contrast !important;
+  }
+}
+
+.navbarItems {
+  display: unset;
+}
+
+.hamburguer {
+  display: none;
+}
+
+@media only screen and (max-width: 900px) {
+  .hamburguer {
+    display: unset;
+  }
+
+  .navbarItems {
+    display: none;
   }
 }

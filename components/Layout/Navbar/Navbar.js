@@ -15,7 +15,7 @@ import ListItemText from '@mui/material/ListItemText'
 import InboxIcon from '@mui/icons-material/MoveToInbox'
 import { Squash as Hamburger } from 'hamburger-react'
 import { width } from '@mui/system'
-import LinkButton from '../../UI/Buttons/LinkButton'
+// import LinkButton from '../../UI/Buttons/LinkButton'
 
 export default function NavBar() {
 
@@ -32,10 +32,10 @@ export default function NavBar() {
 
 	const { logo, navbar, navbarShadow, content, buttons, button, buttonActive, hamburguer, navbarItems } = scss
 
-	// const [drawer, setDrawer] = useState(false)
-	// const toggleDrawer = (open) => () => {
-	// 	setDrawer(open)
-	// }
+	const [drawer, setDrawer] = useState(false)
+	const toggleDrawer = (open) => () => {
+		setDrawer(open)
+	}
 
 	// const pages = <>
 	// 	<LinkButton href='/market'>Market</LinkButton>
@@ -78,14 +78,14 @@ export default function NavBar() {
 							<Button className={rp == "/about" ? buttonActive : button}>About</Button>
 						</Link>
 					</div>
-					{/* <div className={hamburguer}>
+					<div className={hamburguer}>
 						<Hamburger rounded toggled={drawer} toggle={toggleDrawer(true)} />
 						<Drawer
 							anchor={'right'}
 							open={drawer}
 							onClose={toggleDrawer(false)}
 							BackdropProps={{ invisible: true }}
-						// PaperProps={{ sx: { backgroundColor: 'transparent', backdropFilter: 'blur(30px)' } }}
+							PaperProps={{ sx: { backgroundColor: 'transparent', backdropFilter: 'blur(30px)' } }}
 						>
 							<Box
 								sx={{ width: 240 }}
@@ -104,11 +104,29 @@ export default function NavBar() {
 										</Link>
 									</div>
 									<Divider style={{ margin: '10px 0' }} />
-									{pages}
+									<Link href='/market' passHref>
+										<Button className={rp == "/market" ? buttonActive : button}>Market
+										</Button>
+									</Link>
+									<Link href='/coins/btc' passHref>
+										<Button className={rp.startsWith("/coins") ? buttonActive : button}>Coin Info</Button>
+									</Link>
+									<Link href='/news' passHref>
+										<Button className={rp == "/news" ? buttonActive : button}>News</Button>
+									</Link>
+									<Link href='/exchanges' passHref>
+										<Button className={rp == "/exchanges" ? buttonActive : button}>Exchanges</Button>
+									</Link>
+									<Link href='/shop' passHref>
+										<Button className={rp == "/shop" ? buttonActive : button}>Shop</Button>
+									</Link>
+									<Link href='/about' passHref>
+										<Button className={rp == "/about" ? buttonActive : button}>About</Button>
+									</Link>
 								</List>
 							</Box>
 						</Drawer>
-					</div> */}
+					</div>
 				</div>
 			</div>
 		</div>

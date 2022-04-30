@@ -20,9 +20,6 @@ import MenuRoundedIcon from '@mui/icons-material/MenuRounded'
 
 export default function NavBar() {
 
-	const router = useRouter()
-	const rp = router.pathname
-
 	const [scroll, setScroll] = useState(false)
 
 	useEffect(() => {
@@ -38,14 +35,24 @@ export default function NavBar() {
 		setDrawer(open)
 	}
 
-	// const pages = <>
-	// 	<LinkButton href='/market'>Market</LinkButton>
-	// 	<LinkButton href='/coins/btc' activeOn='/coins'>Coin Info</LinkButton>
-	// 	<LinkButton href='/news'>News</LinkButton>
-	// 	<LinkButton href='/exchanges'>Exchanges</LinkButton>
-	// 	<LinkButton href='/shop'>Shop</LinkButton>
-	// 	<LinkButton href='/about'>About</LinkButton>
-	// </>
+	const router = useRouter()
+	const rp = router.pathname
+
+	const pages = [
+		{ href: '/market', text: 'Market' },
+		{ href: '/coins', text: 'Coin Info' },
+		{ href: '/news', text: 'News' },
+		{ href: '/exchanges', text: 'Exchanges' },
+		{ href: '/shop', text: 'Shop' },
+		{ href: '/about', text: 'About' },
+	]
+
+	const pagesButtons = pages.map(p => {
+		return (
+			<Link href={p.href} key={p.href} passHref>
+				<Button className={rp.startsWith(p.href) ? buttonActive : button}>{p.text}</Button>
+			</Link>)
+	})
 
 	return (
 		<div className={cx(navbar, { [navbarShadow]: scroll })}>
@@ -59,25 +66,7 @@ export default function NavBar() {
 				</Link>
 				<div>
 					<div className={navbarItems}>
-						<Link href='/market' passHref>
-							<Button className={rp == "/market" ? buttonActive : button}>Market
-							</Button>
-						</Link>
-						<Link href='/coins/btc' passHref>
-							<Button className={rp.startsWith("/coins") ? buttonActive : button}>Coin Info</Button>
-						</Link>
-						<Link href='/news' passHref>
-							<Button className={rp == "/news" ? buttonActive : button}>News</Button>
-						</Link>
-						<Link href='/exchanges' passHref>
-							<Button className={rp == "/exchanges" ? buttonActive : button}>Exchanges</Button>
-						</Link>
-						<Link href='/shop' passHref>
-							<Button className={rp == "/shop" ? buttonActive : button}>Shop</Button>
-						</Link>
-						<Link href='/about' passHref>
-							<Button className={rp == "/about" ? buttonActive : button}>About</Button>
-						</Link>
+						{pagesButtons}
 					</div>
 					<div className={hamburguer}>
 						<Button className={hamburgerButton} onClick={toggleDrawer(true)}>
@@ -112,25 +101,7 @@ export default function NavBar() {
 										</Link>
 									</div>
 									<Divider style={{ margin: '10px 0' }} />
-									<Link href='/market' passHref>
-										<Button className={rp == "/market" ? buttonActive : button}>Market
-										</Button>
-									</Link>
-									<Link href='/coins/btc' passHref>
-										<Button className={rp.startsWith("/coins") ? buttonActive : button}>Coin Info</Button>
-									</Link>
-									<Link href='/news' passHref>
-										<Button className={rp == "/news" ? buttonActive : button}>News</Button>
-									</Link>
-									<Link href='/exchanges' passHref>
-										<Button className={rp == "/exchanges" ? buttonActive : button}>Exchanges</Button>
-									</Link>
-									<Link href='/shop' passHref>
-										<Button className={rp == "/shop" ? buttonActive : button}>Shop</Button>
-									</Link>
-									<Link href='/about' passHref>
-										<Button className={rp == "/about" ? buttonActive : button}>About</Button>
-									</Link>
+									{pagesButtons}
 								</List>
 							</Box>
 						</Drawer>

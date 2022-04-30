@@ -9,6 +9,10 @@ export default function CoinDetails(props) {
 
     const { coin, historicalData, news } = props
 
+    // const coin = props.coin
+    // const historicalData = props.historicalData
+    // const news = props.news
+
     return <div scss={{ margin: '0 30px' }}>
         <CoinTitle
             name={coin.name}

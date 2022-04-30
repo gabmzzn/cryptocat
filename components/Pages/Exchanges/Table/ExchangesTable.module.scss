@@ -123,14 +123,28 @@
 }
 
 .table {
+  white-space: nowrap;
+
   td {
     font-size: 1.05rem;
     font-weight: 500;
+    padding: 13px;
   }
 
   th {
     font-weight: 900;
   }
+
+  img {
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
+  }
+}
+
+.MuiTableRow-root {
+  border-left: none;
+  border-right: none;
 }
 
 .name {
@@ -139,5 +153,21 @@
 
   img {
     border-radius: 50%;
+  }
+}
+
+/* MUI V5 Override */
+.button {
+  // font-size: 20px !important;
+  font-weight: bold !important;
+  border-radius: 15px !important;
+  padding: 2px 12px !important;
+  margin: 5px 7px !important;
+  text-transform: none !important;
+  color: rgb(10, 10, 10) !important;
+  background-color: rgba(0, 0, 0, 0.05) !important;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1) !important;
   }
 }

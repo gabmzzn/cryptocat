@@ -7,7 +7,7 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
-import Link from 'next/link'
+import Rating from '@mui/material/Rating'
 import Button from '@mui/material/Button'
 
 export default function ExchangesTable(props) {
@@ -15,7 +15,7 @@ export default function ExchangesTable(props) {
   const { exchanges } = props
 
   return (
-    <TableContainer component={Paper} className={scss.table}>
+    <TableContainer elevation={0} component={Paper} className={scss.table}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
           <TableRow>
@@ -41,13 +41,15 @@ export default function ExchangesTable(props) {
                     {ex.name}
                   </div>
                 </TableCell>
-                <TableCell align="center">{ex.trust_score}</TableCell>
+                <TableCell align="center">
+                  <Rating precision={0.5} name="read-only" value={ex.trust_score / 2} readOnly />
+                </TableCell>
                 <TableCell align="right"><b>$ {volume} M</b></TableCell>
                 <TableCell align="center">{ex.country}</TableCell>
                 <TableCell align="center">{year}</TableCell>
                 <TableCell align="right">
                   <a href={ex.url} target='_blank' rel="noreferrer">
-                    <Button>{ex.url}</Button>
+                    <Button className={scss.button}>{ex.url.substring(8).replace(/\/$/, '')}</Button>
                   </a>
                 </TableCell>
               </TableRow>

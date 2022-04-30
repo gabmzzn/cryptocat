@@ -7,9 +7,7 @@ export default function CoinGrid(props) {
 
     return (
         <div className={scss.cards}>
-            {coins.map((coin, i) => {
-                return <Card key={coin.rank} coin={coins[i]} />
-            })}
+            {coins.map(coin => <Card key={coin.rank} coin={coin} />)}
         </div>
     )
 }

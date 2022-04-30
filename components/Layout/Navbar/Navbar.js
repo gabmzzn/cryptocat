@@ -15,6 +15,7 @@ import ListItemText from '@mui/material/ListItemText'
 import InboxIcon from '@mui/icons-material/MoveToInbox'
 import { Squash as Hamburger } from 'hamburger-react'
 import { width } from '@mui/system'
+import MenuRoundedIcon from '@mui/icons-material/MenuRounded'
 // import LinkButton from '../../UI/Buttons/LinkButton'
 
 export default function NavBar() {
@@ -30,7 +31,7 @@ export default function NavBar() {
 		})
 	}, [])
 
-	const { logo, navbar, navbarShadow, content, buttons, button, buttonActive, hamburguer, navbarItems } = scss
+	const { logo, navbar, navbarShadow, content, hamburgerButton, button, buttonActive, hamburguer, navbarItems } = scss
 
 	const [drawer, setDrawer] = useState(false)
 	const toggleDrawer = (open) => () => {
@@ -79,18 +80,20 @@ export default function NavBar() {
 						</Link>
 					</div>
 					<div className={hamburguer}>
-						<Hamburger rounded toggled={drawer} toggle={toggleDrawer(true)} />
+						<Button className={hamburgerButton} onClick={toggleDrawer(true)}>
+							<MenuRoundedIcon fontSize="large" />
+						</Button>
 						<Drawer
 							anchor={'right'}
 							open={drawer}
 							onClose={toggleDrawer(false)}
 							BackdropProps={{ invisible: true }}
-							PaperProps={{
-								sx: {
-									backgroundColor: 'rgba(255, 255, 255, 0.6)',
-									backdropFilter: 'blur(20px)'
-								}
-							}}
+						// PaperProps={{
+						// 	sx: {
+						// 		backgroundColor: 'rgba(255, 255, 255, 0.6)',
+						// 		backdropFilter: 'blur(20px)'
+						// 	}
+						// }}
 						>
 							<Box
 								sx={{ width: 240 }}

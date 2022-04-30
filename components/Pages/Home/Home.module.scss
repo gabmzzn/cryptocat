@@ -1,18 +1,19 @@
 .logo {
     display: flex;
-    height: 50rem;
     align-items: center;
     justify-content: center;
-    transform: scale(1);
+    max-width: 100%;
 
     /* animation: siia 2s ease; */
     img {
         margin: 0 -40px;
+        width: 30vw;
+        height: 30vw;
         image-rendering: -webkit-optimize-contrast !important;
     }
 
     h1 {
-        font-size: 9.5vw;
+        font-size: 10vw;
         display: flex;
         align-items: center;
     }

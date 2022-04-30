@@ -31,10 +31,10 @@ export default function CoinDetails(props) {
                 <CoinSidebar data={coin} />
             </div>
         </div>
-        <div className={scss.newsFeed}>
+        {/* <div className={scss.newsFeed}>
             {news.slice(0, 10).map(n => {
                 return <CoinNewsCard key={n.id} news={n} />
             })}
-        </div>
+        </div> */}
     </div>
 }

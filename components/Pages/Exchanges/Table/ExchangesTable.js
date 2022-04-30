@@ -22,7 +22,7 @@ export default function ExchangesTable(props) {
             <TableCell align="left">RANK</TableCell>
             <TableCell align="left">EXCHANGE</TableCell>
             <TableCell align="center">TRUST SCORE</TableCell>
-            <TableCell align="right">TRADE VOLUME 24h</TableCell>
+            <TableCell align="right">TRADE 24H</TableCell>
             <TableCell align="center">COUNTRY</TableCell>
             <TableCell align="center">SINCE</TableCell>
             <TableCell align="center">WEBSITE</TableCell>
@@ -32,6 +32,7 @@ export default function ExchangesTable(props) {
           {exchanges.map(ex => {
             const year = ex.year_established == null ? 2020 : ex.year_established
             const volume = ex.trade_volume_24h_btc.toFixed(0)
+            const url = ex.url.substring(8).replace(/\/$/, '').split('/')[0]
             return (
               <TableRow key={ex.trust_score_rank}>
                 <TableCell align="center">{ex.trust_score_rank}</TableCell>
@@ -49,7 +50,7 @@ export default function ExchangesTable(props) {
                 <TableCell align="center">{year}</TableCell>
                 <TableCell align="right">
                   <a href={ex.url} target='_blank' rel="noreferrer">
-                    <Button className={scss.button}>{ex.url.substring(8).replace(/\/$/, '')}</Button>
+                    <Button className={scss.button}>{url}</Button>
                   </a>
                 </TableCell>
               </TableRow>

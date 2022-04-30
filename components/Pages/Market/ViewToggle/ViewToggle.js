@@ -15,7 +15,7 @@ export default function ViewToggle(props) {
                 value={viewMode}
                 exclusive
                 onChange={onViewChange}
-                size="large"
+                size="medium"
                 aria-label="view-mode"
             >
                 <ToggleButton value="grid" aria-label="grid">

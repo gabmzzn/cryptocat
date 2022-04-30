@@ -102,8 +102,7 @@ export default function MarketPage() {
 
     }, [])
 
-    return (
-        <LoadingScreen ready={isReady}>
-            <Market coins={coinData} />
-        </LoadingScreen>)
+    if (isReady) return <Market coins={coinData} />
+
+    return <LoadingScreen />
 }

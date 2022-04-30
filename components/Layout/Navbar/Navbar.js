@@ -30,21 +30,21 @@ export default function NavBar() {
 		})
 	}, [])
 
-	const { logo, navbar, navbarShadow, content, buttons, button, active, hamburguer, navbarItems } = scss
+	const { logo, navbar, navbarShadow, content, buttons, button, buttonActive, hamburguer, navbarItems } = scss
 
-	const [drawer, setDrawer] = useState(false)
-	const toggleDrawer = (open) => () => {
-		setDrawer(open)
-	}
+	// const [drawer, setDrawer] = useState(false)
+	// const toggleDrawer = (open) => () => {
+	// 	setDrawer(open)
+	// }
 
-	const pages = <>
-		<LinkButton href='/market'>Market</LinkButton>
-		<LinkButton href='/coins/btc' activeOn='/coins'>Coin Info</LinkButton>
-		<LinkButton href='/news'>News</LinkButton>
-		<LinkButton href='/exchanges'>Exchanges</LinkButton>
-		<LinkButton href='/shop'>Shop</LinkButton>
-		<LinkButton href='/about'>About</LinkButton>
-	</>
+	// const pages = <>
+	// 	<LinkButton href='/market'>Market</LinkButton>
+	// 	<LinkButton href='/coins/btc' activeOn='/coins'>Coin Info</LinkButton>
+	// 	<LinkButton href='/news'>News</LinkButton>
+	// 	<LinkButton href='/exchanges'>Exchanges</LinkButton>
+	// 	<LinkButton href='/shop'>Shop</LinkButton>
+	// 	<LinkButton href='/about'>About</LinkButton>
+	// </>
 
 	return (
 		<div className={cx(navbar, { [navbarShadow]: scroll })}>
@@ -58,9 +58,27 @@ export default function NavBar() {
 				</Link>
 				<div>
 					<div className={navbarItems}>
-						{pages}
+						<Link href='/market' passHref>
+							<Button className={rp == "/market" ? buttonActive : button}>Market
+							</Button>
+						</Link>
+						<Link href='/coins/btc' passHref>
+							<Button className={rp.startsWith("/coins") ? buttonActive : button}>Coin Info</Button>
+						</Link>
+						<Link href='/news' passHref>
+							<Button className={rp == "/news" ? buttonActive : button}>News</Button>
+						</Link>
+						<Link href='/exchanges' passHref>
+							<Button className={rp == "/exchanges" ? buttonActive : button}>Exchanges</Button>
+						</Link>
+						<Link href='/shop' passHref>
+							<Button className={rp == "/shop" ? buttonActive : button}>Shop</Button>
+						</Link>
+						<Link href='/about' passHref>
+							<Button className={rp == "/about" ? buttonActive : button}>About</Button>
+						</Link>
 					</div>
-					<div className={hamburguer}>
+					{/* <div className={hamburguer}>
 						<Hamburger rounded toggled={drawer} toggle={toggleDrawer(true)} />
 						<Drawer
 							anchor={'right'}
@@ -86,11 +104,11 @@ export default function NavBar() {
 										</Link>
 									</div>
 									<Divider style={{ margin: '10px 0' }} />
-									{/* {pages} */}
+									{pages}
 								</List>
 							</Box>
 						</Drawer>
-					</div>
+					</div> */}
 				</div>
 			</div>
 		</div>

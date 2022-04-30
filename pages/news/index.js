@@ -16,8 +16,7 @@ export default function NewsPage() {
         getNewsFeed()
     }, [])
 
-    return (
-        <LoadingScreen ready={isReady}>
-            <News news={newsFeed} />
-        </LoadingScreen>)
+    if (isReady) return <News news={newsFeed} />
+
+    return <LoadingScreen />
 }

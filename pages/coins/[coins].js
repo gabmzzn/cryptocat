@@ -83,13 +83,12 @@ export default function CoinsPage() {
         }
     }, [router])
 
-    return (
-        <LoadingScreen ready={isReady == 3 ? true : false}>
-            <CoinInfo
-                historicalData={historicalData}
-                coin={coinInfo}
-                news={newsFeed}
-            />
-        </LoadingScreen>)
+    if (isReady == 3) return (
+        <CoinInfo
+            historicalData={historicalData}
+            coin={coinInfo}
+            news={newsFeed}
+        />)
 
+    return <LoadingScreen />
 }

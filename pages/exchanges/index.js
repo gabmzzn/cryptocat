@@ -17,9 +17,7 @@ export default function ExchangesPage() {
         getData()
     }, [])
 
-    return (
-        <LoadingScreen ready={isReady}>
-            <Exchanges exchanges={exchangeData} />
-        </LoadingScreen>
-    )
+    if (isReady) return <Exchanges exchanges={exchangeData} />
+
+    return <LoadingScreen />
 }

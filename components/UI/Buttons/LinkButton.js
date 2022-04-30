@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import { CleaningServices } from '@mui/icons-material'
 
 export default function LinkButton(props) {
-
+    console.log('first')
     const { pathname } = useRouter()
     const { href, activeOn } = props
     const { button, buttonActive } = scss

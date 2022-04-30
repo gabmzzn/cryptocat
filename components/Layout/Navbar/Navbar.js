@@ -86,7 +86,7 @@ export default function NavBar() {
 										</Link>
 									</div>
 									<Divider style={{ margin: '10px 0' }} />
-									{pages}
+									{/* {pages} */}
 								</List>
 							</Box>
 						</Drawer>

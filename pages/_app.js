@@ -8,7 +8,7 @@ export default function MyApp({ Component, pageProps }) {
     <Layout>
       <Head>
         <title>CryptoCat</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width" />
       </Head>
       <Component {...pageProps} />
     </Layout>)

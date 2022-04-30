@@ -1,7 +1,6 @@
 .card {
     display: flex;
     position: relative;
-    max-width: 65%;
     outline: 2px solid transparent;
     border: 1px solid rgba(112, 128, 144, 0.2);
     box-shadow: 0 0 3px rgb(0 0 0 / 15%);
@@ -26,8 +25,8 @@
 }
 
 .card img {
-    height: 200px;
-    width: 200px;
+    // height: 200px;
+    // width: 200px;
     border-radius: 12px;
     background-color: rgba(176, 165, 1, 0.124);
 }

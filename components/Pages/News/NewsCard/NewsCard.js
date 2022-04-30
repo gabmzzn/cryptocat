@@ -1,4 +1,4 @@
-import css from './NewsCard.module.css'
+import css from './NewsCard.module.scss'
 
 export default function NewsCard(props) {
 

@@ -67,7 +67,7 @@ export default function NavBar() {
 							open={drawer}
 							onClose={toggleDrawer(false)}
 							BackdropProps={{ invisible: true }}
-						// PaperProps={{ sx: { backgroundColor: 'transparent', backdropFilter: 'blur(30px)' } }}
+							PaperProps={{ sx: { backgroundColor: 'transparent', backdropFilter: 'blur(30px)' } }}
 						>
 							<Box
 								sx={{ width: 240 }}

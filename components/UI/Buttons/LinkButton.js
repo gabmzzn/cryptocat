@@ -2,16 +2,19 @@ import scss from './LinkButton.module.scss'
 import Button from '@mui/material/Button'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { CleaningServices } from '@mui/icons-material'
 
 export default function LinkButton(props) {
 
-    const router = useRouter()
-    const rp = router.pathname
+    const { pathname } = useRouter()
+    const { href, active } = props
     const { button, buttonActive } = scss
-    console.log(props.href)
+
+    const pathLink = active ? active : href
+
     return (
-        <Link href={props.href} passHref>
-            <Button className={rp.startsWith(props.href) ? buttonActive : button}>
+        <Link href={href} passHref>
+            <Button className={pathname.startsWith(pathLink) ? buttonActive : button}>
                 {props.children}
             </Button>
         </Link>

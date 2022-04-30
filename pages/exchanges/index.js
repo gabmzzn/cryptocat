@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import LoadingScreen from "../../components/Layout/LoadingScreen/LoadingScreen"
 
 export default function ExchangesPage() {
-    console.log('exchanges')
+
     const [isReady, setIsReady] = useState(false)
     const [exchangeData, setExchangeData] = useState([])
 

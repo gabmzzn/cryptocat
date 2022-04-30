@@ -1,33 +1,59 @@
-import * as React from 'react'
-import ViewListIcon from '@mui/icons-material/ViewList'
-import ViewModuleIcon from '@mui/icons-material/ViewModule'
-import Stack from '@mui/material/Stack'
-import ToggleButton from '@mui/material/ToggleButton'
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
+import Box from '@mui/material/Box'
+import Drawer from '@mui/material/Drawer'
+import Button from '@mui/material/Button'
+import List from '@mui/material/List'
+import Divider from '@mui/material/Divider'
+import ListItem from '@mui/material/ListItem'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemText from '@mui/material/ListItemText'
+import InboxIcon from '@mui/icons-material/MoveToInbox'
+import { useState } from 'react'
 
-export default function ToggleButtonNotEmpty() {
-    const [viewMode, setViewMode] = React.useState('module')
+export default function TemporaryDrawer() {
 
-    const handleMode = (event, mode) => {
-        if (mode !== null) setViewMode(mode)
+    const [state, setState] = useState(false)
+
+    const toggleDrawer = (open) => () => {
+        setState(open)
     }
 
+    const list =
+        <Box
+            sx={{ width: 250 }}
+            role="presentation"
+            onClick={toggleDrawer(false)}
+            onKeyDown={toggleDrawer(false)}
+        >
+            <List>
+                <ListItem button key={'Wasd'}>
+                    <ListItemIcon>
+                        <InboxIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={'Wasd'} />
+                </ListItem>
+            </List>
+            <Divider />
+            <List>
+                <ListItem button key={'Wasd'}>
+                    <ListItemIcon>
+                        <InboxIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={'Wasd'} />
+                </ListItem>
+            </List>
+        </Box>
+
+
     return (
-        <Stack direction="row" spacing={4}>
-            <ToggleButtonGroup
-                value={viewMode}
-                exclusive
-                onChange={handleMode}
-                size="large"
-                aria-label="view-mode"
+        <div>
+            <Button onClick={toggleDrawer(true)}>{'right'}</Button>
+            <Drawer
+                anchor={'right'}
+                open={state}
+                onClose={toggleDrawer(false)}
             >
-                <ToggleButton value="module" aria-label="module">
-                    <ViewModuleIcon />
-                </ToggleButton>
-                <ToggleButton value="list" aria-label="list">
-                    <ViewListIcon />
-                </ToggleButton>
-            </ToggleButtonGroup>
-        </Stack>
+                {list}
+            </Drawer>
+        </div>
     )
 }

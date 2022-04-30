@@ -5,6 +5,17 @@ import scss from './Navbar.module.scss'
 import cx from 'classnames'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
+import Box from '@mui/material/Box'
+import Drawer from '@mui/material/Drawer'
+import List from '@mui/material/List'
+import Divider from '@mui/material/Divider'
+import ListItem from '@mui/material/ListItem'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemText from '@mui/material/ListItemText'
+import InboxIcon from '@mui/icons-material/MoveToInbox'
+import { Squash as Hamburger } from 'hamburger-react'
+import { width } from '@mui/system'
+import LinkButton from '../../UI/Buttons/LinkButton'
 
 export default function NavBar() {
 
@@ -21,6 +32,20 @@ export default function NavBar() {
 
 	const { logo, navbar, navbarShadow, content, buttons, button, active } = scss
 
+	const [smallViewPort, setSmallViewPort] = useState(false)
+	const [drawer, setDrawer] = useState(false)
+	const toggleDrawer = (open) => () => {
+		setDrawer(open)
+	}
+
+	const pages = <>
+		<LinkButton href='/market'>Market</LinkButton>
+		<LinkButton href='/coins/btc' active='/coins'>Coin Info</LinkButton>
+		<LinkButton href='/news'>News</LinkButton>
+		<LinkButton href='/exchanges'>Exchanges</LinkButton>
+		<LinkButton href='/shop'>Shop</LinkButton>
+		<LinkButton href='/about'>About</LinkButton></>
+
 	return (
 		<div className={cx(navbar, { [navbarShadow]: scroll })}>
 			<div className={content}>
@@ -32,25 +57,27 @@ export default function NavBar() {
 					</div>
 				</Link>
 				<div className={buttons}>
-					<Link href='/market' passHref>
-						<Button className={rp == "/market" ? active : button}>Market
-						</Button>
-					</Link>
-					<Link href='/coins/btc' passHref>
-						<Button className={rp.startsWith("/coins") ? active : button}>Coin Info</Button>
-					</Link>
-					<Link href='/news' passHref>
-						<Button className={rp == "/news" ? active : button}>News</Button>
-					</Link>
-					<Link href='/exchanges' passHref>
-						<Button className={rp == "/exchanges" ? active : button}>Exchanges</Button>
-					</Link>
-					<Link href='/shop' passHref>
-						<Button className={rp == "/shop" ? active : button}>Shop</Button>
-					</Link>
-					<Link href='/about' passHref>
-						<Button className={rp == "/about" ? active : button}>About</Button>
-					</Link>
+					{!smallViewPort && pages}
+					{smallViewPort &&
+						<>
+							<Hamburger rounded toggled={drawer} toggle={toggleDrawer(true)} />
+							<Drawer
+								anchor={'right'}
+								open={drawer}
+								onClose={toggleDrawer(false)}
+							>
+								<Box
+									sx={{ width: 250 }}
+									role="presentation"
+									onClick={toggleDrawer(false)}
+									onKeyDown={toggleDrawer(false)}
+								>
+									<List style={{ display: 'flex', flexDirection: 'column' }}>
+										{pages}
+									</List>
+								</Box>
+							</Drawer>
+						</>}
 				</div>
 			</div>
 		</div>

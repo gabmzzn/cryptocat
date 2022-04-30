@@ -3,7 +3,7 @@ import LoadingScreen from '../../components/Layout/LoadingScreen/LoadingScreen'
 import Market from '../../components/Pages/Market/Market'
 
 export default function MarketPage() {
-    console.log('market')
+
     const [isReady, setIsReady] = useState(false)
     const [coinData, setCoinData] = useState([])
 

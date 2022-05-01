@@ -9,14 +9,7 @@ import Box from '@mui/material/Box'
 import Drawer from '@mui/material/Drawer'
 import List from '@mui/material/List'
 import Divider from '@mui/material/Divider'
-import ListItem from '@mui/material/ListItem'
-import ListItemIcon from '@mui/material/ListItemIcon'
-import ListItemText from '@mui/material/ListItemText'
-import InboxIcon from '@mui/icons-material/MoveToInbox'
-import { Squash as Hamburger } from 'hamburger-react'
-import { width } from '@mui/system'
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded'
-// import LinkButton from '../../UI/Buttons/LinkButton'
 
 export default function NavBar() {
 
@@ -38,7 +31,7 @@ export default function NavBar() {
 	const router = useRouter()
 	const rp = router.pathname
 
-	const pages = [
+	const paths = [
 		{ href: '/market', text: 'Market' },
 		{ href: '/coins', text: 'Coin Info' },
 		{ href: '/news', text: 'News' },
@@ -47,7 +40,7 @@ export default function NavBar() {
 		{ href: '/about', text: 'About' },
 	]
 
-	const pagesButtons = pages.map(p => {
+	const pages = paths.map(p => {
 		return (
 			<Link href={p.href} key={p.href} passHref>
 				<Button className={rp.startsWith(p.href) ? buttonActive : button}>{p.text}</Button>
@@ -66,7 +59,7 @@ export default function NavBar() {
 				</Link>
 				<div>
 					<div className={navbarItems}>
-						{pagesButtons}
+						{pages}
 					</div>
 					<div className={hamburguer}>
 						<Button className={hamburgerButton} onClick={toggleDrawer(true)}>
@@ -77,12 +70,12 @@ export default function NavBar() {
 							open={drawer}
 							onClose={toggleDrawer(false)}
 							BackdropProps={{ invisible: true }}
-						// PaperProps={{
-						// 	sx: {
-						// 		backgroundColor: 'rgba(255, 255, 255, 0.6)',
-						// 		backdropFilter: 'blur(20px)'
-						// 	}
-						// }}
+							PaperProps={{
+								sx: {
+									backgroundColor: 'rgba(255, 255, 255, 0.6)',
+									backdropFilter: 'blur(20px)'
+								}
+							}}
 						>
 							<Box
 								sx={{ width: 240 }}
@@ -101,7 +94,7 @@ export default function NavBar() {
 										</Link>
 									</div>
 									<Divider style={{ margin: '10px 0' }} />
-									{pagesButtons}
+									{pages}
 								</List>
 							</Box>
 						</Drawer>

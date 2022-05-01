@@ -7,6 +7,11 @@ export default function MarketPage() {
     const [isReady, setIsReady] = useState(false)
     const [coinData, setCoinData] = useState([])
 
+    function parsePrice(n) {
+        return n.toLocaleString('en-GB',
+            { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 5, })
+    }
+
     useEffect(() => {
         async function getData() {
             const date = (new Date()).toString()
@@ -24,12 +29,7 @@ export default function MarketPage() {
                         logo: `https://www.cryptocompare.com${coin.ImageUrl}`,
                         name: coin.FullName,
                         symbol: coin.Name,
-                        price: coinDIS.PRICE.toLocaleString(
-                            'en-GB', {
-                            style: 'decimal',
-                            minimumFractionDigits: 2,
-                            maximumFractionDigits: 5,
-                        }),
+                        price: parsePrice(coinDIS.PRICE),
                         changepct: (Math.sign(coinRAW.CHANGEPCT24HOUR) == 1 ? '+' : '') + coinDIS.CHANGEPCT24HOUR,
                         updown: Math.random() > 0.5 ? '▲' : '▼',
                         open24: coinRAW.OPEN24HOUR,
@@ -38,6 +38,7 @@ export default function MarketPage() {
                         chart: `https://images.cryptocompare.com/sparkchart/${coin.Name}/USD/latest.png?ts=${timeLastHour}`
                     })
                 }
+                setIsReady(true)
                 return result
             }, [])
 
@@ -45,18 +46,15 @@ export default function MarketPage() {
             getLiveData(data)
         }
 
-        let client = null // If it declared outside it doesnt work
+        let client = null // If its declared inside it doesnt work
+
         async function getLiveData(coins) {
-            const previous = coins.map(coin => {
-                return { price: coin.price }
-            })
+            const previous = coins.map(coin => { return { price: coin.price } })
 
             const apiKey = '6e659e1244d9e7ccf3b6bdf6ada561766883d528a2025f01004787c096d1b005'
             client = new WebSocket(`wss://streamer.cryptocompare.com/v2?api_key=${apiKey}`)
 
-            const subs = coins.map(coin => {
-                return `5~CCCAGG~${coin.symbol}~USD`
-            })
+            const subs = coins.map(coin => `5~CCCAGG~${coin.symbol}~USD`)
 
             client.onopen = () => {
                 client.send(JSON.stringify({
@@ -69,13 +67,8 @@ export default function MarketPage() {
 
             function pushWebSocketData(data) {
                 if ('PRICE' in data) {
-                    const sym = coins.findIndex(((obj) => obj.symbol == data.FROMSYMBOL))
-                    coins[sym].price = '$ ' + (data.PRICE.toLocaleString(
-                        'en-GB', {
-                        scss: 'decimal',
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 5,
-                    }))
+                    const sym = coins.findIndex(coin => coin.symbol == data.FROMSYMBOL)
+                    coins[sym].price = '$ ' + parsePrice(data.PRICE)
                     coins[sym].changepct = (Math.sign(coins[sym].changepct) == 1 ? '+' : '') +
                         (((data.PRICE - coins[sym].open24) / data.PRICE) * 100).toFixed(2)
 
@@ -87,11 +80,9 @@ export default function MarketPage() {
                         coins[sym].updown = '▼'
                     }
 
-                    // THIS POSSIBLY NEEDS OPTIMIZATION
                     setCoinData([...coins])
                 }
             }
-            setIsReady(true)
         }
 
         getData()

@@ -49,7 +49,6 @@ export default function MarketPage() {
         let client = null // If its declared inside it doesnt work
 
         async function getLiveData(coins) {
-            const previous = coins.map(coin => { return { price: coin.price } })
 
             const apiKey = '6e659e1244d9e7ccf3b6bdf6ada561766883d528a2025f01004787c096d1b005'
             client = new WebSocket(`wss://streamer.cryptocompare.com/v2?api_key=${apiKey}`)
@@ -65,6 +64,7 @@ export default function MarketPage() {
 
             client.onmessage = (message) => pushWebSocketData(JSON.parse(message.data))
 
+            const previous = coins.map(coin => { return { price: coin.price } })
             function pushWebSocketData(data) {
                 if ('PRICE' in data) {
                     const sym = coins.findIndex(coin => coin.symbol == data.FROMSYMBOL)

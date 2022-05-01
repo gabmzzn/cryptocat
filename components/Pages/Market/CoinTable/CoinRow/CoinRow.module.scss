@@ -1,56 +1,23 @@
-.card {
-  position: relative;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  cursor: pointer;
-  width: 200px;
-  max-width: 260px;
-  height: 180px;
-  outline: 1px solid transparent;
-  border: 1px solid rgba(112, 128, 144, 0.2);
-  box-shadow: 5px 10px 20px rgb(0 0 0 / 15%);
-  border-radius: 25px;
-  flex-basis: 20%;
-  margin: 20px 1vw;
-  padding: 20px 20px;
-  transition: border 0.5s, outline 0.5s;
-
-  &:hover {
-    border: 1px solid rgb(240, 212, 0);
-    outline: 1px solid rgb(240, 212, 0);
-  }
-
-  &:active {
-    border: 1px solid rgb(240, 212, 0);
-    outline: 1px solid rgb(240, 212, 0);
-    background-color: rgba(240, 212, 0, 0.085);
-  }
-}
-
-.title {
+.name {
   display: flex;
   align-items: center;
-  justify-content: space-between;
 
-  h1 {
-    margin: 0;
-    font-size: 28px;
+  span {
+    font-size: 12px;
+    font-weight: bold;
+    padding: 3px 6px;
+    background-color: rgb(235, 235, 235);
+    border-radius: 4px;
+    white-space: pre-line;
   }
 
   img {
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
     border-radius: 50%;
-    background-color: rgba(180, 180, 180, 0.15);
+    background-color: rgb(245, 245, 245);
   }
-}
-
-.prices {
-  margin: 10px 0;
-  display: flex;
-  font-size: 14px;
-  font-weight: bold;
-  align-items: center;
-  justify-content: space-between;
 }
 
 .initialPrice,
@@ -58,14 +25,14 @@
 .higherPrice2,
 .lowerPrice1,
 .lowerPrice2 {
-  padding: 6px 7px;
-  border-radius: 10px;
+  font-weight: bold;
+  padding: 8px 9px;
+  border-radius: 12px;
 }
 
 .initialPrice {
   color: rgb(50, 50, 50);
-  ;
-  background-color: rgb(245, 245, 245);
+  background-color: rgb(240, 240, 240);
 }
 
 .higherPrice1,
@@ -205,11 +172,4 @@
     ;
     background-color: rgb(245, 245, 245);
   }
-}
-
-.chart {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 22px 0 0 0;
 }

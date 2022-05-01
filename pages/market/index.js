@@ -69,16 +69,11 @@ export default function MarketPage() {
                 if ('PRICE' in data) {
                     const sym = coins.findIndex(coin => coin.symbol == data.FROMSYMBOL)
                     coins[sym].price = '$ ' + parsePrice(data.PRICE)
-                    coins[sym].changepct = (Math.sign(coins[sym].changepct) == 1 ? '+' : '') +
-                        (((data.PRICE - coins[sym].open24) / data.PRICE) * 100).toFixed(2)
+                    coins[sym].updown = coins[sym].price > previous[sym].price ? '▲' : '▼'
+                    previous[sym].price = coins[sym].price
 
-                    if (coins[sym].price > previous[sym].price) {
-                        previous[sym].price = coins[sym].price
-                        coins[sym].updown = '▲'
-                    } else if (coins[sym].price < previous) {
-                        previous[sym].price = coins[sym].price
-                        coins[sym].updown = '▼'
-                    }
+                    const pct = (((data.PRICE - coins[sym].open24) / data.PRICE) * 100).toFixed(2)
+                    coins[sym].changepct = (Math.sign(coins[sym].changepct) == 1 ? '+' : '') + pct
 
                     setCoinData([...coins])
                 }

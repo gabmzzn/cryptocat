@@ -15,8 +15,8 @@ export default function ExchangesTable(props) {
   const { exchanges } = props
 
   return (
-    <TableContainer elevation={0} component={Paper} className={scss.table}>
-      <Table sx={{ minWidth: 700 }} aria-label="customized table">
+    <TableContainer className={scss.table}>
+      <Table>
         <TableHead>
           <TableRow>
             <TableCell align="left">RANK</TableCell>
@@ -37,7 +37,7 @@ export default function ExchangesTable(props) {
               <TableRow key={ex.trust_score_rank}>
                 <TableCell align="center">{ex.trust_score_rank}</TableCell>
                 <TableCell align="left">
-                  <div className={scss.name}>
+                  <div className={scss.name} style={{ whiteSpace: 'pre-line' }}>
                     <img src={ex.image} width={40} height={40} alt={ex.name} />
                     {ex.name}
                   </div>
@@ -46,7 +46,7 @@ export default function ExchangesTable(props) {
                   <Rating precision={0.5} name="read-only" value={ex.trust_score / 2} readOnly />
                 </TableCell>
                 <TableCell align="right"><b>$ {volume} M</b></TableCell>
-                <TableCell align="center">{ex.country}</TableCell>
+                <TableCell align="center" style={{ whiteSpace: 'pre-line' }}>{ex.country}</TableCell>
                 <TableCell align="center">{year}</TableCell>
                 <TableCell align="right">
                   <a href={ex.url} target='_blank' rel="noreferrer">

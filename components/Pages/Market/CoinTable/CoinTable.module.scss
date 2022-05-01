@@ -8,7 +8,7 @@
   td {
     font-size: 1.05rem;
     font-weight: 500;
-    padding: 13px;
+    padding: 15px;
   }
 
   tr {
@@ -19,107 +19,5 @@
     &:active {
       background-color: rgb(235, 235, 239);
     }
-  }
-
-}
-
-.name {
-  display: flex;
-  align-items: center;
-
-  span {
-    font-size: 12px;
-    font-weight: bold;
-    padding: 3px 6px;
-    background-color: rgb(235, 235, 235);
-    border-radius: 4px;
-    white-space: pre-line;
-  }
-
-  img {
-    width: 30px;
-    height: 30px;
-    margin-right: 8px;
-    border-radius: 50%;
-    background-color: rgb(245, 245, 245);
-  }
-}
-
-.higherPrice,
-.lowerPrice {
-  color: black;
-  font-weight: bold;
-  transition: 2s all;
-  padding: 8px 9px;
-  border-radius: 12px;
-  background-color: rgb(240, 240, 240);
-}
-
-.higherPrice {
-  color: rgb(0, 97, 0);
-  background-color: rgb(198, 239, 206);
-  transition: all 0.5s;
-  // animation: higherPrice 2s forwards linear;
-}
-
-.lowerPrice {
-  color: rgb(156, 0, 6);
-  background-color: rgb(255, 199, 206);
-  transition: all 0.5s;
-  // animation: lowerPrice 2s forwards linear;
-}
-
-.lowerPct {
-  color: rgb(225, 0, 0) !important;
-  transition: all 500ms;
-}
-
-.higherPct {
-  color: rgb(0, 135, 0) !important;
-  ;
-  transition: all 500ms;
-}
-
-@keyframes higherPrice {
-  0% {
-    color: black;
-    background-color: rgb(240, 240, 240);
-  }
-
-  5% {
-    color: #006100;
-    background-color: #C6EFCE;
-  }
-
-  95% {
-    color: #006100;
-    background-color: #C6EFCE;
-  }
-
-  100% {
-    color: black;
-    background-color: rgb(240, 240, 240);
-  }
-}
-
-@keyframes lowerPrice {
-  0% {
-    color: black;
-    background-color: rgb(240, 240, 240);
-  }
-
-  5% {
-    color: #9C0006;
-    background-color: #FFC7CE;
-  }
-
-  95% {
-    color: #9C0006;
-    background-color: #FFC7CE;
-  }
-
-  100% {
-    color: black;
-    background-color: rgb(240, 240, 240);
   }
 }

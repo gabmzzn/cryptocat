@@ -71,11 +71,11 @@
 }
 
 .higherPct {
-  color: rgb(0, 135, 0);
+  color: rgb(0, 135, 0) !important;
 }
 
 .lowerPct {
-  color: rgb(225, 0, 0);
+  color: rgb(225, 0, 0) !important;
 }
 
 @keyframes higherPrice1 {

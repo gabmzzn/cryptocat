@@ -21,3 +21,19 @@
     }
   }
 }
+
+.hideable {
+  display: unset;
+}
+
+@media only screen and (max-width: 900px) {
+  .hideable {
+    display: none;
+  }
+
+  .table {
+    td {
+      padding: 15px 5px;
+    }
+  }
+}

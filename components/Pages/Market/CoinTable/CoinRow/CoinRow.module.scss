@@ -65,6 +65,7 @@
 
 .higherPct,
 .lowerPct {
+  font-weight: bold !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
   transition: all 2s;
@@ -171,5 +172,15 @@
     color: rgb(50, 50, 50);
     ;
     background-color: rgb(240, 240, 240);
+  }
+}
+
+.hideable {
+  display: unset;
+}
+
+@media only screen and (max-width: 900px) {
+  .hideable {
+    display: none;
   }
 }

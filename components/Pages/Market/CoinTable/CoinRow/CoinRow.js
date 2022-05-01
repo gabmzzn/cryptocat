@@ -8,7 +8,7 @@ export default function CoinRow(props) {
 
   const { coin } = props
 
-  const { name, initialPrice, higherPrice1, higherPrice2, lowerPrice1, lowerPrice2, higherPct, lowerPct } = scss
+  const { name, initialPrice, higherPrice1, higherPrice2, lowerPrice1, lowerPrice2, higherPct, lowerPct, hideable } = scss
 
   const [priceStyle, setPriceStyle] = useState(initialPrice)
   const [coinPrice, setCoinPrice] = useState(null)
@@ -28,7 +28,7 @@ export default function CoinRow(props) {
   return (
     <Link href={`/coins/${coin.symbol.toLowerCase()}`} key={coin.rank} passHref>
       <TableRow >
-        <TableCell align="center">{coin.rank}</TableCell>
+        <TableCell align="center" className={hideable}>{coin.rank}</TableCell>
         <TableCell align="left">
           <div className={name}>
             <img src={coin.logo} width={40} height={40} alt={coin.name} />
@@ -42,9 +42,9 @@ export default function CoinRow(props) {
           </span>
         </TableCell>
         <TableCell align="center" className={coin.changepct > 0 ? higherPct : lowerPct}><span>{coin.changepct}%</span></TableCell>
-        <TableCell align="center">{coin.totalvolume}</TableCell>
-        <TableCell align="center">{coin.marketcap}</TableCell>
-        <TableCell align="center">
+        <TableCell align="center" className={hideable}>{coin.totalvolume}</TableCell>
+        <TableCell align="center" className={hideable}>{coin.marketcap}</TableCell>
+        <TableCell align="center" className={hideable}>
           <img src={coin.chart} width={150} height={35} alt={coin.name} />
         </TableCell>
       </TableRow>

@@ -10,19 +10,20 @@ import CoinRow from './CoinRow/CoinRow'
 export default function CoinTable(props) {
 
   const { coins } = props
+  const { hideable } = scss
 
   return (
     <TableContainer className={scss.table}>
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell align="center">#</TableCell>
+            <TableCell align="center" className={hideable}>#</TableCell>
             <TableCell align="left">CURRENCY</TableCell>
             <TableCell align="right">PRICE</TableCell>
             <TableCell align="center">LAST 24h</TableCell>
-            <TableCell align="center">TOTAL VOL</TableCell>
-            <TableCell align="center">MARKET CAP</TableCell>
-            <TableCell align="center">LAST 7 DAYS</TableCell>
+            <TableCell align="center" className={hideable}>TOTAL VOL</TableCell>
+            <TableCell align="center" className={hideable}>MARKET CAP</TableCell>
+            <TableCell align="center" className={hideable}>LAST 7 DAYS</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

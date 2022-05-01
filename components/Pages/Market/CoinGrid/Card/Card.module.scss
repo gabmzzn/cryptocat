@@ -53,6 +53,29 @@
   justify-content: space-between;
 }
 
+.higherPrice,
+.lowerPrice {
+  padding: 6px 7px;
+  border-radius: 10px;
+  color: black;
+  background-color: rgb(245, 245, 245);
+  transition: 2s all;
+}
+
+.higherPrice {
+  color: rgb(0, 97, 0);
+  background-color: rgb(198, 239, 206);
+  transition: all 0.5s;
+  // animation: higherPrice 2s forwards linear;
+}
+
+.lowerPrice {
+  color: rgb(156, 0, 6);
+  background-color: rgb(255, 199, 206);
+  transition: all 0.5s;
+  // animation: lowerPrice 2s forwards linear;
+}
+
 .higherPct,
 .lowerPct {
   padding-left: 0 !important;
@@ -68,69 +91,47 @@
   color: rgb(225, 0, 0);
 }
 
-.higherPrice,
-.lowerPrice {
-  padding: 6px 7px;
-  border-radius: 10px;
-  color: black;
-  background-color: rgb(240, 240, 240);
-  transition: 2s all;
-}
-
-.higherPrice {
-  animation: higherPrice 2s forwards linear;
-}
-
-.lowerPrice {
-  animation: lowerPrice 2s forwards linear;
-}
-
-.preloadStyle {
-  color: black !important;
-  background-color: rgb(240, 240, 240) !important;
-}
-
 @keyframes higherPrice {
   0% {
     color: black;
-    background-color: rgb(240, 240, 240);
+    background-color: rgb(245, 245, 245);
   }
 
   5% {
-    color: #006100;
-    background-color: #C6EFCE;
+    color: rgb(0, 97, 0);
+    background-color: rgb(198, 239, 206);
   }
 
   95% {
-    color: #006100;
-    background-color: #C6EFCE;
+    color: rgb(0, 97, 0);
+    background-color: rgb(198, 239, 206);
   }
 
   100% {
     color: black;
-    background-color: rgb(240, 240, 240);
+    background-color: rgb(245, 245, 245);
   }
 }
 
 @keyframes lowerPrice {
   0% {
     color: black;
-    background-color: rgb(240, 240, 240);
+    background-color: rgb(245, 245, 245);
   }
 
   5% {
-    color: #9C0006;
-    background-color: #FFC7CE;
+    color: rgb(156, 0, 6);
+    background-color: rgb(255, 199, 206);
   }
 
   95% {
-    color: #9C0006;
-    background-color: #FFC7CE;
+    color: rgb(156, 0, 6);
+    background-color: rgb(255, 199, 206);
   }
 
   100% {
     color: black;
-    background-color: rgb(240, 240, 240);
+    background-color: rgb(245, 245, 245);
   }
 }
 

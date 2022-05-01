@@ -1,8 +1,5 @@
 .content {
     display: flex;
     align-items: center;
-
-    svg {
-        image-rendering: -webkit-optimize-contrast;
-    }
+    justify-content: center;
 }

@@ -176,7 +176,7 @@
 }
 
 .hideable {
-  display: unset;
+  display: table-cell;
 }
 
 @media only screen and (max-width: 900px) {

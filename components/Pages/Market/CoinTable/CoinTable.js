@@ -11,7 +11,6 @@ export default function CoinTable(props) {
 
   const { coins } = props
 
-
   return (
     <TableContainer className={scss.table}>
       <Table>
@@ -27,7 +26,7 @@ export default function CoinTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {coins.map(coin => <CoinRow coin={coin} />)}
+          {coins.map(coin => <CoinRow key={coin.rank} coin={coin} />)}
         </TableBody>
       </Table>
     </TableContainer>

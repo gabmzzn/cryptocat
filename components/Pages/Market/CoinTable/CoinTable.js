@@ -19,7 +19,7 @@ export default function CoinTable(props) {
           <TableRow>
             <TableCell align="center" className={hideable}>#</TableCell>
             <TableCell align="left">CURRENCY</TableCell>
-            <TableCell align="right">PRICE</TableCell>
+            <TableCell align="center">PRICE</TableCell>
             <TableCell align="center">LAST 24h</TableCell>
             <TableCell align="center" className={hideable}>TOTAL VOL</TableCell>
             <TableCell align="center" className={hideable}>MARKET CAP</TableCell>

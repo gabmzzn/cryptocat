@@ -26,8 +26,11 @@
 .lowerPrice1,
 .lowerPrice2 {
   font-weight: bold;
-  padding: 8px 9px;
+  padding: 7px 8px;
   border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .initialPrice {
@@ -173,6 +176,10 @@
     ;
     background-color: rgb(240, 240, 240);
   }
+}
+
+.arrow {
+  font-size: 14px;
 }
 
 .hideable {

@@ -8,7 +8,7 @@ export default function CoinRow(props) {
 
   const { coin } = props
 
-  const { name, initialPrice, higherPrice1, higherPrice2, lowerPrice1, lowerPrice2, higherPct, lowerPct, hideable } = scss
+  const { name, initialPrice, higherPrice1, higherPrice2, lowerPrice1, lowerPrice2, higherPct, lowerPct, hideable, arrow, display } = scss
 
   const [priceStyle, setPriceStyle] = useState(initialPrice)
   const [coinPrice, setCoinPrice] = useState(null)
@@ -37,9 +37,10 @@ export default function CoinRow(props) {
         </TableCell>
         <TableCell align="right"
           id={coin.rank}>
-          <span className={priceStyle}>
-            {coin.updown}{coin.price}
-          </span>
+          <div className={priceStyle}>
+            <span className={arrow}>{coin.updown}</span>
+            <span>{coin.price}</span>
+          </div>
         </TableCell>
         <TableCell align="center" className={coin.changepct > 0 ? higherPct : lowerPct}><span>{coin.changepct}%</span></TableCell>
         <TableCell align="center" className={hideable}>{coin.totalvolume}</TableCell>

@@ -181,6 +181,6 @@
 
 @media only screen and (max-width: 900px) {
   .hideable {
-    display: none;
+    display: none !important;
   }
 }

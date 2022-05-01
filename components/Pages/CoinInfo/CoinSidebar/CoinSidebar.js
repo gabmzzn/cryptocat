@@ -11,14 +11,6 @@ export default function CoinSidebar(props) {
     assetWebsiteUrl, imageURL } = props.data
 
   return <>
-    {/* <div className={scss.container}>
-      <div>
-        <h2>{symbol} price</h2>
-      </div>
-      <div>
-        <h2>$ {price}</h2>
-      </div>
-    </div> */}
     <div className={scss.container}>
       <div>
         <h2>{symbol} Statistics and info</h2>

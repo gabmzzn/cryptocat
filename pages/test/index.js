@@ -1,59 +1,64 @@
-import Box from '@mui/material/Box'
-import Drawer from '@mui/material/Drawer'
-import Button from '@mui/material/Button'
-import List from '@mui/material/List'
-import Divider from '@mui/material/Divider'
-import ListItem from '@mui/material/ListItem'
-import ListItemIcon from '@mui/material/ListItemIcon'
-import ListItemText from '@mui/material/ListItemText'
-import InboxIcon from '@mui/icons-material/MoveToInbox'
 import { useState } from 'react'
-
-export default function TemporaryDrawer() {
-
-    const [state, setState] = useState(false)
-
-    const toggleDrawer = (open) => () => {
-        setState(open)
-    }
-
-    const list =
-        <Box
-            sx={{ width: 250 }}
-            role="presentation"
-            onClick={toggleDrawer(false)}
-            onKeyDown={toggleDrawer(false)}
-        >
-            <List>
-                <ListItem button key={'Wasd'}>
-                    <ListItemIcon>
-                        <InboxIcon />
-                    </ListItemIcon>
-                    <ListItemText primary={'Wasd'} />
-                </ListItem>
-            </List>
-            <Divider />
-            <List>
-                <ListItem button key={'Wasd'}>
-                    <ListItemIcon>
-                        <InboxIcon />
-                    </ListItemIcon>
-                    <ListItemText primary={'Wasd'} />
-                </ListItem>
-            </List>
-        </Box>
+import { Theme } from '@mui/material/styles'
+import Box from '@mui/material/Box'
+import Switch from '@mui/material/Switch'
+import Paper from '@mui/material/Paper'
+import Slide from '@mui/material/Slide'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import { TransitionGroup } from 'react-transition-group'
 
 
-    return (
-        <div>
-            <Button onClick={toggleDrawer(true)}>{'right'}</Button>
-            <Drawer
-                anchor={'right'}
-                open={state}
-                onClose={toggleDrawer(false)}
-            >
-                {list}
-            </Drawer>
-        </div>
-    )
+const icon = (
+  <Paper sx={{ m: 1 }} elevation={4}>
+    <Box component="svg" sx={{ width: 100, height: 100 }}>
+      <Box
+        component="polygon"
+        sx={{
+          fill: (theme) => theme.palette.common.white,
+          stroke: (theme) => theme.palette.divider,
+          strokeWidth: 1,
+        }}
+        points="0,100 50,00, 100,100"
+      />
+    </Box>
+  </Paper>
+)
+
+export default function SimpleGrow() {
+  const [checked, setChecked] = useState(false)
+
+  const handleChange = () => {
+    setChecked((prev) => !prev)
+  }
+
+  return (
+    <Box sx={{ height: 180 }}>
+      <FormControlLabel
+        control={<Switch checked={checked} onChange={handleChange} />}
+        label="Show"
+      />
+      <Box sx={{ display: 'flex' }}>
+        <TransitionGroup>
+          <Slide direction="up">{icon}</Slide>
+          {/* Conditionally applies the timeout prop to change the entry speed. */}
+          <Slide
+            direction="up"
+
+            // style={{ transformOrigin: '0 0 0' }}
+            {...{ timeout: 500 }}
+          >
+            {icon}
+          </Slide>
+          <Slide
+            direction="up"
+
+            // style={{ transformOrigin: '0 0 0' }}
+            {...{ timeout: 500 }}
+          >
+            {icon}
+          </Slide>
+        </TransitionGroup>
+      </Box>
+    </Box>
+  )
 }

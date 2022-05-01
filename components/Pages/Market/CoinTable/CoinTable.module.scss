@@ -69,12 +69,13 @@
 }
 
 .lowerPct {
-  color: rgb(225, 0, 0);
+  color: rgb(225, 0, 0) !important;
   transition: all 500ms;
 }
 
 .higherPct {
-  color: rgb(0, 135, 0);
+  color: rgb(0, 135, 0) !important;
+  ;
   transition: all 500ms;
 }
 

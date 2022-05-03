@@ -19,12 +19,12 @@ export default function ExchangesTable(props) {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell align="left">RANK</TableCell>
+            <TableCell align="left" className={scss.hideable}>RANK</TableCell>
             <TableCell align="left">EXCHANGE</TableCell>
             <TableCell align="center">TRUST SCORE</TableCell>
-            <TableCell align="right">TRADE 24H</TableCell>
-            <TableCell align="center">COUNTRY</TableCell>
-            <TableCell align="center">SINCE</TableCell>
+            <TableCell align="right" className={scss.hideable}>TRADE 24H</TableCell>
+            <TableCell align="center" className={scss.hideable}>COUNTRY</TableCell>
+            <TableCell align="center" className={scss.hideable}>SINCE</TableCell>
             <TableCell align="center">WEBSITE</TableCell>
           </TableRow>
         </TableHead>
@@ -35,7 +35,7 @@ export default function ExchangesTable(props) {
             const url = ex.url.substring(8).replace(/\/$/, '').split('/')[0]
             return (
               <TableRow key={ex.trust_score_rank}>
-                <TableCell align="center">{ex.trust_score_rank}</TableCell>
+                <TableCell align="center" className={scss.hideable}>{ex.trust_score_rank}</TableCell>
                 <TableCell align="left">
                   <div className={scss.name} style={{ whiteSpace: 'pre-line' }}>
                     <img src={ex.image} width={40} height={40} alt={ex.name} />
@@ -45,9 +45,9 @@ export default function ExchangesTable(props) {
                 <TableCell align="center">
                   <Rating precision={0.5} name="read-only" value={ex.trust_score / 2} readOnly />
                 </TableCell>
-                <TableCell align="right"><b>$ {volume} M</b></TableCell>
-                <TableCell align="center" style={{ whiteSpace: 'pre-line' }}>{ex.country}</TableCell>
-                <TableCell align="center">{year}</TableCell>
+                <TableCell align="right" className={scss.hideable}><b>$ {volume} M</b></TableCell>
+                <TableCell align="center" style={{ whiteSpace: 'pre-line' }} className={scss.ideable}>{ex.country}</TableCell>
+                <TableCell align="center" className={scss.hideable}>{year}</TableCell>
                 <TableCell align="right">
                   <a href={ex.url} target='_blank' rel="noreferrer">
                     <Button className={scss.button}>{url}</Button>

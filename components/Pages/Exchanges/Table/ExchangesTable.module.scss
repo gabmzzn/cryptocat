@@ -166,3 +166,15 @@
     background-color: rgba(0, 0, 0, 0.1) !important;
   }
 }
+
+@media only screen and (max-width: 900px) {
+  .hideable {
+    display: none !important;
+  }
+
+  .table {
+    td {
+      padding: 15px 5px !important;
+    }
+  }
+}

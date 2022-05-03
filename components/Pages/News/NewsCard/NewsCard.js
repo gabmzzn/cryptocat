@@ -13,7 +13,7 @@ export default function NewsCard(props) {
         <span>{news.description}</span>
       </div>}
       <div style={{ width: '100%', height: height }}>
-        <img src={news.imageurl} width={'100%'} height={'100%'} style={{ objectFit: 'cover' }} />
+        <img src={news.urlToImage} width={'100%'} height={'100%'} style={{ objectFit: 'cover' }} />
       </div>
     </div>
   )

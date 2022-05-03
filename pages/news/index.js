@@ -5,10 +5,14 @@ import News from '../../components/Pages/News/News'
 export default function NewsPage({ news }) {
 
     // const [newsFeed, setNewsFeed] = useState(false)
-    // const [isReady, setIsReady] = useState(false)
-    return <News news={news.articles} />
+    const [isReady, setIsReady] = useState(false)
+    useEffect(() => {
+        setTimeout(() => setIsReady(true), 1000)
+    }, [])
 
-    // return <LoadingScreen />
+    if (isReady) return <News news={news.articles} />
+
+    return <LoadingScreen />
 }
 
 export async function getStaticProps() {

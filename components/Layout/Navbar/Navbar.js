@@ -69,6 +69,7 @@ export default function NavBar() {
 					BackdropProps={{ invisible: true }}
 					PaperProps={{
 						sx: {
+							width: '300px',
 							backgroundColor: 'rgba(255, 255, 255, 0.6)',
 							backdropFilter: 'blur(20px)'
 						}

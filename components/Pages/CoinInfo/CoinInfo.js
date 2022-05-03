@@ -7,38 +7,38 @@ import CoinNewsCard from "./CoinNews/CoinNewsCard"
 
 export default function CoinDetails(props) {
 
-    const { coin, historicalData, news } = props
+  const { coin, historicalData, news } = props
 
-    // const coin = props.coin
-    // const historicalData = props.historicalData
-    // const news = props.news
+  // const coin = props.coin
+  // const historicalData = props.historicalData
+  // const news = props.news
 
-    return <div scss={{ margin: '0 30px' }}>
-        <CoinTitle
-            name={coin.name}
-            symbol={coin.symbol}
-            logo={coin.imageURL}
+  return <div scss={{ margin: '0 30px' }}>
+    <CoinTitle
+      name={coin.name}
+      symbol={coin.symbol}
+      logo={coin.imageURL}
+    />
+    <div className={scss.container}>
+      <div className={scss.leftContainer}>
+        <CoinChart
+          name={coin.name}
+          data={historicalData}
         />
-        <div className={scss.container}>
-            <div className={scss.leftContainer}>
-                <CoinChart
-                    name={coin.name}
-                    data={historicalData}
-                />
-                <CoinDescription
-                    name={coin.name}
-                    symbol={coin.symbol}
-                    description={coin.description}
-                />
-            </div>
-            <div className={scss.rightContainer}>
-                <CoinSidebar data={coin} />
-            </div>
-        </div>
-        {/* <div className={scss.newsFeed}>
+        <CoinDescription
+          name={coin.name}
+          symbol={coin.symbol}
+          description={coin.description}
+        />
+      </div>
+      <div className={scss.rightContainer}>
+        <CoinSidebar data={coin} />
+      </div>
+    </div>
+    {/* <div className={scss.newsFeed}>
             {news.slice(0, 10).map(n => {
                 return <CoinNewsCard key={n.id} news={n} />
             })}
         </div> */}
-    </div>
+  </div>
 }

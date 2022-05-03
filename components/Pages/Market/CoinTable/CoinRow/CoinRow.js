@@ -35,7 +35,7 @@ export default function CoinRow(props) {
             {coin.symbol}&nbsp;&nbsp;<span>{coin.name}</span>
           </div>
         </TableCell>
-        <TableCell align="right"
+        <TableCell align="right" width={150}
           id={coin.rank}>
           <div className={priceStyle}>
             <span className={arrow}>{coin.updown}</span>

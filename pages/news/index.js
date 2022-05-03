@@ -2,9 +2,8 @@ import LoadingScreen from '../../components/Layout/LoadingScreen/LoadingScreen'
 import { useState, useEffect } from 'react'
 import News from '../../components/Pages/News/News'
 
-export default function NewsPage({ news }) {
+export default function NewsIndex({ news }) {
 
-    // const [newsFeed, setNewsFeed] = useState(false)
     const [isReady, setIsReady] = useState(false)
     useEffect(() => {
         setTimeout(() => setIsReady(true), 1000)
@@ -23,5 +22,5 @@ export async function getStaticProps() {
     const URL = `https://newsapi.org/v2/everything?q=crypto&apiKey=${KEY2}`
     const news = await fetch(URL).then(res => res.json())
 
-    return { props: { news } }
+    return { props: { news }, revalidate: 3600 }
 }

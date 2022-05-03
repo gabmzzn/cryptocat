@@ -1,6 +1,5 @@
 import scss from './News.module.scss'
 import NewsCard from './NewsCard/NewsCard'
-import Masonry from '@mui/lab/Masonry'
 
 export default function News(props) {
 
@@ -8,7 +7,7 @@ export default function News(props) {
 
   return (<>
     <div style={{ display: 'flex' }}>
-      <div style={{ width: '70%' }}>
+      <div style={{ width: '70%' }} >
         <NewsCard news={news[0]} height={'400px'} fontSize={'45px'} description />
       </div>
       <div style={{ width: '30%', display: 'flex', flexDirection: 'column' }}>

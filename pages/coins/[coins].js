@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import LoadingScreen from "../../components/Layout/LoadingScreen/LoadingScreen"
 import { useEffect, useState } from "react"
 
-export default function CoinsPage() {
+export default function CoinsDetail() {
 
   const [isReady, setIsReady] = useState(0)
   const [historicalData, setHistoricalData] = useState(false)

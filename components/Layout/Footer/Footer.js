@@ -22,7 +22,7 @@ export default function Footer() {
                     <div>
                         Place holder info
                     </div>
-                    <div className={scss['contact']} style={{ display: 'flex', flexDirection: 'row' }}>
+                    {/* <div className={scss['contact']} style={{ display: 'flex', flexDirection: 'row' }}>
                         <div className={scss['contact-link']}>
                             <a href='https://github.com/gabmzzn/investraining' target='_blank'><img src='.\.\assets\imgs\github.png' /></a>
                         </div>
@@ -34,7 +34,7 @@ export default function Footer() {
                             <a href='mailto: gabmzzn@gmail.com' title='gabmzzn@gmail.com' target='_blank'><img
                                 src='.\.\assets\imgs\mail.png' /></a>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
 
             </div>

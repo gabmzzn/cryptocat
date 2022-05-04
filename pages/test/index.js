@@ -5,7 +5,6 @@ import Modal from '@mui/material/Modal'
 import Fade from '@mui/material/Fade'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
-import NewsDetail from '../news/[news]'
 
 const style = {
   position: 'absolute',
@@ -27,7 +26,6 @@ export default function TransitionsModal() {
   return (
     <>
       waddap
-      <NewsDetail />
     </>
 
   )

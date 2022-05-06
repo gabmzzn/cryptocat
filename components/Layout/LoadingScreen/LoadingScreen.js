@@ -3,9 +3,9 @@ import scss from './LoadingScreen.module.scss'
 
 export default function LoadingScreen() {
 
-    const { content, cuteCat, spinLoader, logo } = scss
+    const { screen, cuteCat, spinLoader, logo } = scss
 
-    return (<div className={content}>
+    return (<div className={screen}>
         <div className={cuteCat}>
             <div className={spinLoader}></div>
             <img className={logo} src='/catn.webp' height={275} width={275} alt='' />

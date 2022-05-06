@@ -14,7 +14,7 @@ import MenuRoundedIcon from '@mui/icons-material/MenuRounded'
 export default function NavBar() {
 
 	const [scroll, setScroll] = useState(false)
-	const { logo, navbar, navbarShadow, content, hamburgerButton, button, buttonActive, hamburguer, navbarItems, hamburgerItems } = scss
+	const { logoHome, navbar, navbarShadow, content, hamburgerButton, button, buttonActive, hamburguer, navbarItems, hamburgerItems } = scss
 
 	useEffect(() => {
 		window.addEventListener("scroll", () => {
@@ -48,7 +48,7 @@ export default function NavBar() {
 
 	const home = (
 		<Link href='/' passHref>
-			<div className={logo}>
+			<div className={logoHome}>
 				<span>CRYPTO</span>
 				<img src='/icon.webp' height={30} width={30} alt='' />
 				<span>CAT</span>

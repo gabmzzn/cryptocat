@@ -14,7 +14,7 @@ import MenuRoundedIcon from '@mui/icons-material/MenuRounded'
 export default function NavBar() {
 
 	const [scroll, setScroll] = useState(false)
-	const { logo, navbar, navbarShadow, content, hamburgerButton, button, buttonActive, hamburguer, navbarItems } = scss
+	const { logo, navbar, navbarShadow, content, hamburgerButton, button, buttonActive, hamburguer, navbarItems, hamburgerItems } = scss
 
 	useEffect(() => {
 		window.addEventListener("scroll", () => {
@@ -76,18 +76,20 @@ export default function NavBar() {
 					}}
 				>
 					<Box
-						sx={{ width: 240 }}
+						sx={{ width: '100%' }}
 						role="presentation"
 						onClick={toggleDrawer(false)}
 						onKeyDown={toggleDrawer(false)}
 					>
-						<List style={{ display: 'flex', flexDirection: 'column' }}>
-							<div style={{ margin: '10px 0' }}>
-								{home}
-							</div>
-							<Divider style={{ margin: '10px 0' }} />
-							{pages}
-						</List>
+						<div className={hamburgerItems}>
+							<List style={{ display: 'flex', flexDirection: 'column', fontSize: '29px' }}>
+								<div style={{ margin: '10px 0' }}>
+									{home}
+								</div>
+								<Divider style={{ margin: '10px 0' }} />
+								{pages}
+							</List>
+						</div>
 					</Box>
 				</Drawer>
 			</div>

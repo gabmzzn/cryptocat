@@ -60,6 +60,12 @@
 
 .navbarItems {
   display: unset;
+  font-size: 21px;
+}
+
+.hamburgerItems a {
+  font-size: 27px;
+  font-weight: bold;
 }
 
 .hamburguer {
@@ -84,7 +90,6 @@
 
 /* MUI V5 Override */
 .button {
-  font-size: 21px !important;
   font-weight: bold !important;
   border-radius: 15px !important;
   padding: 2px 12px !important;
@@ -99,7 +104,6 @@
 
 /* MUI V5 Override */
 .buttonActive {
-  font-size: 21px !important;
   border-radius: 15px !important;
   padding: 2px 12px !important;
   margin: 5px 7px !important;

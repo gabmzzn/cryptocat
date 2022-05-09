@@ -1,4 +1,4 @@
-import ExchangesTable from './Table/ExchangesTable'
+import ExchangesTable from './ExchangesTable/ExchangesTable'
 import scss from './Exchanges.module.scss'
 
 export default function Exchanges(props) {

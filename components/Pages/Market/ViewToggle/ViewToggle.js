@@ -14,15 +14,18 @@ export default function ViewToggle(props) {
         <Stack direction="row" spacing={4} className={content}>
             <ToggleButtonGroup
                 value={viewMode}
+                orientation="vertical"
                 exclusive
                 onChange={onViewChange}
                 size="medium"
                 aria-label="view-mode"
             >
                 <ToggleButton value="grid" aria-label="grid">
+                    <span style={{ lineHeight: '1' }}>Grid View&nbsp;</span>
                     <ViewModuleSharpIcon />
                 </ToggleButton>
                 <ToggleButton value="table" aria-label="table">
+                    <span style={{ lineHeight: '1' }}>List view&nbsp;</span>
                     <ViewListIcon />
                 </ToggleButton>
             </ToggleButtonGroup>

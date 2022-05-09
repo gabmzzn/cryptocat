@@ -113,7 +113,6 @@
 @keyframes higherPrice1 {
   0% {
     color: rgb(50, 50, 50);
-    ;
     background-color: rgb(245, 245, 245);
   }
 
@@ -129,7 +128,6 @@
 
   100% {
     color: rgb(50, 50, 50);
-    ;
     background-color: rgb(245, 245, 245);
   }
 }
@@ -153,7 +151,6 @@
 
   100% {
     color: rgb(50, 50, 50);
-    ;
     background-color: rgb(245, 245, 245);
   }
 }
@@ -161,7 +158,6 @@
 @keyframes lowerPrice1 {
   0% {
     color: rgb(50, 50, 50);
-    ;
     background-color: rgb(245, 245, 245);
   }
 
@@ -177,7 +173,6 @@
 
   100% {
     color: rgb(50, 50, 50);
-    ;
     background-color: rgb(245, 245, 245);
   }
 }
@@ -185,7 +180,6 @@
 @keyframes lowerPrice2 {
   0% {
     color: rgb(50, 50, 50);
-    ;
     background-color: rgb(245, 245, 245);
   }
 
@@ -201,7 +195,6 @@
 
   100% {
     color: rgb(50, 50, 50);
-    ;
     background-color: rgb(245, 245, 245);
   }
 }
@@ -219,7 +212,7 @@
 
 @media only screen and (max-width: 600px) {
   .card {
-    box-shadow: 0px 0px 2px rgb(0 0 0 / 20%);
+    box-shadow: 2px 5px 10px rgb(0 0 0 / 15%);
     border-radius: 25px;
     flex-basis: 45%;
     margin: 1.5vw 1.5vw;

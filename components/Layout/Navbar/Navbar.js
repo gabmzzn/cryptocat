@@ -70,8 +70,7 @@ export default function NavBar() {
 					PaperProps={{
 						sx: {
 							width: '300px',
-							backgroundColor: 'rgba(255, 255, 255, 0.6)',
-							backdropFilter: 'blur(20px)'
+							background: 'linear-gradient(white 0%, white 50%, rgb(252, 244, 197) 100%)'
 						}
 					}}
 				>

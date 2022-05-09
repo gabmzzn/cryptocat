@@ -15,8 +15,13 @@ export default function Market(props) {
     }
 
     return (<>
-        <h2>Market Live data</h2>
-        <ViewToggle viewMode={viewMode} onViewChange={handleViewMode} />
+        <div style={{
+            display: 'flex', justifyContent: 'space-between',
+            alignItems: 'baseline'
+        }}>
+            <h2>Market Live data</h2>
+            <ViewToggle viewMode={viewMode} onViewChange={handleViewMode} />
+        </div>
         {viewMode == 'grid' ? <CoinGrid coins={coins} /> : <CoinTable coins={coins} />}
     </>)
 

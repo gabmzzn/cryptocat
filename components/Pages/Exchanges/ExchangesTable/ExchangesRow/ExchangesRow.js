@@ -26,10 +26,10 @@ export default function ExchangesRow(props) {
       <TableCell align="center">
         <Rating precision={0.5} name="read-only" value={ex.trust_score / 2} readOnly />
       </TableCell>
-      <TableCell align="right" className={hideable}><b>$ {volume} M</b></TableCell>
+      <TableCell align="right" ><b>$ {volume} M</b></TableCell>
       <TableCell align="center" style={{ whiteSpace: 'pre-line' }} className={hideable}>{ex.country}</TableCell>
       <TableCell align="center" className={hideable}>{year}</TableCell>
-      <TableCell align="right">
+      <TableCell align="right" className={hideable}>
         <Button className={button}>{url}</Button>
       </TableCell>
     </TableRow>

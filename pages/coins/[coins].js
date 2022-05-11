@@ -14,6 +14,9 @@ export default function CoinsDetail() {
 
   const histoTime = 999
 
+  // Social data
+  // https://min-api.cryptocompare.com/data/social/coin/latest?coinId=7605
+
   useEffect(() => {
     if (router.isReady) {
       const selected = router.query.coins.toLocaleUpperCase()

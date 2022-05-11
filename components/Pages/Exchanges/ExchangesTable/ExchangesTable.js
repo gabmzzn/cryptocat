@@ -20,10 +20,10 @@ export default function ExchangesTable(props) {
             <TableCell align="left" className={scss.hideable}>RANK</TableCell>
             <TableCell align="left">EXCHANGE</TableCell>
             <TableCell align="center">TRUST SCORE</TableCell>
-            <TableCell align="right" className={scss.hideable}>TRADE 24H</TableCell>
+            <TableCell align="right">TRADE 24H</TableCell>
             <TableCell align="center" className={scss.hideable}>COUNTRY</TableCell>
             <TableCell align="center" className={scss.hideable}>SINCE</TableCell>
-            <TableCell align="center">WEBSITE</TableCell>
+            <TableCell align="center" className={scss.hideable}>WEBSITE</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

@@ -12,6 +12,9 @@ export default function MarketPage() {
       { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 5, })
   }
 
+  // All coins
+  // https://min-api.cryptocompare.com/data/all/coinlist?summary=true
+
   useEffect(() => {
     async function getData() {
       const date = (new Date()).toString()

@@ -33,7 +33,7 @@ export default function MarketPage() {
             name: coin.FullName,
             symbol: coin.Name,
             price: parsePrice(coinDIS.PRICE),
-            changepct: (Math.sign(coinRAW.CHANGEPCT24HOUR) == 1 ? '+' : '') + coinDIS.CHANGEPCT24HOUR,
+            changepct: (coinRAW.CHANGEPCT24HOUR > 0 ? '+' : '') + coinRAW.CHANGEPCT24HOUR.toFixed(2),
             updown: Math.random() > 0.5 ? '▲' : '▼',
             open24: coinRAW.OPEN24HOUR,
             totalvolume: coinDIS.TOTALTOPTIERVOLUME24HTO,
@@ -70,13 +70,19 @@ export default function MarketPage() {
       const previous = coins.map(coin => { return { price: coin.price } })
       function pushWebSocketData(data) {
         if ('PRICE' in data) {
-          const sym = coins.findIndex(coin => coin.symbol == data.FROMSYMBOL)
-          coins[sym].price = '$ ' + parsePrice(data.PRICE)
+          const { PRICE, OPEN24HOUR, FROMSYMBOL } = data
+          const sym = coins.findIndex(coin => coin.symbol == FROMSYMBOL)
+          if (OPEN24HOUR) coins[sym].open24 = OPEN24HOUR
+          coins[sym].price = '$ ' + parsePrice(PRICE)
           coins[sym].updown = coins[sym].price > previous[sym].price ? '▲' : '▼'
           previous[sym].price = coins[sym].price
 
-          const pct = (((data.PRICE - coins[sym].open24) / data.PRICE) * 100).toFixed(2)
-          coins[sym].changepct = (Math.sign(coins[sym].changepct) == 1 ? '+' : '') + pct
+          if (PRICE >= coins[sym].open24) {
+            coins[sym].changepct = '+' + ((((PRICE - coins[sym].open24) / coins[sym].open24) * 100).toFixed(2))
+          }
+          else {
+            coins[sym].changepct = '-' + (((coins[sym].open24 - PRICE) / coins[sym].open24) * 100).toFixed(2)
+          }
 
           setCoinData([...coins])
         }

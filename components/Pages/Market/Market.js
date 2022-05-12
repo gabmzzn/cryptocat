@@ -19,7 +19,7 @@ export default function Market(props) {
             display: 'flex', justifyContent: 'space-between',
             alignItems: 'baseline'
         }}>
-            <h2>Today's Cryptocurrency Prices by Volume 24h</h2>
+            <h2>Today&apos;s Cryptocurrency Prices by Volume 24h</h2>
             <ViewToggle viewMode={viewMode} onViewChange={handleViewMode} />
         </div>
         {viewMode == 'grid' ? <CoinGrid coins={coins} /> : <CoinTable coins={coins} />}

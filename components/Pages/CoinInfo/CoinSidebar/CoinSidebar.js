@@ -8,7 +8,7 @@ export default function CoinSidebar(props) {
   const { price, symbol, high24, low24, priceChange,
     sortOrder, rating, technologyAdoptionRating,
     marketPerformanceRating, platformType, algorithm,
-    assetWebsiteUrl, imageURL } = props.data
+    assetWebsiteUrl, totalCoinsMined, changePct } = props.data
 
   return <>
     <div className={scss.container}>
@@ -20,16 +20,20 @@ export default function CoinSidebar(props) {
           <tbody>
             <tr>
               <th>Price Change <span>24h</span></th>
-              <td>${priceChange}</td>
+              <td>{priceChange}</td>
+            </tr>
+            <tr>
+              <th>Percentile Change</th>
+              <td>{changePct}%</td>
             </tr>
             <tr>
               <th>High - Low <span>24h</span></th>
               <td>
                 <div>
-                  <span className="high">${high24}</span>
+                  <span className="high">{high24}</span>
                 </div>
                 <div>
-                  <span className="low">${low24}</span>
+                  <span className="low">{low24}</span>
                 </div>
               </td>
             </tr>
@@ -51,7 +55,7 @@ export default function CoinSidebar(props) {
             </tr>
             <tr>
               <th>Total coins mined</th>
-              <td>{'19017937'}</td>
+              <td>{totalCoinsMined}</td>
             </tr>
             <tr>
               <th>Platform Type</th>

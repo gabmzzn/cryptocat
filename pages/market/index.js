@@ -70,18 +70,18 @@ export default function MarketPage() {
       const previous = coins.map(coin => { return { price: coin.price } })
       function pushWebSocketData(data) {
         if ('PRICE' in data) {
-          const { PRICE, OPEN24HOUR, FROMSYMBOL } = data
+          const { PRICE, FROMSYMBOL } = data
           const sym = coins.findIndex(coin => coin.symbol == FROMSYMBOL)
-          if (OPEN24HOUR) coins[sym].open24 = OPEN24HOUR
+          const { open24 } = coins[sym]
           coins[sym].price = '$ ' + parsePrice(PRICE)
           coins[sym].updown = coins[sym].price > previous[sym].price ? '▲' : '▼'
           previous[sym].price = coins[sym].price
 
-          if (PRICE >= coins[sym].open24) {
-            coins[sym].changepct = '+' + ((((PRICE - coins[sym].open24) / coins[sym].open24) * 100).toFixed(2))
+          if (PRICE >= open24) {
+            coins[sym].changepct = '+' + ((((PRICE - open24) / open24) * 100).toFixed(2))
           }
           else {
-            coins[sym].changepct = '-' + (((coins[sym].open24 - PRICE) / coins[sym].open24) * 100).toFixed(2)
+            coins[sym].changepct = '-' + (((open24 - PRICE) / open24) * 100).toFixed(2)
           }
 
           setCoinData([...coins])

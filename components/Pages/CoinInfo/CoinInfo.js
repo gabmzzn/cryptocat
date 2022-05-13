@@ -18,6 +18,7 @@ export default function CoinDetails(props) {
       name={coin.name}
       symbol={coin.symbol}
       logo={coin.imageURL}
+      price={coin.price}
     />
     <div className={scss.container}>
       <div className={scss.leftContainer}>

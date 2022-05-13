@@ -5,8 +5,8 @@
   margin-bottom: 16px;
   margin-left: 30px;
   line-height: 1.4;
-  border: 1px solid rgba(112, 128, 144, 0.2);
-  box-shadow: 0 0 3px rgb(0 0 0 / 15%);
+  // border: 1px solid rgba(112, 128, 144, 0.2);
+  // box-shadow: 0 0 3px rgb(0 0 0 / 15%);
   background-color: rgb(253, 253, 253);
   border-radius: 12px;
 
@@ -21,8 +21,8 @@
 
   td,
   th {
-    border-bottom: 1px solid rgb(220, 220, 225);
-    padding: 10px;
+    border-bottom: 1px solid rgb(235, 235, 235);
+    padding: 11px;
   }
 
   td {
@@ -53,15 +53,25 @@
 }
 
 /* MUI V5 Override */
+// .button {
+//   font-weight: bold !important;
+//   border-radius: 15px !important;
+//   padding: 2px 12px !important;
+//   margin-left: 15px !important;
+//   text-transform: none !important;
+//   color: rgb(10, 10, 10) !important;
+
+//   &:hover {
+//     background-color: rgba(0, 0, 0, 0.05) !important;
+//   }
+// }
+
 .button {
-  font-weight: bold !important;
   border-radius: 15px !important;
   padding: 2px 12px !important;
-  margin-left: 15px !important;
+  margin: 5px 7px !important;
+  background-color: rgba(214, 182, 0, 0.15) !important;
   text-transform: none !important;
-  color: rgb(10, 10, 10) !important;
-
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.05) !important;
-  }
+  color: rgb(194, 165, 0) !important;
+  margin: 0 !important;
 }

@@ -36,3 +36,7 @@ img {
   -moz-user-drag: none;
   -o-user-drag: none;
 }
+
+.MuiLinearProgress-bar {
+  transition: 1800ms;
+}

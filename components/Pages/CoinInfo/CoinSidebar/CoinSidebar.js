@@ -5,10 +5,24 @@ import Button from '@mui/material/Button'
 
 export default function CoinSidebar(props) {
 
-  const { price, symbol, high24, low24, priceChange,
+  const { symbol, high24, low24,
     sortOrder, rating, technologyAdoptionRating,
     marketPerformanceRating, platformType, algorithm,
-    assetWebsiteUrl, totalCoinsMined, changePct } = props.data
+    assetWebsiteUrl, totalCoinsMined, open24 } = props.data
+
+  const price = Number(props.price.replace(/[^0-9.-]+/g, ""))
+  let changePct = props.data.changePct
+  const url = assetWebsiteUrl ? assetWebsiteUrl.substring(8).replace(/\/$/, '').split('/')[0] : ''
+
+  const priceChange = '$ ' + (Math.abs((open24 - price))).toFixed(2)
+
+
+  if (price >= open24) {
+    changePct = '+' + ((((price - open24) / open24) * 100).toFixed(2))
+  }
+  else {
+    changePct = '-' + (((open24 - price) / open24) * 100).toFixed(2)
+  }
 
   return <>
     <div className={scss.container}>
@@ -69,7 +83,7 @@ export default function CoinSidebar(props) {
               <th>Website:</th>
               <td>
                 <a href={assetWebsiteUrl} target='_blank' rel="noreferrer">
-                  <Button variant="outlined" className={scss.button}>Link</Button>
+                  <Button className={scss.button}>{url}</Button>
                 </a>
               </td>
             </tr>

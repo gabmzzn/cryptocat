@@ -27,9 +27,6 @@ export default function CoinSidebar(props) {
   return <>
     <div className={scss.container}>
       <div>
-        <h2>{symbol} Statistics and info</h2>
-      </div>
-      <div>
         <table>
           <tbody>
             <tr>

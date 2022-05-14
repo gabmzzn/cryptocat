@@ -51,10 +51,10 @@ export default function CoinTitle(props) {
                     displax: 'flex', margin: '12px 0', display: 'flex',
                     alignItems: 'center', justifyContent: 'space-between', width: '96%'
                 }}>
-                    <span style={{ paddingRight: '15px', fontSize: '32px', fontWeight: 'bold', whiteSpace: 'nowrap' }}>{price}</span>
+                    <span style={{ paddingRight: '15px', fontSize: '28px', fontWeight: 'bold', whiteSpace: 'nowrap' }}>{price}</span>
                     <img src={`https://images.cryptocompare.com/sparkchart/${symbol}/USD/latest.png?ts=${timeLastHour}`} width={'115px'} style={{ imageRendering: '-webkit-optimize-contrast' }} />
                 </div>
-                <Box sx={{ width: '300px' }}>
+                <Box sx={{ width: '295px' }}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <Box sx={{ width: '100%', mr: 1 }}>
                             <BorderLinearProgress variant="determinate" value={progress} />

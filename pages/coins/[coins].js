@@ -2,8 +2,24 @@ import CoinInfo from "../../components/Pages/CoinInfo/CoinInfo"
 import { useRouter } from 'next/router'
 import LoadingScreen from "../../components/Layout/LoadingScreen/LoadingScreen"
 import { useEffect, useState } from "react"
+import { CollectionsBookmarkSharp } from "@mui/icons-material"
 
-export default function CoinsDetail() {
+export default function CoinsDetail(props) {
+
+  useEffect(() => {
+    (async () => {
+      const news = await fetch(`https://min-api.cryptocompare.com/data/v2/news/?categories=${'BTC'}&excludeCategories=Sponsored`).then(r => r.json())
+
+      const fetcho = await fetch('/api/getLinkPreview', {
+        method: 'POST',
+        body: JSON.stringify(news),
+      }).then(r => r.json()).then(t => console.log(t))
+
+    })()
+
+  }, [])
+
+
 
   const [isReady, setIsReady] = useState(0)
   const [historicalData, setHistoricalData] = useState(false)
@@ -13,9 +29,6 @@ export default function CoinsDetail() {
   const router = useRouter()
 
   const histoTime = 999
-
-  // Social data
-  // https://min-api.cryptocompare.com/data/social/coin/latest?coinId=7605
 
   useEffect(() => {
     if (router.isReady) {
@@ -81,3 +94,9 @@ export default function CoinsDetail() {
 
   return <LoadingScreen />
 }
+
+// export async function getServerSideProps() {
+
+
+//   return { props: { data } }
+// }

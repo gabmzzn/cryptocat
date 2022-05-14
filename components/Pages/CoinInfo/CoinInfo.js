@@ -38,7 +38,6 @@ export default function CoinDetails(props) {
 
       const previous = { price: coin.price }
       function pushWebSocketData(data) {
-        console.log(data)
         if ('PRICE' in data) {
           const { PRICE, FROMSYMBOL } = data
           const { open24 } = coins
@@ -67,10 +66,6 @@ export default function CoinDetails(props) {
   }, [])
 
 
-  // const coin = props.coin
-  // const historicalData = props.historicalData
-  // const news = props.news
-  console.log(coin.name)
   return <div scss={{ margin: '0 30px' }}>
     <CoinTitle
       name={coin.name}
@@ -96,10 +91,10 @@ export default function CoinDetails(props) {
         <CoinSidebar data={coin} price={price} />
       </div>
     </div>
-    {/* <div className={scss.newsFeed}>
-            {news.slice(0, 10).map(n => {
-                return <CoinNewsCard key={n.id} news={n} />
-            })}
-        </div> */}
+    <div className={scss.newsFeed}>
+      {news.slice(0, 10).map(n => {
+        return <CoinNewsCard key={n.id} news={n} />
+      })}
+    </div>
   </div>
 }

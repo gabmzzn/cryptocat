@@ -1,11 +1,11 @@
 .background {
-    background: linear-gradient(-45deg, white, rgb(255, 219, 16),
+    background: linear-gradient(-45deg, white, rgb(252, 227, 84),
             white,
-            rgb(255, 219, 16),
+            rgb(252, 227, 84),
             white,
-            rgb(255, 219, 16));
+            rgb(252, 227, 84));
     background-size: 300% 300%;
-    animation: gradient 15s ease infinite;
+    animation: gradient 5s ease infinite;
     height: 100%;
     position: absolute;
     z-index: -100;

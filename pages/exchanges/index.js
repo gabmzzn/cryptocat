@@ -13,6 +13,7 @@ export default function ExchangesPage() {
             const fetchedData = await fetch(URL).then(r => r.json())
             setExchangeData(fetchedData)
             setIsReady(true)
+            console.log(fetchedData)
         }
         getData()
     }, [])

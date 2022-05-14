@@ -7,13 +7,12 @@
     /* animation: siia 2s ease; */
     img {
         margin: 0 -25px;
-        width: max(8vw, 3em);
-        height: max(8vw, 3em);
+        width: max(110px, 11vw);
         image-rendering: -webkit-optimize-contrast !important;
     }
 
     h1 {
-        font-size: max(2vw, 7em);
+        font-size: max(65px, 6.5vw);
         display: flex;
         align-items: center;
     }

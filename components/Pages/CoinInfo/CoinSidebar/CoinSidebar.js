@@ -66,7 +66,7 @@ export default function CoinSidebar(props) {
             </tr>
             <tr>
               <th>Total coins mined</th>
-              <td>{totalCoinsMined}</td>
+              <td>{parseInt(totalCoinsMined).toLocaleString('en-GB')}</td>
             </tr>
             <tr>
               <th>Platform Type</th>

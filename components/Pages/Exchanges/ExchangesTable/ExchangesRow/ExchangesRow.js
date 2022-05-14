@@ -15,7 +15,7 @@ export default function ExchangesRow(props) {
   const { hideable, button, name } = scss
 
   return (
-    <TableRow key={ex.trust_score_rank} onClick={() => window.open(ex.url, "_blank", "norreferer")}>
+    <TableRow key={ex.trust_score_rank} onClick={() => window.open(ex.url, "norreferer")}>
       <TableCell align="center" className={hideable}>{ex.trust_score_rank}</TableCell>
       <TableCell align="left">
         <div className={name} style={{ whiteSpace: 'pre-line' }}>

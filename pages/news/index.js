@@ -20,6 +20,10 @@ export default function NewsIndex() {
 
             const thumbnails = await fetch('/api/news/thumbs', {
                 method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
                 body: JSON.stringify(news),
             }).then(r => r.json())
 

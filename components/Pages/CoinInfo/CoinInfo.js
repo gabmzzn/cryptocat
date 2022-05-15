@@ -5,6 +5,9 @@ import CoinSidebar from "./CoinSidebar/CoinSidebar"
 import CoinTitle from "./CoinTitle/CoinTitle"
 import CoinNewsCard from "./CoinNews/CoinNewsCard"
 import { useState, useEffect } from 'react'
+import CircularProgress from '@mui/material/CircularProgress'
+import Box from '@mui/material/Box'
+import { LinearProgress } from '@mui/material'
 
 export default function CoinDetails(props) {
 
@@ -92,7 +95,6 @@ export default function CoinDetails(props) {
       </div>
     </div>
     <div className={scss.newsFeed}>
-      {!news && <h1>Loading News Bitch!</h1>}
       {news && news.map(n => {
         return <CoinNewsCard key={n.id} news={n} />
       })}

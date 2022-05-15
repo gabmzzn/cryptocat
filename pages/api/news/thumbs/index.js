@@ -6,7 +6,7 @@ export default async function (req, res) {
     const body = JSON.parse(req.body)
     const data = await Promise.all( //Great feature!!
       body.map(async n =>
-        JSON.parse(JSON.stringify(await getLinkPreview(n.url))).images[0]
+        await getLinkPreview(n.url).then(n => n.images[0])
       )
     )
     res.status(200).json(data)

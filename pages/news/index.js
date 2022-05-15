@@ -11,7 +11,7 @@ export default function NewsIndex() {
         (async () => {
             const URL = 'https://min-api.cryptocompare.com/data/v2/news/?lang=EN&excludeCategories=Sponsored'
             const json = await fetch(URL).then(r => r.json())
-            console.log(json)
+
             const news = json.Data
                 .filter(n =>
                     n.source !== "cointelegraph" &&

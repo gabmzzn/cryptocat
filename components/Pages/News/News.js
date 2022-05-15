@@ -36,11 +36,11 @@ export default function News(props) {
       <NewsCard news={news[14]} fontSize={'20px'} height={'200px'} width={'33%'} />
     </div>
     <div style={{ display: 'flex' }} className={scss.thirdRow}>
+      <NewsCard news={news[15]} fontSize={'20px'} height={'260px'} width={'50%'} />
       <NewsCard news={news[16]} fontSize={'20px'} height={'260px'} width={'50%'} />
-      <NewsCard news={news[17]} fontSize={'20px'} height={'260px'} width={'50%'} />
     </div>
     <div style={{ display: 'flex' }} className={scss.secondRow}>
-      <NewsCard news={news[5]} fontSize={'25px'} height={'200px'} width={'33%'} />
+      <NewsCard news={news[17]} fontSize={'25px'} height={'200px'} width={'33%'} />
       <NewsCard news={news[18]} fontSize={'25px'} height={'200px'} width={'33%'} />
       <NewsCard news={news[19]} fontSize={'25px'} height={'200px'} width={'33%'} />
     </div>

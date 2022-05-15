@@ -6,20 +6,6 @@ import { CollectionsBookmarkSharp } from "@mui/icons-material"
 
 export default function CoinsDetail(props) {
 
-  useEffect(() => {
-    (async () => {
-      const news = await fetch(`https://min-api.cryptocompare.com/data/v2/news/?categories=${'BTC'}&excludeCategories=Sponsored`).then(r => r.json())
-
-      const fetcho = await fetch('/api/getLinkPreview', {
-        method: 'POST',
-        body: JSON.stringify(news),
-      }).then(r => r.json()).then(t => console.log(t))
-
-    })()
-
-  }, [])
-
-
 
   const [isReady, setIsReady] = useState(0)
   const [historicalData, setHistoricalData] = useState(false)
@@ -74,9 +60,20 @@ export default function CoinsDetail(props) {
       }
 
       async function getNewsFeed() {
-        const URL = `https://min-api.cryptocompare.com/data/v2/news/?lang=EN`
-        const news = await fetch(URL).then(res => res.json())
-        setNewsFeed(news.Data)
+        const json = await fetch(`https://min-api.cryptocompare.com/data/v2/news/?categories=${COIN}`).then(r => r.json())
+
+        const news = json.Data.slice(0, 12)
+
+
+        const thumbnails = await fetch('/api/news/thumbs', {
+          method: 'POST',
+          body: JSON.stringify(news),
+        }).then(r => r.json())
+
+        const newsWithThumbnails = news.map((n, i) =>
+          Object.assign(n, { image: thumbnails[i] })
+        )
+        setNewsFeed(newsWithThumbnails)
         setIsReady(load => load + 1)
       }
 
@@ -94,9 +91,3 @@ export default function CoinsDetail(props) {
 
   return <LoadingScreen />
 }
-
-// export async function getServerSideProps() {
-
-
-//   return { props: { data } }
-// }

@@ -92,7 +92,7 @@ export default function CoinDetails(props) {
       </div>
     </div>
     <div className={scss.newsFeed}>
-      {news.slice(0, 10).map(n => {
+      {news.map(n => {
         return <CoinNewsCard key={n.id} news={n} />
       })}
     </div>

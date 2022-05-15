@@ -60,9 +60,8 @@ export default function CoinsDetail(props) {
       }
 
       async function getNewsFeed() {
-        const news = await fetch('/api/news/').then(r => r.json())
+        const news = await fetch(`/api/news/${COIN}=6`).then(r => r.json())
         setNews(news)
-        setIsReady(true)
         setIsReady(load => load + 1)
       }
 

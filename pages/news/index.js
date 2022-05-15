@@ -9,7 +9,7 @@ export default function NewsIndex() {
 
     useEffect(() => {
         (async () => {
-            const news = await fetch('/api/news/').then(r => r.json())
+            const news = await fetch('api/news/ALL_NEWS_CATEGORIES=20').then(r => r.json())
             setNews(news)
             setIsReady(true)
         })()

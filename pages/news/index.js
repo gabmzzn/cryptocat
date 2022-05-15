@@ -9,28 +9,8 @@ export default function NewsIndex() {
 
     useEffect(() => {
         (async () => {
-            const URL = 'https://min-api.cryptocompare.com/data/v2/news/?lang=EN&excludeCategories=Sponsored'
-            const json = await fetch(URL).then(r => r.json())
-
-            const news = json.Data
-                .filter(n =>
-                    n.source !== "cointelegraph" &&
-                    n.source !== "dailyhodl")
-                .slice(0, 20)
-
-            const thumbnails = await fetch('/api/news/thumbs', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify(news),
-            }).then(r => r.json())
-
-            const newsWithThumbnails = news.map((n, i) =>
-                Object.assign(n, { image: thumbnails[i] })
-            )
-            setNews(newsWithThumbnails)
+            const news = await fetch('/api/news/').then(r => r.json())
+            setNews(news)
             setIsReady(true)
         })()
     }, [])

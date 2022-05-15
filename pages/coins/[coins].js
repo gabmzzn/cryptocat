@@ -10,7 +10,7 @@ export default function CoinsDetail(props) {
   const [isReady, setIsReady] = useState(0)
   const [historicalData, setHistoricalData] = useState(false)
   const [coinInfo, setCoinInfo] = useState(false)
-  const [newsFeed, setNewsFeed] = useState(false)
+  const [news, setNews] = useState(false)
 
   const router = useRouter()
 
@@ -60,20 +60,9 @@ export default function CoinsDetail(props) {
       }
 
       async function getNewsFeed() {
-        const json = await fetch(`https://min-api.cryptocompare.com/data/v2/news/?categories=${COIN}`).then(r => r.json())
-
-        const news = json.Data.slice(0, 12)
-
-
-        const thumbnails = await fetch('/api/news/thumbs', {
-          method: 'POST',
-          body: JSON.stringify(news),
-        }).then(r => r.json())
-
-        const newsWithThumbnails = news.map((n, i) =>
-          Object.assign(n, { image: thumbnails[i] })
-        )
-        setNewsFeed(newsWithThumbnails)
+        const news = await fetch('/api/news/').then(r => r.json())
+        setNews(news)
+        setIsReady(true)
         setIsReady(load => load + 1)
       }
 
@@ -86,7 +75,7 @@ export default function CoinsDetail(props) {
     <CoinInfo
       historicalData={historicalData}
       coin={coinInfo}
-      news={newsFeed}
+      news={news}
     />)
 
   return <LoadingScreen />

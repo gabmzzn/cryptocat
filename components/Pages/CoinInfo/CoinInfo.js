@@ -92,7 +92,8 @@ export default function CoinDetails(props) {
       </div>
     </div>
     <div className={scss.newsFeed}>
-      {news.map(n => {
+      {!news && <h1>Loading News Bitch!</h1>}
+      {news && news.map(n => {
         return <CoinNewsCard key={n.id} news={n} />
       })}
     </div>

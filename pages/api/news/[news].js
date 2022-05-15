@@ -14,7 +14,9 @@ export default async function (req, res) {
 
   const parsedNews = await Promise.all(
     news.map(async n => {
-      const img = await getLinkPreview(n.url).then(n => n.images[0])
+      const img = await getLinkPreview(n.url, {
+        timeout: 6000
+      }).then(n => n.images[0], e => n.imageurl)
       return Object.assign(n, { image: img })
     })
   )

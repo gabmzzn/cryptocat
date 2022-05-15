@@ -18,10 +18,9 @@ export default function Footer() {
                     </div>
                 </div>
                 <div className={scss['description']}>
-                    <h1 style={{ fontSize: '28px', fontStyle: 'italic', fontWeight: '700' }}>Crypto Cat</h1>
-                    <div>
-                        Place holder info
-                    </div>
+                    {/* <div>
+                        <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="juan-gabriel-mazzoleni" data-version="v1"></div>
+                    </div> */}
                     {/* <div className={scss['contact']} style={{ display: 'flex', flexDirection: 'row' }}>
                         <div className={scss['contact-link']}>
                             <a href='https://github.com/gabmzzn/investraining' target='_blank'><img src='.\.\assets\imgs\github.png' /></a>
@@ -38,5 +37,6 @@ export default function Footer() {
                 </div>
 
             </div>
+            {/* <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script> */}
         </div>)
 }

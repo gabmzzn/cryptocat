@@ -1,41 +1,42 @@
 .table {
-  white-space: nowrap;
+	white-space: nowrap;
+	width: 89%;
 
-  th {
-    font-weight: bold;
-  }
+	th {
+		font-weight: bold;
+	}
 
-  td {
-    font-size: 1.05rem;
-    font-weight: 500;
-    padding: 15px;
-  }
+	td {
+		font-size: 1.05rem;
+		font-weight: 500;
+		padding: 15px;
+	}
 
-  tr {
-    &:hover {
-      background-color: rgb(245, 245, 249);
-      cursor: pointer;
-    }
+	tr {
+		&:hover {
+			background-color: rgb(245, 245, 249);
+			cursor: pointer;
+		}
 
-    &:active {
-      background-color: rgb(235, 235, 239);
-    }
-  }
+		&:active {
+			background-color: rgb(235, 235, 239);
+		}
+	}
 }
 
 .hideable {
-  display: table-cell;
-  ;
+	display: table-cell;
+	;
 }
 
 @media only screen and (max-width: 900px) {
-  .hideable {
-    display: none !important;
-  }
+	.hideable {
+		display: none !important;
+	}
 
-  .table {
-    td {
-      padding: 15px 5px !important;
-    }
-  }
+	.table {
+		td {
+			padding: 15px 5px !important;
+		}
+	}
 }

@@ -7,17 +7,12 @@ export default function MarketPage() {
 	const [isReady, setIsReady] = useState(false)
 	const [coinData, setCoinData] = useState([])
 
-	function parsePrice(n) {
-		return n.toLocaleString('en-GB',
-			{ style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 5, })
-	}
-
 	useEffect(() => {
 		async function getData() {
 			const date = (new Date()).toString()
 			const timeLastHour = Date.parse((date.substr(0, 18) + ':00:00' + date.substr(24))) / 1000
 
-			const URL = 'https://min-api.cryptocompare.com/data/top/totalvolfull?limit=32&tsym=USD'
+			const URL = 'https://min-api.cryptocompare.com/data/top/totalvolfull?limit=100&tsym=USD'
 			const fetchedData = await fetch(URL).then(r => r.json())
 			const data = fetchedData.Data.reduce((result, crypto, index) => {
 				if ('RAW' in crypto) {
@@ -29,8 +24,9 @@ export default function MarketPage() {
 						logo: `https://www.cryptocompare.com${coin.ImageUrl}`,
 						name: coin.FullName,
 						symbol: coin.Name,
-						price: parsePrice(coinDIS.PRICE),
+						price: coinRAW.PRICE,
 						changepct: (coinRAW.CHANGEPCT24HOUR > 0 ? '+' : '') + coinRAW.CHANGEPCT24HOUR.toFixed(2),
+						changepcthour: (coinRAW.CHANGEPCTHOUR > 0 ? '+' : '') + coinRAW.CHANGEPCTHOUR.toFixed(2),
 						updown: Math.random() > 0.5 ? '▲' : '▼',
 						open24: coinRAW.OPEN24HOUR,
 						totalvolume: coinDIS.TOTALTOPTIERVOLUME24HTO,
@@ -70,7 +66,7 @@ export default function MarketPage() {
 					const { PRICE, FROMSYMBOL } = data
 					const sym = coins.findIndex(coin => coin.symbol == FROMSYMBOL)
 					const { open24 } = coins[sym]
-					coins[sym].price = '$ ' + parsePrice(PRICE)
+					coins[sym].price = PRICE
 					coins[sym].updown = coins[sym].price > previous[sym].price ? '▲' : '▼'
 					previous[sym].price = coins[sym].price
 

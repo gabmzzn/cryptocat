@@ -1,0 +1,56 @@
+.coin {
+	height: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 5px;
+	border-radius: 12px;
+
+	&:hover {
+		background-color: rgb(240 240 240) !important;
+	}
+
+	&:active {
+		background-color: rgb(220 220 220) !important;
+	}
+
+	transition: 0.2s background-color;
+}
+
+.fullname {
+	display: flex;
+	align-items: center;
+
+	span {
+		font-size: 12px;
+		font-weight: bold;
+		padding: 3px 6px;
+		background-color: rgb(235, 235, 235);
+		border-radius: 4px;
+		white-space: pre-line;
+	}
+
+	img {
+		width: 30px;
+		height: 30px;
+		margin-right: 8px;
+		border-radius: 50%;
+		background-color: rgb(240, 240, 240);
+	}
+}
+
+.higherPct,
+.lowerPct {
+	font-weight: bold !important;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+	transition: all 2s;
+}
+
+.higherPct {
+	color: rgb(0, 135, 0) !important;
+}
+
+.lowerPct {
+	color: rgb(225, 0, 0) !important;
+}

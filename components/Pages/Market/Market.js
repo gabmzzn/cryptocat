@@ -16,15 +16,13 @@ export default function Market(props) {
 	}
 
 	return (<>
-		<div className={scss.rankers}>
-			<MarketRank />
-			<MarketRank />
-			<MarketRank />
-		</div>
+		<MarketRank coins={coins} />
 		<div className={scss.sub}>
-			<h3>Today&apos;s cryptocurrency prices by volume 24h</h3>
+			<h3>Today&apos;s coins prices by Trade Volume 24h across all markets </h3>
 			<ViewToggle viewMode={viewMode} onViewChange={handleViewMode} />
 		</div>
-		{viewMode == 'grid' ? <MarketGrid coins={coins} /> : <MarketTable coins={coins} />}
+		<div style={{ display: 'flex', justifyContent: 'center' }}>
+			{viewMode == 'grid' ? <MarketGrid coins={coins} /> : <MarketTable coins={coins} />}
+		</div>
 	</>)
 }

@@ -18,7 +18,7 @@ export default function MarketTable(props) {
 				<TableHead>
 					<TableRow>
 						<TableCell align="center" className={hideable}>#</TableCell>
-						<TableCell align="left">CURRENCY</TableCell>
+						<TableCell align="center">CURRENCY</TableCell>
 						<TableCell align="center" width={150}>PRICE</TableCell>
 						<TableCell align="center">LAST 24h</TableCell>
 						<TableCell align="center" className={hideable}>TOTAL VOL</TableCell>

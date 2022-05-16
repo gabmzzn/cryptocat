@@ -1,7 +1,7 @@
 import { getLinkPreview } from "link-preview-js"
 
 export default async function (req, res) {
-  const [categories, amount] = req.query.news.split('=')
+  const [categories, skip, amount] = req.query.news.split('=')
 
   const URL = `https://min-api.cryptocompare.com/data/v2/news/?lang=EN&excludeCategories=Sponsored&categories=${categories}`
   const json = await fetch(URL).then(r => r.json())
@@ -10,7 +10,7 @@ export default async function (req, res) {
     .filter(n =>
       n.source !== "cointelegraph" &&
       n.source !== "dailyhodl")
-    .slice(0, amount)
+    .slice(skip, amount)
 
   const parsedNews = await Promise.all(
     news.map(async n => {

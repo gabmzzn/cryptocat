@@ -11,6 +11,7 @@ export default function CoinsDetail(props) {
   const [historicalData, setHistoricalData] = useState(false)
   const [coinInfo, setCoinInfo] = useState(false)
   const [news, setNews] = useState(false)
+  const [topNews, setTopNews] = useState(false)
 
   const router = useRouter()
 
@@ -60,7 +61,10 @@ export default function CoinsDetail(props) {
       }
 
       async function getNewsFeed() {
-        const news = await fetch(`/api/news/${COIN}=9`).then(r => r.json())
+        const topNews = await fetch(`/api/news/${COIN}=0=3`).then(r => r.json())
+        setTopNews(topNews)
+        setIsReady(load => load + 1)
+        const news = await fetch(`/api/news/${COIN}=3=9`).then(r => r.json())
         setNews(news)
       }
 
@@ -69,10 +73,11 @@ export default function CoinsDetail(props) {
     }
   }, [router])
 
-  if (isReady == 2) return (
+  if (isReady == 3) return (
     <CoinInfo
       historicalData={historicalData}
       coin={coinInfo}
+      topNews={topNews}
       news={news}
     />)
 

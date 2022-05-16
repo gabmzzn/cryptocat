@@ -12,8 +12,8 @@ export default function CoinNewsCard(props) {
                 <h1>{title}</h1>
             </div>
             <div className={scss.body}>
-                <div style={{ width: '100%', height: '160px' }}>
-                    <img src={image} width={'100%'} height={'100%'} style={{ objectFit: 'cover' }} />
+                <div style={{ width: '100%', height: '180px' }}>
+                    <img src={image} width={'100%'} height={'100%'} style={{ objectFit: 'cover', borderRadius: '8px' }} />
                 </div>
             </div>
         </div>

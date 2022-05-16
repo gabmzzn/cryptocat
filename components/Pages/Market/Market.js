@@ -1,28 +1,30 @@
 import scss from './Market.module.scss'
 import { useState } from 'react'
 import ViewToggle from './ViewToggle/ViewToggle'
-import CoinTable from './CoinTable/CoinTable'
-import CoinGrid from './CoinGrid/CoinGrid'
+import MarketTable from './MarketTable/MarketTable'
+import MarketGrid from './MarketGrid/MarketGrid'
+import MarketRank from './MarketRank/MarketRank'
 
 export default function Market(props) {
 
-    const { coins } = props
+	const { coins } = props
 
-    const [viewMode, setViewMode] = useState('grid')
+	const [viewMode, setViewMode] = useState('grid')
 
-    const handleViewMode = (event, mode) => {
-        if (mode !== null) setViewMode(mode)
-    }
+	const handleViewMode = (event, mode) => {
+		if (mode !== null) setViewMode(mode)
+	}
 
-    return (<>
-        <div style={{
-            display: 'flex', justifyContent: 'space-between',
-            alignItems: 'baseline'
-        }}>
-            <h2>Today&apos;s Cryptocurrency Prices by Volume 24h</h2>
-            <ViewToggle viewMode={viewMode} onViewChange={handleViewMode} />
-        </div>
-        {viewMode == 'grid' ? <CoinGrid coins={coins} /> : <CoinTable coins={coins} />}
-    </>)
-
+	return (<>
+		<div className={scss.rankers}>
+			<MarketRank />
+			<MarketRank />
+			<MarketRank />
+		</div>
+		<div className={scss.sub}>
+			<h3>Today&apos;s cryptocurrency prices by volume 24h</h3>
+			<ViewToggle viewMode={viewMode} onViewChange={handleViewMode} />
+		</div>
+		{viewMode == 'grid' ? <MarketGrid coins={coins} /> : <MarketTable coins={coins} />}
+	</>)
 }

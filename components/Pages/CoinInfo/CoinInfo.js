@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react'
 
 export default function CoinDetails(props) {
 
-  const { coin, historicalData, news } = props
+  const { coin, historicalData, topNews, news } = props
 
   const [price, setPrice] = useState(coin.price)
 
@@ -92,7 +92,7 @@ export default function CoinDetails(props) {
       </div>
     </div>
     <div className={scss.newsFeed}>
-      <CoinNews news={news} />
+      <CoinNews topNews={topNews} news={news} />
     </div>
   </div>
 }

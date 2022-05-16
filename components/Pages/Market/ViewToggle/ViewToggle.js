@@ -7,28 +7,27 @@ import scss from './ViewToggle.module.scss'
 
 export default function ViewToggle(props) {
 
-    const { viewMode, onViewChange } = props
-    const { content } = scss
+	const { viewMode, onViewChange } = props
+	const { content } = scss
 
-    return (
-        <Stack direction="row" spacing={4} className={content}>
-            <ToggleButtonGroup
-                value={viewMode}
-                orientation="vertical"
-                exclusive
-                onChange={onViewChange}
-                size="medium"
-                aria-label="view-mode"
-            >
-                <ToggleButton value="grid" aria-label="grid">
-                    <span style={{ lineHeight: '1' }}>Grid View&nbsp;</span>
-                    <ViewModuleSharpIcon />
-                </ToggleButton>
-                <ToggleButton value="table" aria-label="table">
-                    <span style={{ lineHeight: '1' }}>List view&nbsp;</span>
-                    <ViewListIcon />
-                </ToggleButton>
-            </ToggleButtonGroup>
-        </Stack>
-    )
+	return (
+		<Stack direction="row" spacing={4} className={content}>
+			<ToggleButtonGroup
+				value={viewMode}
+				exclusive
+				onChange={onViewChange}
+				size="small"
+				aria-label="view-mode"
+			>
+				<ToggleButton value="grid" aria-label="grid">
+					<span style={{ padding: '0 3px' }}>Grid View&nbsp;</span>
+					<ViewModuleSharpIcon />
+				</ToggleButton>
+				<ToggleButton value="table" aria-label="table">
+					<span style={{ padding: '0 3px' }}>List view&nbsp;</span>
+					<ViewListIcon />
+				</ToggleButton>
+			</ToggleButtonGroup>
+		</Stack>
+	)
 }

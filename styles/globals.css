@@ -40,16 +40,16 @@ img {
 /* Global MUI Overrides */
 
 .MuiLinearProgress-bar {
-	transition: 1800ms;
+	transition: 1800ms !important;
 }
 
 .MuiToggleButtonGroup-grouped {
-	margin: 0 8px;
-	border: 0;
+	margin: 0 8px !important;
+	border: 0 !important;
 }
 
 .MuiToggleButtonGroup-root .Mui-disabled {
-	border: 0,
+	border: 0 !important;
 }
 
 .MuiToggleButton-root {

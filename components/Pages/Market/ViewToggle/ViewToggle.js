@@ -1,5 +1,6 @@
-import ViewListIcon from '@mui/icons-material/ViewList'
-import ViewModuleSharpIcon from '@mui/icons-material/ViewModuleSharp'
+import TableRowsSharpIcon from '@mui/icons-material/TableRowsSharp'
+import GridViewSharpIcon from '@mui/icons-material/GridViewSharp'
+import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined'
 import Stack from '@mui/material/Stack'
 import ToggleButton from '@mui/material/ToggleButton'
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
@@ -11,7 +12,7 @@ export default function ViewToggle(props) {
 	const { content } = scss
 
 	return (
-		<Stack direction="row" spacing={4} className={content}>
+		<Stack direction="row" className={content}>
 			<ToggleButtonGroup
 				value={viewMode}
 				exclusive
@@ -19,13 +20,17 @@ export default function ViewToggle(props) {
 				size="small"
 				aria-label="view-mode"
 			>
-				<ToggleButton value="grid" aria-label="grid">
-					<span style={{ padding: '0 3px' }}>Grid View&nbsp;</span>
-					<ViewModuleSharpIcon />
+				<ToggleButton value="grid" aria-label="grid" sx={{ padding: '8px 16px' }}>
+					<span>GRID&nbsp;</span>
+					<GridViewSharpIcon />
 				</ToggleButton>
-				<ToggleButton value="table" aria-label="table">
-					<span style={{ padding: '0 3px' }}>List view&nbsp;</span>
-					<ViewListIcon />
+				<ToggleButton value="table" aria-label="table" sx={{ padding: '0 16px' }}>
+					<span>LIST&nbsp;</span>
+					<TableRowsSharpIcon />
+				</ToggleButton>
+				<ToggleButton value="favorites" aria-label="favorites" sx={{ padding: '0 16px' }}>
+					<span>FAVORITES&nbsp;</span>
+					<FavoriteOutlinedIcon />
 				</ToggleButton>
 			</ToggleButtonGroup>
 		</Stack>

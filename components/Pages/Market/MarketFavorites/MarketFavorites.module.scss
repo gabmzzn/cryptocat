@@ -10,19 +10,16 @@
 		font-size: 1.05rem;
 		font-weight: 500;
 		padding: 15px;
-		border-bottom: 1px solid rgb(235, 235, 235);
 	}
 
 	tr {
 		&:hover {
-			background-color: rgb(245, 245, 245);
+			background-color: rgb(245, 245, 249);
 			cursor: pointer;
-			transition: background-color 0.3s;
 		}
 
 		&:active {
 			background-color: rgb(235, 235, 239);
-			transition: background-color 0s;
 		}
 	}
 }

@@ -11,7 +11,7 @@ export default function CoinRank(props) {
 			<div className={coin}>
 				<div className={fullname}>
 					<img src={logo} width={40} height={40} alt={name} />
-					<b>{symbol}</b>
+					<span>{symbol}</span>
 				</div>
 				<div align="center" className={changepct > 0 ? higherPct : lowerPct}><span>{changepct}%</span></div>
 			</div>

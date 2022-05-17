@@ -1,13 +1,13 @@
-import scss from './MarketTable.module.scss'
+import scss from './MarketFavorites.module.scss'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
-import CoinRow from './CoinRow/CoinRow'
+import CoinRow from './FavoriteRow/FavoriteRow'
 
-export default function MarketTable(props) {
+export default function MarketFavorites(props) {
 
 	const { coins } = props
 	const { hideable } = scss
@@ -18,7 +18,7 @@ export default function MarketTable(props) {
 				<TableHead>
 					<TableRow>
 						<TableCell align="center" className={hideable}>#</TableCell>
-						<TableCell align="left">CURRENCY</TableCell>
+						<TableCell align="center">CURRENCY</TableCell>
 						<TableCell align="center" width={150}>PRICE</TableCell>
 						<TableCell align="center">LAST 24h</TableCell>
 						<TableCell align="center" className={hideable}>TOTAL VOL</TableCell>

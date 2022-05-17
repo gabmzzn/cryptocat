@@ -3,40 +3,60 @@
 
 html,
 body {
-  margin: 0;
-  margin-top: 1px;
-  padding: 0;
-  font-family: 'Roboto', sans-serif;
+	margin: 0;
+	margin-top: 1px;
+	padding: 0;
+	font-family: 'Roboto', sans-serif;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  user-drag: none;
-  -webkit-user-drag: none;
-  -khtml-user-drag: none;
-  -moz-user-drag: none;
-  -o-user-drag: none;
+	color: inherit;
+	text-decoration: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	user-drag: none;
+	-webkit-user-drag: none;
+	-khtml-user-drag: none;
+	-moz-user-drag: none;
+	-o-user-drag: none;
 }
 
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 img {
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  user-drag: none;
-  -webkit-user-drag: none;
-  -khtml-user-drag: none;
-  -moz-user-drag: none;
-  -o-user-drag: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	user-drag: none;
+	-webkit-user-drag: none;
+	-khtml-user-drag: none;
+	-moz-user-drag: none;
+	-o-user-drag: none;
 }
 
+/* Global MUI Overrides */
+
 .MuiLinearProgress-bar {
-  transition: 1800ms;
+	transition: 1800ms;
+}
+
+.MuiToggleButtonGroup-grouped {
+	margin: 0 8px;
+	border: 0;
+}
+
+.MuiToggleButtonGroup-root .Mui-disabled {
+	border: 0,
+}
+
+.MuiToggleButton-root {
+	border-radius: 12px !important;
+}
+
+.MuiToggleButtonGroup-root .Mui-selected {
+	color: rgb(182, 155, 0) !important;
+	background-color: rgba(214, 182, 0, 0.15) !important;
 }

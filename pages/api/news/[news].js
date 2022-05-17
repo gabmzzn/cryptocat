@@ -1,7 +1,10 @@
 import { getLinkPreview } from "link-preview-js"
 
 export default async function NewsAPI(req, res) {
-	const [categories, skip, amount] = req.query.news.split('=')
+
+	let [categories, skip, amount] = req.query.news.split('=')
+
+	if (categories.length < 3) categories = 'ALL_NEWS_CATEGORIES'
 
 	const URL = `https://min-api.cryptocompare.com/data/v2/news/?lang=EN&excludeCategories=Sponsored&categories=${categories}`
 	const json = await fetch(URL).then(r => r.json())

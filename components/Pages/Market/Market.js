@@ -4,6 +4,7 @@ import ViewToggle from './ViewToggle/ViewToggle'
 import MarketTable from './MarketTable/MarketTable'
 import MarketGrid from './MarketGrid/MarketGrid'
 import MarketRank from './MarketRank/MarketRank'
+import MarketFavorites from './MarketFavorites/MarketFavorites'
 
 export default function Market(props) {
 
@@ -22,7 +23,9 @@ export default function Market(props) {
 			<ViewToggle viewMode={viewMode} onViewChange={handleViewMode} />
 		</div>
 		<div style={{ display: 'flex', justifyContent: 'center' }}>
-			{viewMode == 'grid' ? <MarketGrid coins={coins} /> : <MarketTable coins={coins} />}
+			{viewMode == 'grid' && <MarketGrid coins={coins} /> ||
+				viewMode == 'table' && <MarketTable coins={coins} /> ||
+				viewMode == 'favorites' && <MarketFavorites coins={coins} />}
 		</div>
 	</>)
 }

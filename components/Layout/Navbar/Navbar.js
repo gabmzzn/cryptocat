@@ -10,6 +10,11 @@ import Drawer from '@mui/material/Drawer'
 import List from '@mui/material/List'
 import Divider from '@mui/material/Divider'
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded'
+import AutoGraphIcon from '@mui/icons-material/AutoGraph'
+import BarChartIcon from '@mui/icons-material/BarChart'
+import NewspaperIcon from '@mui/icons-material/Newspaper'
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange'
+import BoltIcon from '@mui/icons-material/Bolt'
 
 export default function NavBar() {
 
@@ -31,18 +36,20 @@ export default function NavBar() {
 	const rp = router.pathname
 
 	const paths = [
-		{ href: '/market', text: 'Market' },
-		{ href: '/coins', text: 'Coin Info' },
-		{ href: '/news', text: 'News' },
-		{ href: '/exchanges', text: 'Exchanges' },
-		{ href: '/shop', text: 'Shop' },
-		{ href: '/about', text: 'About' },
+		{ href: '/market', text: 'Market', icon: <AutoGraphIcon /> },
+		{ href: '/coins', text: 'Coin Info', icon: <BarChartIcon /> },
+		{ href: '/news', text: 'News', icon: <NewspaperIcon fontSize="small" /> },
+		{ href: '/exchanges', text: 'Exchanges', icon: <CurrencyExchangeIcon fontSize="small" /> },
+		// { href: '/shop', text: 'Shop' },
+		{ href: '/about', text: 'About', icon: <BoltIcon /> },
 	]
 
 	const pages = paths.map(p => {
 		return (
 			<Link href={p.href} key={p.href} passHref>
-				<Button className={rp.startsWith(p.href) ? buttonActive : button}>{p.text}</Button>
+				<Button className={rp.startsWith(p.href) ? buttonActive : button}>
+					{p.text}&nbsp;{p.icon}
+				</Button>
 			</Link>)
 	})
 

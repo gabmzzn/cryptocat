@@ -11,7 +11,7 @@ export default function CardRank(props) {
 			<div className={title}>
 				<span>{type}</span>
 			</div>
-			{coins.map(c => <CoinRank coin={c} />)}
+			{coins.map(c => <CoinRank key={c.rank} coin={c} />)}
 		</div>
 	</>)
 }

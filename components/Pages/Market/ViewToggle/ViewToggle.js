@@ -1,6 +1,6 @@
-import TableRowsSharpIcon from '@mui/icons-material/TableRowsSharp'
+import TableRowsIcon from '@mui/icons-material/TableRows'
 import GridViewSharpIcon from '@mui/icons-material/GridViewSharp'
-import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined'
+import FavoriteIcon from '@mui/icons-material/Favorite'
 import Stack from '@mui/material/Stack'
 import ToggleButton from '@mui/material/ToggleButton'
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
@@ -26,11 +26,11 @@ export default function ViewToggle(props) {
 				</ToggleButton>
 				<ToggleButton value="table" aria-label="table" sx={{ padding: '0 16px' }}>
 					<span>LIST&nbsp;</span>
-					<TableRowsSharpIcon />
+					<TableRowsIcon />
 				</ToggleButton>
 				<ToggleButton value="favorites" aria-label="favorites" sx={{ padding: '0 16px' }}>
 					<span>FAVORITES&nbsp;</span>
-					<FavoriteOutlinedIcon />
+					<FavoriteIcon />
 				</ToggleButton>
 			</ToggleButtonGroup>
 		</Stack>

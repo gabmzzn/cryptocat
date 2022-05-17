@@ -9,14 +9,17 @@ import CoinRow from './CoinRow/CoinRow'
 
 export default function MarketTable(props) {
 
-	const { coins } = props
+	const { coins, favorites, onFavChange } = props
 	const { hideable } = scss
+
+	const handleFav = change => onFavChange(change)
 
 	return (
 		<TableContainer className={scss.table}>
 			<Table>
 				<TableHead>
 					<TableRow>
+						<TableCell align="center"></TableCell>
 						<TableCell align="center" className={hideable}>#</TableCell>
 						<TableCell align="left">CURRENCY</TableCell>
 						<TableCell align="center" width={150}>PRICE</TableCell>
@@ -27,7 +30,13 @@ export default function MarketTable(props) {
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{coins.map(coin => <CoinRow key={coin.rank} coin={coin} />)}
+					{coins.map((coin, i) =>
+						<CoinRow
+							key={coin.rank}
+							coin={coin}
+							fav={favorites[i]}
+							onFavChange={handleFav}
+						/>)}
 				</TableBody>
 			</Table>
 		</TableContainer>

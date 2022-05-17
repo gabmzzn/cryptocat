@@ -3,6 +3,8 @@ import Link from 'next/link'
 import TableRow from '@mui/material/TableRow'
 import TableCell from '@mui/material/TableCell'
 import { useState, useEffect } from 'react'
+import FavoriteIcon from '@mui/icons-material/Favorite'
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 
 export default function FavoriteRow(props) {
 
@@ -33,6 +35,11 @@ export default function FavoriteRow(props) {
 	return (
 		<Link href={`/coins/${coin.symbol.toLowerCase()}`} key={coin.rank} passHref>
 			<TableRow >
+				<TableCell align="center">
+					<div >
+						{true ? <FavoriteIcon sx={{ color: 'red' }} fontSize='small' /> : <FavoriteBorderIcon fontSize='small' />}
+					</div>
+				</TableCell>
 				<TableCell align="center" className={hideable}>{coin.rank}</TableCell>
 				<TableCell align="left">
 					<div className={name}>

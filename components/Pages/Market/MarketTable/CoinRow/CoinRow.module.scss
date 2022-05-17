@@ -1,23 +1,29 @@
-.name {
-  display: flex;
-  align-items: center;
+.fullname {
+	display: flex;
+	align-items: center;
 
-  span {
-    font-size: 12px;
-    font-weight: bold;
-    padding: 3px 6px;
-    background-color: rgb(235, 235, 235);
-    border-radius: 4px;
-    white-space: pre-line;
-  }
+	.coinname {
+		font-size: 12px;
+		font-weight: bold;
+		padding: 3px 6px;
+		background-color: rgb(235, 235, 235);
+		border-radius: 4px;
+		white-space: pre-line;
+	}
 
-  img {
-    width: 30px;
-    height: 30px;
-    margin-right: 8px;
-    border-radius: 50%;
-    background-color: rgb(240, 240, 240);
-  }
+	img {
+		width: 30px;
+		height: 30px;
+		margin-right: 8px;
+		border-radius: 50%;
+		background-color: rgb(240, 240, 240);
+	}
+}
+
+.favorite {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
 }
 
 .initialPrice,
@@ -25,169 +31,169 @@
 .higherPrice2,
 .lowerPrice1,
 .lowerPrice2 {
-  font-weight: bold;
-  padding: 7px 8px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	font-weight: bold;
+	padding: 7px 8px;
+	border-radius: 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .initialPrice {
-  color: rgb(50, 50, 50);
-  background-color: rgb(240, 240, 240);
+	color: rgb(50, 50, 50);
+	background-color: rgb(240, 240, 240);
 }
 
 .higherPrice1,
 .higherPrice2 {
-  color: rgb(0, 97, 0);
-  background-color: rgb(198, 239, 206);
+	color: rgb(0, 97, 0);
+	background-color: rgb(198, 239, 206);
 }
 
 .lowerPrice1,
 .lowerPrice2 {
-  color: rgb(156, 0, 6);
-  background-color: rgb(255, 199, 206);
+	color: rgb(156, 0, 6);
+	background-color: rgb(255, 199, 206);
 }
 
 .higherPrice1 {
-  animation: higherPrice1 2s forwards linear;
+	animation: higherPrice1 2s forwards linear;
 }
 
 .higherPrice2 {
-  animation: higherPrice2 2s forwards linear;
+	animation: higherPrice2 2s forwards linear;
 }
 
 .lowerPrice1 {
-  animation: lowerPrice1 2s forwards linear;
+	animation: lowerPrice1 2s forwards linear;
 }
 
 .lowerPrice2 {
-  animation: lowerPrice2 2s forwards linear;
+	animation: lowerPrice2 2s forwards linear;
 }
 
 .higherPct,
 .lowerPct {
-  font-weight: bold !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-  transition: all 2s;
+	font-weight: bold !important;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+	transition: all 2s;
 }
 
 .higherPct {
-  color: rgb(0, 135, 0) !important;
+	color: rgb(0, 135, 0) !important;
 }
 
 .lowerPct {
-  color: rgb(225, 0, 0) !important;
+	color: rgb(225, 0, 0) !important;
 }
 
 @keyframes higherPrice1 {
-  0% {
-    color: rgb(50, 50, 50);
-    ;
-    background-color: rgb(240, 240, 240);
-  }
+	0% {
+		color: rgb(50, 50, 50);
+		;
+		background-color: rgb(240, 240, 240);
+	}
 
-  10% {
-    color: rgb(0, 97, 0);
-    background-color: rgb(198, 239, 206);
-  }
+	10% {
+		color: rgb(0, 97, 0);
+		background-color: rgb(198, 239, 206);
+	}
 
-  90% {
-    color: rgb(0, 97, 0);
-    background-color: rgb(198, 239, 206);
-  }
+	90% {
+		color: rgb(0, 97, 0);
+		background-color: rgb(198, 239, 206);
+	}
 
-  100% {
-    color: rgb(50, 50, 50);
-    ;
-    background-color: rgb(240, 240, 240);
-  }
+	100% {
+		color: rgb(50, 50, 50);
+		;
+		background-color: rgb(240, 240, 240);
+	}
 }
 
 @keyframes higherPrice2 {
-  0% {
-    color: rgb(50, 50, 50);
-    ;
-    background-color: rgb(240, 240, 240);
-  }
+	0% {
+		color: rgb(50, 50, 50);
+		;
+		background-color: rgb(240, 240, 240);
+	}
 
-  10% {
-    color: rgb(0, 97, 0);
-    background-color: rgb(198, 239, 206);
-  }
+	10% {
+		color: rgb(0, 97, 0);
+		background-color: rgb(198, 239, 206);
+	}
 
-  90% {
-    color: rgb(0, 97, 0);
-    background-color: rgb(198, 239, 206);
-  }
+	90% {
+		color: rgb(0, 97, 0);
+		background-color: rgb(198, 239, 206);
+	}
 
-  100% {
-    color: rgb(50, 50, 50);
-    ;
-    background-color: rgb(240, 240, 240);
-  }
+	100% {
+		color: rgb(50, 50, 50);
+		;
+		background-color: rgb(240, 240, 240);
+	}
 }
 
 @keyframes lowerPrice1 {
-  0% {
-    color: rgb(50, 50, 50);
-    ;
-    background-color: rgb(240, 240, 240);
-  }
+	0% {
+		color: rgb(50, 50, 50);
+		;
+		background-color: rgb(240, 240, 240);
+	}
 
-  10% {
-    color: rgb(156, 0, 6);
-    background-color: rgb(255, 199, 206);
-  }
+	10% {
+		color: rgb(156, 0, 6);
+		background-color: rgb(255, 199, 206);
+	}
 
-  90% {
-    color: rgb(156, 0, 6);
-    background-color: rgb(255, 199, 206);
-  }
+	90% {
+		color: rgb(156, 0, 6);
+		background-color: rgb(255, 199, 206);
+	}
 
-  100% {
-    color: rgb(50, 50, 50);
-    ;
-    background-color: rgb(240, 240, 240);
-  }
+	100% {
+		color: rgb(50, 50, 50);
+		;
+		background-color: rgb(240, 240, 240);
+	}
 }
 
 @keyframes lowerPrice2 {
-  0% {
-    color: rgb(50, 50, 50);
-    ;
-    background-color: rgb(240, 240, 240);
-  }
+	0% {
+		color: rgb(50, 50, 50);
+		;
+		background-color: rgb(240, 240, 240);
+	}
 
-  10% {
-    color: rgb(156, 0, 6);
-    background-color: rgb(255, 199, 206);
-  }
+	10% {
+		color: rgb(156, 0, 6);
+		background-color: rgb(255, 199, 206);
+	}
 
-  90% {
-    color: rgb(156, 0, 6);
-    background-color: rgb(255, 199, 206);
-  }
+	90% {
+		color: rgb(156, 0, 6);
+		background-color: rgb(255, 199, 206);
+	}
 
-  100% {
-    color: rgb(50, 50, 50);
-    ;
-    background-color: rgb(240, 240, 240);
-  }
+	100% {
+		color: rgb(50, 50, 50);
+		;
+		background-color: rgb(240, 240, 240);
+	}
 }
 
 .arrow {
-  font-size: 14px !important;
+	font-size: 14px !important;
 }
 
 .hideable {
-  display: table-cell;
+	display: table-cell;
 }
 
 @media only screen and (max-width: 900px) {
-  .hideable {
-    display: none !important;
-  }
+	.hideable {
+		display: none !important;
+	}
 }

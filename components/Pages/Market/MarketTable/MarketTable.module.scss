@@ -15,15 +15,14 @@
 
 	tr {
 		&:hover {
-			background-color: rgb(245, 245, 245);
-			cursor: pointer;
+			background-color: rgb(248, 248, 248);
 			transition: background-color 0.3s;
 		}
 
-		&:active {
-			background-color: rgb(235, 235, 235);
-			transition: background-color 0s;
-		}
+		// &:active {
+		// 	background-color: rgb(235, 235, 235);
+		// 	transition: background-color 0s;
+		// }
 	}
 }
 

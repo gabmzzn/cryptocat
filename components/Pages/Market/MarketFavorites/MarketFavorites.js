@@ -9,7 +9,7 @@ import CoinRow from './FavoriteRow/FavoriteRow'
 
 export default function MarketFavorites(props) {
 
-	const { coins } = props
+	const { favorites } = props
 	const { hideable } = scss
 
 	return (
@@ -17,8 +17,9 @@ export default function MarketFavorites(props) {
 			<Table>
 				<TableHead>
 					<TableRow>
+						<TableCell align="center"></TableCell>
 						<TableCell align="center" className={hideable}>#</TableCell>
-						<TableCell align="center">CURRENCY</TableCell>
+						<TableCell align="left">CURRENCY</TableCell>
 						<TableCell align="center" width={150}>PRICE</TableCell>
 						<TableCell align="center">LAST 24h</TableCell>
 						<TableCell align="center" className={hideable}>TOTAL VOL</TableCell>
@@ -27,7 +28,7 @@ export default function MarketFavorites(props) {
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{coins.map(coin => <CoinRow key={coin.rank} coin={coin} />)}
+					{favorites.map(coin => <CoinRow key={coin.rank} coin={coin} />)}
 				</TableBody>
 			</Table>
 		</TableContainer>

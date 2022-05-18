@@ -28,7 +28,7 @@ export default function ViewToggle(props) {
 					<span>LIST&nbsp;</span>
 					<TableRowsIcon />
 				</ToggleButton>
-				<ToggleButton value="favorites" aria-label="favorites" sx={{ padding: '0 16px' }}>
+				<ToggleButton value="favs" aria-label="favorites" sx={{ padding: '0 16px' }}>
 					<span>FAVORITES&nbsp;</span>
 					<FavoriteIcon />
 				</ToggleButton>

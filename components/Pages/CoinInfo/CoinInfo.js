@@ -91,8 +91,8 @@ export default function CoinDetails(props) {
 				<CoinSidebar data={coin} price={price} />
 			</div>
 		</div>
-		<div className={scss.newsFeed}>
+		{/* <div className={scss.newsFeed}>
 			<CoinNews topNews={topNews} news={news} />
-		</div>
+		</div> */}
 	</div>
 }

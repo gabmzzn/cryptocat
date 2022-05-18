@@ -14,7 +14,7 @@ function parsePrice(n) {
 
 export default function CoinRow(props) {
 
-	console.log('%cCoinRow Rendered', 'background: orange; color: black; padding: 1px 8px; border-radius: 12px;')
+	// console.log('%cCoinRow Rendered', 'background: orange; color: black; padding: 1px 8px; border-radius: 12px;')
 	const { onFavChange } = props
 	const { name, price, changepct, rank, symbol, logo, updown, totalvolume, marketcap, chart } = props.coin
 

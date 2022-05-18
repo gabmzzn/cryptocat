@@ -42,3 +42,22 @@
 		}
 	}
 }
+
+.addFavs {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 400px;
+	width: 100%;
+
+	h2,
+	.heartBroken {
+		color: #aaaaaa
+	}
+
+	.heartBroken {
+		transform: scale(4);
+		height: 100px;
+	}
+}

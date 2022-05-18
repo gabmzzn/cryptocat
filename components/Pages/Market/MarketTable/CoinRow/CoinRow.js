@@ -27,11 +27,8 @@ export default function CoinRow(props) {
 
 	function handleFav() {
 		setFav(fav => !fav)
+		onFavChange(symbol)
 	}
-
-	useEffect(() => {
-		onFavChange({ [symbol]: fav })
-	}, [fav])
 
 	useEffect(() => {
 		if (coinPrice !== null) {

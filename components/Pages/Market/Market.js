@@ -15,24 +15,30 @@ export default function Market(props) {
 		if (mode !== null) setViewMode(mode)
 	}
 
-	const fav = JSON.parse(localStorage.getItem('favs')) ||
-		coins.map(coin => { return { [coin.symbol]: false } })
+	const fav = JSON.parse(localStorage.getItem('favs')) || []
 
-	const [favorites, setFavorites] = useState(fav)
+	const [storedFavs, setStoredFavs] = useState(fav)
+
+	const co = coins.filter(coin => fav.includes(coin.symbol))
+	const [favorites, setFavorites] = useState(co)
 
 	const handleFav = (change) => {
-		console.log(change)
-		var index = favorites
-			.findIndex(c =>
-				Object.keys(c)[0] == Object.keys(change)[0])
-		let favUpdate = [...favorites]
-		favUpdate[index] = change
-		setFavorites(favUpdate)
+		const favs = [...storedFavs]
+		if (favs.includes(change)) {
+			favs.splice(favs.indexOf(change), 1)
+		}
+		else {
+			favs.push(change)
+		}
+		setStoredFavs([...new Set(favs)])
+
+		const favCoins = coins.filter(coin => favs.includes(coin.symbol))
+		setFavorites(favCoins)
 	}
 
 	useEffect(() => {
-		localStorage.setItem('favs', JSON.stringify(favorites))
-	}, [favorites])
+		localStorage.setItem('favs', JSON.stringify(storedFavs))
+	}, [storedFavs])
 
 	return (<>
 		<MarketRank coins={coins} />
@@ -47,6 +53,7 @@ export default function Market(props) {
 					onFavChange={handleFav}
 					coins={coins}
 					favorites={favorites}
+					storedFavs={storedFavs}
 					view={viewMode}
 				/>}
 		</div>

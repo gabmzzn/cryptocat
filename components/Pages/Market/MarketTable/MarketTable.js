@@ -10,31 +10,30 @@ import HeartBrokenIcon from '@mui/icons-material/HeartBroken'
 
 export default function MarketTable(props) {
 
-	const { coins, favorites, onFavChange, view } = props
+	const { coins, favorites, storedFavs, onFavChange, view } = props
 	const { hideable, addFavs, heartBroken, table } = scss
 
 	const handleFav = change => onFavChange(change)
 
-	const coinList = coins.map((coin, i) =>
+	const coinList = coins.map(coin => {
+		const val = storedFavs.includes(coin.symbol) ? true : false
+		return <CoinRow
+			key={coin.rank}
+			coin={coin}
+			onFavChange={handleFav}
+			fav={val}
+		/>
+	})
+
+	const favs = favorites.map(coin =>
 		<CoinRow
 			key={coin.rank}
 			coin={coin}
-			fav={favorites[i][coin.symbol]}
 			onFavChange={handleFav}
+			fav={true}
 		/>)
 
-	const favs = coins
-		.filter((coin, i) => favorites[i][coin.symbol])
-		.map((coin, i) =>
-			<CoinRow
-				key={coin.rank}
-				coin={coin}
-				fav={favorites[i][coin.symbol]}
-				onFavChange={handleFav}
-			/>)
-
-
-	const showTable = !favs.length && view == 'favs' ? false : true
+	const showTable = !favorites.length && view == 'favs' ? false : true
 
 	return (
 		<>

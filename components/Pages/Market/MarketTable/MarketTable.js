@@ -15,15 +15,13 @@ export default function MarketTable(props) {
 
 	const handleFav = change => onFavChange(change)
 
-	const coinList = coins.map(coin => {
-		const val = storedFavs.includes(coin.symbol) ? true : false
-		return <CoinRow
+	const coinList = coins.map(coin =>
+		<CoinRow
 			key={coin.rank}
 			coin={coin}
 			onFavChange={handleFav}
-			fav={val}
-		/>
-	})
+			fav={storedFavs.includes(coin.symbol) ? true : false}
+		/>)
 
 	const favs = favorites.map(coin =>
 		<CoinRow

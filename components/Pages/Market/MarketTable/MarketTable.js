@@ -36,7 +36,7 @@ export default function MarketTable(props) {
 	return (
 		<>
 			{showTable ?
-				<TableContainer className={table}>
+				<TableContainer className={table} sx={{ width: '87%' }}>
 					<Table>
 						<TableHead>
 							<TableRow>

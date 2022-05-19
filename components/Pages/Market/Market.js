@@ -15,21 +15,19 @@ export default function Market(props) {
 		if (mode !== null) setViewMode(mode)
 	}
 
-	const fav = JSON.parse(localStorage.getItem('favs')) || []
+	const store = JSON.parse(localStorage.getItem('favs')) || []
+	const cleanedStore = store.filter(item => {
+		return coins.some(coin => coin.symbol == item) // Filters items not in the list
+	})
+	const [storedFavs, setStoredFavs] = useState(cleanedStore)
 
-	const [storedFavs, setStoredFavs] = useState(fav)
-
-	const co = coins.filter(coin => fav.includes(coin.symbol))
-	const [favorites, setFavorites] = useState(co)
+	const favedStored = coins.filter(coin => cleanedStore.includes(coin.symbol))
+	const [favorites, setFavorites] = useState(favedStored)
 
 	const handleFav = (change) => {
 		const favs = [...storedFavs]
-		if (favs.includes(change)) {
-			favs.splice(favs.indexOf(change), 1)
-		}
-		else {
-			favs.push(change)
-		}
+		if (favs.includes(change)) favs.splice(favs.indexOf(change), 1)
+		else favs.push(change)
 		setStoredFavs([...new Set(favs)])
 
 		const favCoins = coins.filter(coin => favs.includes(coin.symbol))

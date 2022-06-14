@@ -5,14 +5,14 @@ import TableCell from '@mui/material/TableCell'
 import { useState, useEffect } from 'react'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
-
+import { memo } from 'react'
 
 function parsePrice(n) {
 	return n.toLocaleString('en-GB',
 		{ style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 5, })
 }
 
-export default function CoinRow(props) {
+function CoinRow(props) {
 
 	console.log('%cCoinRow Rendered', 'background: orange; color: black; padding: 1px 8px; border-radius: 12px;')
 	const { onFavChange } = props
@@ -78,3 +78,5 @@ export default function CoinRow(props) {
 		</TableRow >
 	)
 }
+
+export default memo(CoinRow)

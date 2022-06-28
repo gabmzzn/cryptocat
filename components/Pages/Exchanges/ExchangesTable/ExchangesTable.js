@@ -27,7 +27,7 @@ export default function ExchangesTable(props) {
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{exchanges.map((ex, i) => <ExchangesRow key={i} exchange={ex} />)}
+					{exchanges.map(ex => <ExchangesRow key={ex.name} exchange={ex} />)}
 				</TableBody>
 			</Table>
 		</TableContainer >
